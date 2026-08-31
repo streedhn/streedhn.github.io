@@ -1,1255 +1,298 @@
-<div class="streed-header">
-  <h1 id="streed-title">STREED PRINT STUDIO</h1>
-
-  <div class="light-sweep"></div>
-  <div class="flash"></div>
-
-  <div class="divider"></div>
-</div>
-
-<style>
-  .streed-header {
-    position: relative;
-    width: 100%;
-    height: 125px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
-  }
-
-  #streed-title {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    font-size: 45px;
-    font-weight: normal;
-    letter-spacing: 3px;
-    color: #111111;
-    text-align: center;
-    z-index: 2;
-  }
-
-  /* Rayo */
-  .light-sweep {
-    position: absolute;
-    top: 50%;
-    left: -30%;
-    width: 22%;
-    height: 3px;
-    transform: translateY(-50%) rotate(-8deg);
-
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.4),
-      #ffffff,
-      rgba(255,255,255,0.9),
-      transparent
-    );
-
-    box-shadow:
-      0 0 5px #ffffff,
-      0 0 12px #ffffff,
-      0 0 25px rgba(255,255,255,0.9);
-
-    z-index: 3;
-
-    animation: sweep 3.5s ease-in-out infinite;
-  }
-
-  /* Destello */
-  .flash {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-    background: white;
-
-    opacity: 0;
-    z-index: 4;
-
-    box-shadow:
-      0 0 5px white,
-      0 0 15px white,
-      0 0 30px white,
-      0 0 50px white;
-
-    animation: flash 3.5s ease-in-out infinite;
-  }
-
-  /* Línea divisoria */
-  .divider {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background: #111111;
-  }
-
-  @keyframes sweep {
-
-    0% {
-      left: -30%;
-      opacity: 0;
-    }
-
-    8% {
-      opacity: 1;
-    }
-
-    65% {
-      opacity: 1;
-    }
-
-    78% {
-      left: 105%;
-      opacity: 1;
-    }
-
-    82% {
-      left: 110%;
-      opacity: 0;
-    }
-
-    100% {
-      left: 110%;
-      opacity: 0;
-    }
-  }
-
-  @keyframes flash {
-
-    0%,
-    75% {
-      opacity: 0;
-      transform: translateY(-50%) scale(0.5);
-    }
-
-    79% {
-      opacity: 1;
-      transform: translateY(-50%) scale(1);
-    }
-
-    83% {
-      opacity: 0;
-      transform: translateY(-50%) scale(4);
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  /* Celular */
-  @media (max-width: 600px) {
-
-    .streed-header {
-      height: 105px;
-    }
-
-    #streed-title {
-      font-size: 45px;
-      letter-spacing: 1px;
-      transform: scale(0.75);
-    }
-
-  }
-</style>
-
-
-<style>
-.streed-video {
-  width:100%;
-  max-width:1100px;
-  margin:0 auto;
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-  background:#000;
-  aspect-ratio:16 / 9;
-}
-
-.streed-video iframe {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-</style>
-
-<div class="streed-video">
-
-  <iframe
-    src="https://player.vimeo.com/video/1222270098?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-    title="STREED"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-
-</div>
-
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-
-.streed-box {
-  width:100%;
-  min-height:120px;
-  box-sizing:border-box;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:20px 10px;
-  overflow:visible;
-
-  background:#000;
-}
-
-.streed-title {
-  margin:0;
-  padding:0;
-
-  width:100%;
-
-  text-align:center;
-
-  font-family:'Abril Fatface', Georgia, serif;
-  font-size:58px;
-  line-height:1.05;
-
-  letter-spacing:-1px;
-
-  color:#fff;
-
-  white-space:normal;
-
-  animation:appear 1s ease both;
-}
-
-.white,
-.red {
-  display:inline-block;
-}
-
-.white {
-  color:#fff;
-  animation:floatWhite 4s ease-in-out 1s infinite;
-}
-
-.red {
-  color:#D90429;
-  animation:floatRed 3s ease-in-out 1s infinite;
-}
-
-
-/* ENTRADA */
-
-@keyframes appear {
-
-  from {
-    opacity:0;
-    transform:translateY(25px) scale(.95);
-    filter:blur(8px);
-  }
-
-  to {
-    opacity:1;
-    transform:translateY(0) scale(1);
-    filter:blur(0);
-  }
-
-}
-
-
-/* SUBLIMA */
-
-@keyframes floatWhite {
-
-  0%,100% {
-    transform:translateY(0);
-  }
-
-  50% {
-    transform:translateY(-5px);
-  }
-
-}
-
-
-/* TU ESTILO */
-
-@keyframes floatRed {
-
-  0%,100% {
-    transform:translateY(0) rotate(-2deg);
-  }
-
-  50% {
-    transform:translateY(-7px) rotate(1deg);
-  }
-
-}
-
-
-/* 📱 TELÉFONO */
-
-@media screen and (max-width:600px) {
-
-  .streed-box {
-    min-height:125px;
-    padding:15px 5px;
-  }
-
-  .streed-title {
-    font-size:36px;
-    line-height:1.05;
-  }
-
-}
-
-
-/* 📱 TELÉFONOS MUY PEQUEÑOS */
-
-@media screen and (max-width:380px) {
-
-  .streed-box {
-    min-height:115px;
-  }
-
-  .streed-title {
-    font-size:30px;
-  }
-
-}
-</style>
-
-
-<div class="streed-box">
-
-  <h1 class="streed-title">
-    <span class="white">SUBLIMA</span>
-    <span class="red">TU ESTILO.</span>
-  </h1>
-
-</div>
-
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-
-.streed-process {
-  width:100%;
-  max-width:100%;
-  box-sizing:border-box;
-
-  padding:55px 20px;
-
-  margin:0 auto;
-
-  background:transparent;
-
-  overflow:hidden;
-
-  font-family:Arial,sans-serif;
-
-  text-align:center;
-}
-
-
-/* =========================
-   TÍTULO
-========================= */
-
-.streed-process-title {
-
-  width:100%;
-
-  margin:0 auto 40px;
-
-  padding:0;
-
-  text-align:center;
-
-  font-family:'Abril Fatface',Georgia,serif;
-
-  font-size:clamp(30px,5vw,55px);
-
-  line-height:1;
-
-  color:#D90429;
-
-  opacity:0;
-
-  transform:translateY(20px);
-
-  animation:titleIn 1s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-
-/* =========================
-   GRID
-========================= */
-
-.streed-process-grid {
-
-  width:100%;
-
-  max-width:900px;
-
-  margin-left:auto;
-  margin-right:auto;
-
-  display:grid;
-
-  grid-template-columns:repeat(2,minmax(0,1fr));
-
-  box-sizing:border-box;
-}
-
-
-/* =========================
-   PASOS
-========================= */
-
-.streed-step {
-
-  position:relative;
-
-  width:100%;
-  min-width:0;
-
-  min-height:220px;
-
-  padding:25px 20px;
-
-  box-sizing:border-box;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
-  opacity:0;
-
-  transform:translateY(30px);
-
-  animation:stepIn .8s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-
-.streed-step:nth-child(1) {
-  animation-delay:.2s;
-}
-
-.streed-step:nth-child(2) {
-  animation-delay:.4s;
-}
-
-.streed-step:nth-child(3) {
-  animation-delay:.6s;
-}
-
-.streed-step:nth-child(4) {
-  animation-delay:.8s;
-}
-
-
-/* =========================
-   NÚMEROS
-========================= */
-
-.streed-number {
-
-  position:relative;
-
-  display:inline-block;
-
-  width:max-content;
-
-  margin:0 auto 22px;
-
-  padding:0;
-
-  font-family:'Abril Fatface',Georgia,serif;
-
-  font-size:clamp(65px,9vw,100px);
-
-  line-height:.75;
-
-  color:#D90429;
-
-  opacity:.17;
-
-  text-align:center;
-
-  transition:opacity .4s ease;
-}
-
-
-/* BARRIDO DE LUZ */
-
-.streed-number::after {
-
-  content:"";
-
-  position:absolute;
-
-  top:-25%;
-
-  left:-70%;
-
-  width:35%;
-
-  height:150%;
-
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0),
-    rgba(255,255,255,.9),
-    rgba(255,255,255,0),
-    transparent
-  );
-
-  transform:skewX(-18deg);
-
-  opacity:0;
-
-  animation:numberScan 4s ease-in-out infinite;
-}
-
-
-/* DIFERENTES TIEMPOS */
-
-.streed-step:nth-child(1) .streed-number::after {
-  animation-delay:1.5s;
-}
-
-.streed-step:nth-child(2) .streed-number::after {
-  animation-delay:2.1s;
-}
-
-.streed-step:nth-child(3) .streed-number::after {
-  animation-delay:2.7s;
-}
-
-.streed-step:nth-child(4) .streed-number::after {
-  animation-delay:3.3s;
-}
-
-
-/* =========================
-   TÍTULO PASO
-========================= */
-
-.streed-step-title {
-
-  margin:0 0 12px;
-
-  padding:0;
-
-  font-family:'Abril Fatface',Georgia,serif;
-
-  font-size:clamp(22px,3vw,32px);
-
-  line-height:1;
-
-  color:#D90429;
-
-  letter-spacing:.5px;
-
-  text-align:center;
-
-  transition:transform .3s ease;
-}
-
-
-/* =========================
-   DESCRIPCIÓN
-========================= */
-
-.streed-step-text {
-
-  width:100%;
-
-  max-width:230px;
-
-  margin:0 auto;
-
-  padding:0;
-
-  font-size:12px;
-
-  line-height:1.5;
-
-  color:#000000;
-
-  opacity:.6;
-
-  text-align:center;
-}
-
-
-/* =========================
-   SEPARADORES
-========================= */
-
-.streed-step:nth-child(1)::after,
-.streed-step:nth-child(3)::after {
-
-  content:"";
-
-  position:absolute;
-
-  right:0;
-
-  top:20%;
-
-  width:1px;
-
-  height:60%;
-
-  background:#D90429;
-
-  opacity:.2;
-}
-
-
-.streed-step:nth-child(1)::before,
-.streed-step:nth-child(2)::before {
-
-  content:"";
-
-  position:absolute;
-
-  left:12%;
-
-  right:12%;
-
-  bottom:0;
-
-  height:1px;
-
-  background:#D90429;
-
-  opacity:.2;
-}
-
-
-/* =========================
-   EFECTO HOVER
-========================= */
-
-.streed-step:hover .streed-number {
-
-  opacity:1;
-
-  transform:scale(1.04);
-}
-
-.streed-step:hover .streed-step-title {
-
-  transform:translateY(-3px);
-}
-
-
-/* =========================
-   ANIMACIONES
-========================= */
-
-@keyframes titleIn {
-
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-
-@keyframes stepIn {
-
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-
-/* ✨ BARRIDO */
-
-@keyframes numberScan {
-
-  0%,45% {
-    left:-70%;
-    opacity:0;
-  }
-
-  50% {
-    opacity:1;
-  }
-
-  70% {
-    left:125%;
-    opacity:1;
-  }
-
-  75%,100% {
-    left:125%;
-    opacity:0;
-  }
-}
-
-
-/* =========================
-   📱 MÓVIL
-========================= */
-
-@media(max-width:600px) {
-
-  .streed-process {
-
-    padding:40px 10px;
-  }
-
-  .streed-process-title {
-
-    margin-bottom:25px;
-
-    font-size:32px;
-  }
-
-  .streed-process-grid {
-
-    width:100%;
-
-    max-width:500px;
-
-    margin-left:auto;
-    margin-right:auto;
-
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .streed-step {
-
-    min-height:180px;
-
-    padding:20px 10px;
-  }
-
-  .streed-number {
-
-    font-size:52px;
-
-    margin-bottom:17px;
-  }
-
-  .streed-step-title {
-
-    font-size:19px;
-
-    margin-bottom:9px;
-  }
-
-  .streed-step-text {
-
-    max-width:140px;
-
-    font-size:9px;
-
-    line-height:1.45;
-  }
-
-}
-
-
-/* =========================
-   📱 MÓVIL PEQUEÑO
-========================= */
-
-@media(max-width:380px) {
-
-  .streed-process {
-
-    padding-left:5px;
-    padding-right:5px;
-  }
-
-  .streed-process-grid {
-
-    width:100%;
-  }
-
-  .streed-step {
-
-    min-height:165px;
-
-    padding:17px 6px;
-  }
-
-  .streed-number {
-
-    font-size:46px;
-  }
-
-  .streed-step-title {
-
-    font-size:17px;
-  }
-
-  .streed-step-text {
-
-    font-size:8px;
-
-    max-width:120px;
-  }
-
-}
-</style>
-
-
-<section class="streed-process">
-
-  <h2 class="streed-process-title">
-    "ASI FUNCIONA"
-  </h2>
-
-
-  <div class="streed-process-grid">
-
-
-    <!-- 01 -->
-
-    <div class="streed-step">
-
-      <div class="streed-number">
-        01
-      </div>
-
-      <h3 class="streed-step-title">
-        ELIGE
-      </h3>
-
-      <p class="streed-step-text">
-        Escoge lo que quieres personalizar.
-      </p>
-
-    </div>
-
-
-    <!-- 02 -->
-
-    <div class="streed-step">
-
-      <div class="streed-number">
-        02
-      </div>
-
-      <h3 class="streed-step-title">
-        PERSONALIZA
-      </h3>
-
-      <p class="streed-step-text">
-        "Cuentanos tu idea o envIanos tu diseño."
-      </p>
-
-    </div>
-
-
-    <!-- 03 -->
-
-    <div class="streed-step">
-
-      <div class="streed-number">
-        03
-      </div>
-
-      <h3 class="streed-step-title">
-        CREAMOS
-      </h3>
-
-      <p class="streed-step-text">
-        Convertimos tu idea en algo real.
-      </p>
-
-    </div>
-
-
-    <!-- 04 -->
-
-    <div class="streed-step">
-
-      <div class="streed-number">
-        04
-      </div>
-
-      <h3 class="streed-step-title">
-        DISFRUTA
-      </h3>
-
-      <p class="streed-step-text">
-        Recibe algo hecho especialmente para ti.
-      </p>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-logo">
-          STR<span>E</span>ED
-        </div>
-
-        <p class="footer-description">
-          Custom apparel made for your world.
-          Diseños personalizados y colecciones
-          para quienes quieren llevar algo diferente.
-        </p>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Shop</h4>
-
-        <a href="personalizacion.html">
-          Personalización
-        </a>
-
-        <a href="artistas.html">
-          Artistas
-        </a>
-
-        <a href="marvel.html">
-          Marvel Universe
-        </a>
-
-        <a href="anime.html">
-          Anime
-        </a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>STREED</h4>
-
-        <a href="index.html">
-          Inicio
-        </a>
-
-        <a href="carrito.html">
-          Carrito
-        </a>
-
-        <a href="#">
-          Instagram
-        </a>
-
-        <a href="#">
-          WhatsApp
-        </a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Info</h4>
-
-        <a href="#">
-          Envíos
-        </a>
-
-        <a href="#">
-          Métodos de pago
-        </a>
-
-        <a href="#">
-          Contacto
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-      <span>
-        © 2026 STREED. ALL RIGHTS RESERVED.
-      </span>
-
-      <span>
-        CUSTOM APPAREL.
-      </span>
-
-    </div>
-
-  </footer>
-
-</body>
-</html>
-
-<!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer>
-
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-logo">
-          STR<span>E</span>ED
-        </div>
-
-        <p class="footer-description">
-          Custom apparel made for your world.
-          Diseños personalizados y colecciones
-          para quienes quieren llevar algo diferente.
-        </p>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Shop</h4>
-
-        <a href="personalizacion.html">
-          Personalización
-        </a>
-
-        <a href="artistas.html">
-          Artistas
-        </a>
-
-        <a href="marvel.html">
-          Marvel Universe
-        </a>
-
-        <a href="anime.html">
-          Anime
-        </a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>STREED</h4>
-
-        <a href="index.html">
-          Inicio
-        </a>
-
-        <a href="carrito.html">
-          Carrito
-        </a>
-
-        <a href="#">
-          Instagram
-        </a>
-
-        <a href="#">
-          WhatsApp
-        </a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Info</h4>
-
-        <a href="#">
-          Envíos
-        </a>
-
-        <a href="#">
-          Métodos de pago
-        </a>
-
-        <a href="#">
-          Contacto
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-      <span>
-        © 2026 STREED. ALL RIGHTS RESERVED.
-      </span>
-
-      <span>
-        CUSTOM APPAREL.
-      </span>
-
-    </div>
-
-  </footer>
-
-</body>
-</html>
-
-/* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 850px) {
-
-      .navbar {
-        padding: 0 20px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 60px 20px;
-      }
-
-      .hero h1 {
-        font-size: 75px;
-        letter-spacing: -5px;
-      }
-
-      .hero-art {
-        height: 430px;
-      }
-
-      .hero-circle {
-        width: 300px;
-        height: 300px;
-      }
-
-      .hero-card {
-        width: 230px;
-        height: 320px;
-      }
-
-      .hero-star {
-        font-size: 90px;
-      }
-
-      section {
-        padding: 80px 20px;
-      }
-
-      .section-header {
-        display: block;
-      }
-
-      .section-description {
-        margin-top: 20px;
-      }
-
-      .collections {
-        grid-template-columns: 1fr;
-      }
-
-      .collection {
-        min-height: 330px;
-      }
-
-      .drop {
-        margin: 0 20px;
-        padding: 50px 25px;
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .drop-visual {
-        height: 320px;
-      }
-
-      .combos {
-        grid-template-columns: 1fr;
-      }
-
-      .cta {
-        margin: 0 20px;
-        padding: 70px 25px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-logo {
-        font-size: 45px;
-      }
-
-      .copyright {
-        display: block;
-        line-height: 2;
-      }
-    }
-
-    @media (max-width: 500px) {
-
-      .hero h1 {
-        font-size: 65px;
-      }
-
-      .hero-card {
-        width: 205px;
-        height: 290px;
-      }
-
-      .hero-circle {
-        width: 270px;
-        height: 270px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
-    }
-
-  </style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icono de la página -->
+    <link rel="icon" type="image/png" href="images/IMG_1601.PNG">
+
+    <title>STREED PRINT STUDIO</title>
 </head>
 
 <body>
+
+<header class="streed-header">
+
+    <!-- Logotipo -->
+    <img
+        src="images/IMG_1600.PNG"
+        alt="STREED HN"
+        class="streed-logo"
+    >
+
+    <!-- Título -->
+    <h1>STREED PRINT STUDIO</h1>
+
+    <!-- Rayo -->
+    <div class="light-sweep"></div>
+
+    <!-- Destello -->
+    <div class="flash"></div>
+
+</header>
+
+<!-- Línea divisoria -->
+<div class="divider"></div>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: transparent;
+    }
+
+
+    /* =========================
+       ENCABEZADO
+       ========================= */
+
+    .streed-header {
+        position: relative;
+        width: 100%;
+        height: 125px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+
+    /* =========================
+       LOGOTIPO
+       ========================= */
+
+    .streed-logo {
+        position: absolute;
+
+        left: 25px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 75px;
+        height: 75px;
+
+        object-fit: contain;
+
+        z-index: 2;
+    }
+
+
+    /* =========================
+       TITULO
+       ========================= */
+
+    .streed-header h1 {
+        position: relative;
+
+        margin: 0;
+
+        font-family:
+            Impact,
+            Haettenschweiler,
+            "Arial Narrow Bold",
+            sans-serif;
+
+        font-size: 45px;
+        font-weight: normal;
+
+        letter-spacing: 3px;
+
+        color: #111111;
+
+        text-align: center;
+
+        z-index: 2;
+    }
+
+
+    /* =========================
+       RAYO
+       ========================= */
+
+    .light-sweep {
+        position: absolute;
+
+        top: 50%;
+        left: -30%;
+
+        width: 22%;
+        height: 3px;
+
+        transform:
+            translateY(-50%)
+            rotate(-8deg);
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.4),
+            #ffffff,
+            rgba(255,255,255,0.9),
+            transparent
+        );
+
+        box-shadow:
+            0 0 5px #ffffff,
+            0 0 12px #ffffff,
+            0 0 25px rgba(255,255,255,0.9);
+
+        z-index: 3;
+
+        animation:
+            sweep 3.5s ease-in-out infinite;
+    }
+
+
+    /* =========================
+       DESTELLO
+       ========================= */
+
+    .flash {
+        position: absolute;
+
+        right: 5%;
+        top: 50%;
+
+        width: 6px;
+        height: 6px;
+
+        border-radius: 50%;
+
+        background: white;
+
+        opacity: 0;
+
+        z-index: 4;
+
+        box-shadow:
+            0 0 5px white,
+            0 0 15px white,
+            0 0 30px white,
+            0 0 50px white;
+
+        animation:
+            flash 3.5s ease-in-out infinite;
+    }
+
+
+    /* =========================
+       LINEA DIVISORIA
+       ========================= */
+
+    .divider {
+        width: 100%;
+        height: 1px;
+
+        background: #111111;
+    }
+
+
+    /* =========================
+       ANIMACION DEL RAYO
+       ========================= */
+
+    @keyframes sweep {
+
+        0% {
+            left: -30%;
+            opacity: 0;
+        }
+
+        8% {
+            opacity: 1;
+        }
+
+        65% {
+            opacity: 1;
+        }
+
+        78% {
+            left: 105%;
+            opacity: 1;
+        }
+
+        82% {
+            left: 110%;
+            opacity: 0;
+        }
+
+        100% {
+            left: 110%;
+            opacity: 0;
+        }
+    }
+
+
+    /* =========================
+       ANIMACION DEL DESTELLO
+       ========================= */
+
+    @keyframes flash {
+
+        0%,
+        75% {
+            opacity: 0;
+            transform:
+                translateY(-50%)
+                scale(0.5);
+        }
+
+        79% {
+            opacity: 1;
+            transform:
+                translateY(-50%)
+                scale(1);
+        }
+
+        83% {
+            opacity: 0;
+            transform:
+                translateY(-50%)
+                scale(4);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+
+    /* =========================
+       MOVIL
+       ========================= */
+
+    @media (max-width: 600px) {
+
+        .streed-header {
+            height: 105px;
+        }
+
+        .streed-logo {
+            left: 12px;
+
+            width: 55px;
+            height: 55px;
+        }
+
+        .streed-header h1 {
+            font-size: 45px;
+            letter-spacing: 1px;
+
+            transform: scale(0.72);
+            white-space: nowrap;
+        }
+    }
+
+</style>
+
+</body>
+</html>
