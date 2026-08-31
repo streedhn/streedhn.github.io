@@ -1,127 +1,267 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>STREED PRINT STUDIO</title>
 
+<meta name="description"
+      content="STREED Print Studio — Diseños personalizados que nacen de tus ideas y terminan siendo parte de ti.">
+
 <style>
+
+/* =====================================================
+   STREED PRINT STUDIO
+   MAIN WEBSITE
+===================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+    --cream:#f5f0e8;
+
+    --cream2:#ebe3d7;
+
+    --white:#ffffff;
+
+    --black:#0d0d0d;
+
+    --red:#ed1111;
+
+    --gray:#6b6862;
+
+    --light-gray:#d8d2c9;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
+
     margin:0;
     padding:0;
+
     box-sizing:border-box;
+
 }
 
 html{
+
     scroll-behavior:smooth;
+
 }
 
 body{
-    background:#f4eee4;
-    color:#111;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    background:var(--cream);
+
+    color:var(--black);
+
+    font-family:Impact,
+    Haettenschweiler,
+    'Arial Narrow Bold',
+    sans-serif;
+
     overflow-x:hidden;
+
 }
 
-/* =========================
-   MENU BUTTON
-========================= */
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+.container{
+
+    width:min(1180px,92%);
+
+    margin:auto;
+
+}
+
+.section{
+
+    padding:110px 0;
+
+}
+
+.small-label{
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:var(--red);
+
+    margin-bottom:18px;
+
+}
+
+.section-title{
+
+    font-size:clamp(45px,7vw,82px);
+
+    line-height:.88;
+
+    text-transform:uppercase;
+
+}
+
+.normal-text{
+
+    font-family:Arial,sans-serif;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#444;
+
+}
+
+
+/* =====================================================
+   SIDE MENU BUTTON
+===================================================== */
 
 .menu-button{
 
     position:fixed;
 
-    top:25px;
-    left:25px;
+    top:22px;
 
-    width:48px;
-    height:48px;
+    left:22px;
+
+    width:50px;
+
+    height:50px;
 
     border:none;
 
-    background:#111;
+    border-radius:50%;
+
+    background:var(--black);
 
     color:white;
 
-    border-radius:50%;
+    z-index:2000;
 
     cursor:pointer;
 
-    z-index:1001;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
     font-size:22px;
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     transition:.3s;
+
 }
 
 .menu-button:hover{
 
-    background:#e50914;
+    background:var(--red);
 
-    transform:rotate(90deg);
+    transform:scale(1.05);
 
 }
 
 
-/* =========================
+/* =====================================================
    SIDE MENU
-========================= */
+===================================================== */
 
 .side-menu{
 
     position:fixed;
 
     top:0;
-    left:-330px;
 
-    width:330px;
+    left:-350px;
+
+    width:350px;
+
     height:100vh;
 
-    background:#111;
+    background:var(--black);
 
     color:white;
 
-    z-index:1000;
+    z-index:1999;
 
     padding:35px;
 
     transition:.45s cubic-bezier(.77,0,.18,1);
 
     display:flex;
+
     flex-direction:column;
 
 }
 
 .side-menu.active{
+
     left:0;
+
 }
 
 .menu-close{
 
     align-self:flex-end;
 
-    font-size:25px;
+    font-family:Arial,sans-serif;
+
+    font-size:30px;
 
     cursor:pointer;
 
-    margin-bottom:45px;
+    margin-bottom:30px;
 
 }
 
 .menu-logo{
 
-    width:130px;
+    width:180px;
 
-    margin-bottom:45px;
+    margin-bottom:50px;
 
 }
 
@@ -139,29 +279,23 @@ body{
 
 .menu-links a{
 
-    color:white;
-
-    text-decoration:none;
-
-    font-size:24px;
+    font-size:25px;
 
     text-transform:uppercase;
 
-    letter-spacing:.5px;
-
-    transition:.2s;
+    transition:.25s;
 
 }
 
 .menu-links a:hover{
 
-    color:#e50914;
+    color:var(--red);
 
-    padding-left:8px;
+    padding-left:7px;
 
 }
 
-.menu-small{
+.menu-bottom{
 
     margin-top:auto;
 
@@ -169,14 +303,16 @@ body{
 
     font-size:11px;
 
-    color:#777;
+    color:#666;
+
+    line-height:1.6;
 
 }
 
 
-/* =========================
+/* =====================================================
    OVERLAY
-========================= */
+===================================================== */
 
 .overlay{
 
@@ -184,13 +320,13 @@ body{
 
     inset:0;
 
-    background:rgba(0,0,0,.45);
+    background:rgba(0,0,0,.5);
+
+    z-index:1998;
 
     opacity:0;
 
     visibility:hidden;
-
-    z-index:999;
 
     transition:.3s;
 
@@ -205,158 +341,153 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
 
     min-height:100vh;
 
-    padding:90px 30px 60px;
+    padding:90px 20px 70px;
 
     display:flex;
 
-    flex-direction:column;
-
     align-items:center;
+
+    flex-direction:column;
 
     text-align:center;
 
-    position:relative;
-
 }
 
 
-/* estrella */
+/* STAR */
 
-.star{
+.hero-star{
 
-    width:min(370px,65vw);
+    width:min(360px,70vw);
 
-    margin-top:25px;
+    margin-top:20px;
 
-    margin-bottom:15px;
+    margin-bottom:25px;
 
-    animation:starFloat 5s ease-in-out infinite;
+    animation:floatStar 5s ease-in-out infinite;
 
 }
 
-@keyframes starFloat{
+@keyframes floatStar{
 
     0%,100%{
-        transform:translateY(0) rotate(0deg);
+
+        transform:translateY(0);
+
     }
 
     50%{
-        transform:translateY(-12px) rotate(1deg);
+
+        transform:translateY(-10px);
+
     }
 
 }
 
 
-/* logo */
+/* LOGO */
 
-.logo{
+.hero-logo{
 
     width:min(400px,75vw);
 
-    margin-top:-25px;
-
-    margin-bottom:20px;
+    margin-bottom:30px;
 
 }
 
 
-/* =========================
-   MAIN TEXT
-========================= */
+/* HERO TITLE */
 
-.hero h1{
+.hero-title{
 
-    font-size:clamp(38px,6vw,70px);
+    max-width:900px;
+
+    font-size:clamp(38px,6vw,68px);
 
     line-height:.95;
 
-    max-width:950px;
-
     text-transform:uppercase;
 
-    letter-spacing:1px;
+}
+
+.hero-title span{
+
+    color:var(--red);
 
 }
 
-.hero h1 span{
 
-    color:#e50914;
-
-}
+/* DESCRIPTION */
 
 .hero-description{
+
+    max-width:690px;
+
+    margin-top:25px;
 
     font-family:Arial,sans-serif;
 
     font-size:16px;
 
-    line-height:1.7;
+    line-height:1.8;
 
-    max-width:680px;
-
-    margin-top:25px;
-
-    color:#333;
+    color:#444;
 
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* BUTTON */
 
-.hero-button{
+.main-button{
 
-    margin-top:35px;
+    display:inline-block;
 
-    background:#111;
+    margin-top:32px;
+
+    background:var(--black);
 
     color:white;
-
-    text-decoration:none;
 
     padding:15px 28px;
 
     border-radius:40px;
 
-    font-size:17px;
+    font-size:18px;
 
     transition:.3s;
 
 }
 
-.hero-button:hover{
+.main-button:hover{
 
-    background:#e50914;
+    background:var(--red);
 
     transform:translateY(-3px);
 
 }
 
 
-/* =========================
+/* =====================================================
    VIDEO
-========================= */
+===================================================== */
 
 .video-section{
 
-    width:100%;
+    width:min(1050px,95%);
 
-    max-width:1050px;
-
-    margin:65px auto 0;
+    margin:75px auto 0;
 
 }
 
-.video-wrapper{
+.video-box{
 
     position:relative;
 
@@ -368,13 +499,16 @@ body{
 
     background:#000;
 
-    border-radius:3px;
-
 }
 
-.video-wrapper iframe{
+.video-box iframe{
+
+    position:absolute;
+
+    inset:0;
 
     width:100%;
+
     height:100%;
 
     border:0;
@@ -382,92 +516,200 @@ body{
 }
 
 
-/* =========================
-   SECOND SECTION
-========================= */
+/* =====================================================
+   WHAT CAN WE CREATE
+===================================================== */
 
-.about{
+.create-section{
 
-    padding:120px 25px;
+    background:var(--white);
+
+}
+
+.create-header{
 
     text-align:center;
 
-    max-width:1100px;
+    max-width:700px;
 
-    margin:auto;
-
-}
-
-.about-small{
-
-    font-family:Arial,sans-serif;
-
-    text-transform:uppercase;
-
-    letter-spacing:3px;
-
-    font-size:11px;
-
-    color:#e50914;
-
-    margin-bottom:18px;
+    margin:0 auto 60px;
 
 }
 
-.about h2{
+.create-header .section-title{
 
-    font-size:clamp(40px,6vw,75px);
-
-    line-height:.9;
-
-    margin-bottom:35px;
+    margin-bottom:25px;
 
 }
 
-.about-text{
-
-    font-family:Arial,sans-serif;
-
-    max-width:650px;
-
-    margin:auto;
-
-    font-size:16px;
-
-    line-height:1.8;
-
-    color:#444;
-
-}
-
-
-/* =========================
-   THREE PHRASES
-========================= */
-
-.phrases{
+.products{
 
     display:grid;
 
     grid-template-columns:repeat(3,1fr);
 
-    gap:20px;
-
-    max-width:1050px;
-
-    margin:65px auto 0;
+    gap:22px;
 
 }
 
-.phrase{
+.product{
 
-    background:#111;
+    background:var(--cream);
 
-    color:white;
+    min-height:410px;
 
-    padding:45px 25px;
+    padding:30px;
 
-    min-height:170px;
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.product:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.product-number{
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    color:var(--red);
+
+    font-weight:bold;
+
+}
+
+.product h3{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:30px;
+
+    font-size:48px;
+
+    line-height:.85;
+
+    text-transform:uppercase;
+
+}
+
+.product-shape{
+
+    position:absolute;
+
+    top:55px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+
+/* SHIRT */
+
+.shirt{
+
+    width:160px;
+
+    height:210px;
+
+    background:var(--red);
+
+    clip-path:polygon(
+
+        25% 0,
+
+        0 15%,
+
+        15% 34%,
+
+        25% 27%,
+
+        25% 100%,
+
+        75% 100%,
+
+        75% 27%,
+
+        85% 34%,
+
+        100% 15%,
+
+        75% 0
+
+    );
+
+}
+
+
+/* CAP */
+
+.cap{
+
+    width:190px;
+
+    height:120px;
+
+    background:var(--black);
+
+    border-radius:100px 100px 25px 25px;
+
+}
+
+.cap::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+
+    height:30px;
+
+    background:var(--black);
+
+    bottom:-12px;
+
+    right:-35px;
+
+    border-radius:0 50px 50px 0;
+
+}
+
+
+/* PHONE */
+
+.phone{
+
+    width:135px;
+
+    height:240px;
+
+    background:var(--black);
+
+    border-radius:22px;
+
+    border:7px solid #222;
+
+}
+
+.phone::before{
+
+    content:"STREED";
+
+    position:absolute;
+
+    inset:0;
 
     display:flex;
 
@@ -475,90 +717,141 @@ body{
 
     justify-content:center;
 
+    color:var(--red);
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+===================================================== */
+
+.how{
+
+    background:var(--cream);
+
+}
+
+.how-header{
+
     text-align:center;
 
-    transition:.3s;
+    margin-bottom:65px;
 
 }
 
-.phrase:hover{
+.steps{
 
-    background:#e50914;
+    display:grid;
 
-    transform:translateY(-7px);
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
 
 }
 
-.phrase p{
+.step{
 
-    font-size:28px;
+    border-top:3px solid var(--black);
+
+    padding:25px 5px;
+
+}
+
+.step-number{
+
+    color:var(--red);
+
+    font-size:48px;
 
     line-height:1;
 
-}
-
-
-/* =========================
-   SHOP INTRO
-========================= */
-
-.shop{
-
-    padding:100px 25px;
-
-    text-align:center;
-
-    background:#111;
-
-    color:white;
+    margin-bottom:25px;
 
 }
 
-.shop h2{
+.step h3{
 
-    font-size:clamp(45px,7vw,85px);
+    font-size:28px;
 
-    line-height:.85;
+    text-transform:uppercase;
 
-    margin-bottom:30px;
-
-}
-
-.shop h2 span{
-
-    color:#e50914;
+    margin-bottom:15px;
 
 }
 
-.shop p{
+.step p{
 
     font-family:Arial,sans-serif;
 
-    max-width:550px;
+    font-size:13px;
 
-    margin:auto;
+    line-height:1.7;
+
+    color:#555;
+
+}
+
+
+/* =====================================================
+   NO IDEA
+===================================================== */
+
+.no-idea{
+
+    background:var(--black);
+
+    color:white;
+
+    text-align:center;
+
+    padding:120px 20px;
+
+}
+
+.no-idea h2{
+
+    font-size:clamp(60px,9vw,120px);
+
+    line-height:.8;
+
+    text-transform:uppercase;
+
+}
+
+.no-idea h2 span{
+
+    color:var(--red);
+
+}
+
+.no-idea p{
+
+    font-family:Arial,sans-serif;
 
     color:#aaa;
+
+    max-width:550px;
+
+    margin:30px auto;
 
     line-height:1.7;
 
 }
 
-.shop-button{
+.white-button{
 
     display:inline-block;
 
-    margin-top:35px;
-
     background:white;
 
-    color:#111;
+    color:var(--black);
 
-    padding:15px 30px;
+    padding:15px 28px;
 
     border-radius:40px;
-
-    text-decoration:none;
 
     font-size:18px;
 
@@ -566,103 +859,447 @@ body{
 
 }
 
-.shop-button:hover{
+.white-button:hover{
 
-    background:#e50914;
+    background:var(--red);
 
     color:white;
 
 }
 
 
-/* =========================
+/* =====================================================
+   WHAT WILL YOU CREATE
+===================================================== */
+
+.choose{
+
+    background:var(--white);
+
+}
+
+.choose-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.choose-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.choose-card{
+
+    min-height:280px;
+
+    background:var(--cream);
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    transition:.3s;
+
+}
+
+.choose-card:hover{
+
+    background:var(--red);
+
+    color:white;
+
+}
+
+.choose-card span{
+
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+}
+
+.choose-card h3{
+
+    font-size:38px;
+
+    line-height:.9;
+
+}
+
+
+/* =====================================================
+   STREED CLUB
+===================================================== */
+
+.club{
+
+    background:var(--red);
+
+    color:white;
+
+    text-align:center;
+
+    padding:120px 20px;
+
+}
+
+.club h2{
+
+    font-size:clamp(55px,8vw,105px);
+
+    line-height:.82;
+
+    text-transform:uppercase;
+
+}
+
+.club p{
+
+    max-width:560px;
+
+    margin:30px auto;
+
+    font-family:Arial,sans-serif;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+.faq{
+
+    background:var(--cream);
+
+}
+
+.faq-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.faq-container{
+
+    width:min(850px,95%);
+
+    margin:auto;
+
+}
+
+details{
+
+    border-top:1px solid var(--black);
+
+    padding:25px 0;
+
+}
+
+details:last-child{
+
+    border-bottom:1px solid var(--black);
+
+}
+
+summary{
+
+    cursor:pointer;
+
+    list-style:none;
+
+    font-size:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+summary::after{
+
+    content:"+";
+
+    font-family:Arial,sans-serif;
+
+    font-size:25px;
+
+}
+
+details[open] summary::after{
+
+    content:"−";
+
+}
+
+details p{
+
+    font-family:Arial,sans-serif;
+
+    color:#555;
+
+    line-height:1.8;
+
+    padding-top:18px;
+
+    max-width:700px;
+
+}
+
+
+/* =====================================================
+   QUICK LINKS
+===================================================== */
+
+.shortcuts{
+
+    background:var(--black);
+
+    color:white;
+
+    padding:80px 20px;
+
+}
+
+.shortcuts-title{
+
+    text-align:center;
+
+    font-size:50px;
+
+    margin-bottom:45px;
+
+}
+
+.shortcut-grid{
+
+    width:min(1000px,95%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+.shortcut{
+
+    border:1px solid #333;
+
+    padding:30px 15px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.shortcut:hover{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+}
+
+.shortcut span{
+
+    display:block;
+
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+
+}
+
+.shortcut strong{
+
+    font-size:23px;
+
+}
+
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
 
-    background:#111;
+    background:var(--black);
 
     color:white;
 
     border-top:1px solid #292929;
 
-    padding:45px 25px 25px;
+    padding:60px 20px 25px;
 
     text-align:center;
 
 }
 
-.footer-logo{
+.footer-star{
 
-    font-size:45px;
+    width:75px;
 
-    margin-bottom:15px;
+    margin:0 auto 20px;
 
 }
 
-.footer-logo span{
+.footer-logo{
 
-    color:#e50914;
+    font-size:50px;
+
+    margin-bottom:20px;
 
 }
 
 .footer-social{
 
-    font-family:Arial,sans-serif;
+    display:flex;
 
-    font-size:12px;
+    justify-content:center;
 
-    letter-spacing:2px;
+    flex-wrap:wrap;
 
-    color:#777;
+    gap:12px;
 
-    margin-bottom:30px;
+    margin-bottom:40px;
 
 }
 
-.copyright{
+.social{
+
+    border:1px solid #333;
+
+    padding:11px 18px;
 
     font-family:Arial,sans-serif;
 
     font-size:11px;
 
+    transition:.3s;
+
+}
+
+.social:hover{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+}
+
+.copyright{
+
+    padding-top:25px;
+
+    border-top:1px solid #292929;
+
+    font-family:Arial,sans-serif;
+
     color:#555;
+
+    font-size:10px;
 
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media(max-width:700px){
+@media(max-width:800px){
 
-    .menu-button{
+    .side-menu{
 
-        top:18px;
-        left:18px;
+        width:300px;
 
-        width:44px;
-        height:44px;
+        left:-300px;
+
+    }
+
+    .products{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .product{
+
+        min-height:350px;
+
+    }
+
+    .steps{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .choose-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .shortcut-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .section{
+
+        padding:80px 0;
 
     }
 
     .hero{
 
-        padding-top:80px;
+        padding-top:85px;
 
     }
 
-    .star{
+    .hero-star{
 
-        width:75vw;
+        width:80vw;
 
     }
 
-    .logo{
+    .hero-logo{
 
-        width:82vw;
+        width:85vw;
 
     }
 
@@ -670,33 +1307,35 @@ footer{
 
         font-size:14px;
 
-        max-width:90%;
-
     }
 
-    .phrases{
+    .steps{
 
         grid-template-columns:1fr;
 
     }
 
-    .phrase{
+    .choose-grid{
 
-        min-height:120px;
-
-    }
-
-    .phrase p{
-
-        font-size:24px;
+        grid-template-columns:1fr;
 
     }
 
-    .side-menu{
+    .shortcut-grid{
 
-        width:290px;
+        grid-template-columns:1fr;
 
-        left:-290px;
+    }
+
+    .menu-button{
+
+        width:45px;
+
+        height:45px;
+
+        top:15px;
+
+        left:15px;
 
     }
 
@@ -710,108 +1349,163 @@ footer{
 <body>
 
 
-<!-- =========================
-     MENU BUTTON
-========================= -->
+<!-- =====================================================
+     MENU
+===================================================== -->
 
-<button class="menu-button" onclick="openMenu()">
+<button
+    class="menu-button"
+    onclick="openMenu()">
+
     ☰
+
 </button>
 
 
-<!-- =========================
-     SIDE MENU
-========================= -->
+<div
+    class="side-menu"
+    id="sideMenu">
 
-<div class="side-menu" id="sideMenu">
+    <div
+        class="menu-close"
+        onclick="closeMenu()">
 
-    <div class="menu-close" onclick="closeMenu()">
         ×
+
     </div>
+
 
     <img
         src="assets/logo-streed.png"
         class="menu-logo"
-        alt="STREED"
-    >
+        alt="STREED Print Studio">
+
 
     <ul class="menu-links">
 
         <li>
-            <a href="index.html">
+            <a href="#inicio"
+               onclick="closeMenu()">
+
                 Inicio
+
             </a>
         </li>
 
         <li>
-            <a href="personalizacion.html">
-                Personalización
+            <a href="#crear"
+               onclick="closeMenu()">
+
+                Qué podemos crear
+
             </a>
         </li>
 
         <li>
-            <a href="artistas.html">
-                Artistas
+            <a href="#funciona"
+               onclick="closeMenu()">
+
+                Así funciona
+
             </a>
         </li>
 
         <li>
-            <a href="marvel.html">
-                Marvel Universe
+            <a href="#noidea"
+               onclick="closeMenu()">
+
+                No idea? No problem.
+
             </a>
         </li>
 
         <li>
-            <a href="anime.html">
-                Anime
+            <a href="#colecciones"
+               onclick="closeMenu()">
+
+                Qué vas a crear
+
+            </a>
+        </li>
+
+        <li>
+            <a href="#club"
+               onclick="closeMenu()">
+
+                STREED Club
+
+            </a>
+        </li>
+
+        <li>
+            <a href="#faq"
+               onclick="closeMenu()">
+
+                Preguntas frecuentes
+
             </a>
         </li>
 
         <li>
             <a href="carrito.html">
+
                 🛒 Carrito
+
             </a>
         </li>
 
     </ul>
 
-    <div class="menu-small">
-        STREED PRINT STUDIO © 2026
+
+    <div class="menu-bottom">
+
+        STREED PRINT STUDIO<br>
+        CUSTOM APPAREL<br><br>
+
+        © 2026 STREED
+
     </div>
 
 </div>
 
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+
+</div>
 
 
-<!-- =========================
+
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
-<main>
+<main id="inicio">
+
 
 <section class="hero">
 
 
     <img
         src="assets/estrella-streed.png"
-        class="star"
-        alt="STREED Star"
-    >
+        class="hero-star"
+        alt="STREED">
 
 
     <img
         src="assets/logo-streed.png"
-        class="logo"
-        alt="STREED Print Studio"
-    >
+        class="hero-logo"
+        alt="STREED Print Studio">
 
 
-    <h1>
+    <h1 class="hero-title">
 
         Diseños que nacen de tus ideas
-        <span>y terminan siendo parte de ti.</span>
+        <span>
+            y terminan siendo parte de ti.
+        </span>
 
     </h1>
 
@@ -827,11 +1521,10 @@ footer{
 
 
     <a
-        href="personalizacion.html"
-        class="hero-button"
-    >
+        href="#crear"
+        class="main-button">
 
-        Imagina. Personaliza. Destaca STREED ⭐
+        Imagina. Personaliza. Destaca STREED⭐
 
     </a>
 
@@ -840,10 +1533,10 @@ footer{
 
     <div class="video-section">
 
-        <div class="video-wrapper">
+        <div class="video-box">
 
             <iframe
-                src="https://player.vimeo.com/video/1222270098"
+                src="https://player.vimeo.com/video/1222270098?autoplay=1&muted=1&loop=1&autopause=0&background=1"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowfullscreen>
             </iframe>
@@ -856,104 +1549,270 @@ footer{
 </section>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
 
-<section class="about">
+<!-- =====================================================
+     WHAT CAN WE CREATE
+===================================================== -->
+
+<section
+    class="section create-section"
+    id="crear">
 
 
-    <div class="about-small">
-        STREED PRINT STUDIO
+<div class="container">
+
+
+    <div class="create-header">
+
+        <div class="small-label">
+            STREED PRINT STUDIO
+        </div>
+
+
+        <h2 class="section-title">
+
+            ¿Qué podemos
+            crear?
+
+        </h2>
+
+
+        <p class="normal-text">
+
+            Llevamos tus ideas a productos que puedes
+            usar todos los días. Elige tu pieza y nosotros
+            hacemos que cobre vida.
+
+        </p>
+
     </div>
 
 
-    <h2>
-        Tu estilo,
-        llevado a otra dimensión.
-    </h2>
+    <div class="products">
 
 
-    <p class="about-text">
+        <!-- CAMISA -->
 
-        Creamos piezas pensadas para expresar quién eres,
-        lo que te gusta y aquello que quieres llevar contigo.
-        Porque una prenda puede ser mucho más que una prenda.
+        <a
+            href="personalizacion.html"
+            class="product">
 
-    </p>
+            <div class="product-number">
+                01 / APPAREL
+            </div>
 
+            <div class="product-shape shirt"></div>
 
-    <div class="phrases">
+            <h3>
+                Camisas
+            </h3>
 
-
-        <div class="phrase">
-
-            <p>
-                Comodidad<br>
-                con algo<br>
-                que decir.
-            </p>
-
-        </div>
+        </a>
 
 
-        <div class="phrase">
+        <!-- GORRA -->
 
-            <p>
-                Lleva lo que<br>
-                te representa.
-            </p>
+        <a
+            href="personalizacion.html"
+            class="product">
 
-        </div>
+            <div class="product-number">
+                02 / ACCESSORY
+            </div>
+
+            <div class="product-shape cap"></div>
+
+            <h3>
+                Gorras
+            </h3>
+
+        </a>
 
 
-        <div class="phrase">
+        <!-- CASE -->
 
-            <p>
-                Hazlo<br>
-                realmente<br>
-                tuyo.
-            </p>
+        <a
+            href="personalizacion.html"
+            class="product">
 
-        </div>
+            <div class="product-number">
+                03 / TECH
+            </div>
+
+            <div class="product-shape phone"></div>
+
+            <h3>
+                Phone<br>
+                Cases
+            </h3>
+
+        </a>
 
 
     </div>
 
+
+</div>
 
 </section>
 
 
-<!-- =========================
-     SHOP
-========================= -->
 
-<section class="shop">
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section
+    class="section how"
+    id="funciona">
+
+
+<div class="container">
+
+
+    <div class="how-header">
+
+        <div class="small-label">
+            SIMPLE. EASY. STREED.
+        </div>
+
+        <h2 class="section-title">
+
+            Así funciona.
+
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Elige
+            </h3>
+
+            <p>
+
+                Escoge qué quieres personalizar:
+                una camisa, gorra o phone case.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Imagina
+            </h3>
+
+            <p>
+
+                Cuéntanos tu idea, referencia,
+                artista, personaje o concepto.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Personaliza
+            </h3>
+
+            <p>
+
+                Definimos los detalles para que
+                el diseño sea exactamente como
+                lo imaginas.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <h3>
+                Recibe
+            </h3>
+
+            <p>
+
+                Nosotros hacemos el resto y
+                convertimos tu idea en algo real.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NO IDEA
+===================================================== -->
+
+<section
+    class="no-idea"
+    id="noidea">
 
 
     <h2>
 
-        ENCUENTRA<br>
-        <span>TU STREED.</span>
+        NO IDEA?
+
+        <span>
+            NO PROBLEM.
+        </span>
 
     </h2>
 
 
     <p>
 
-        Explora nuestras colecciones y encuentra
-        diseños creados para diferentes estilos,
-        gustos y formas de expresarte.
+        No necesitas llegar con una idea perfecta.
+        Podemos ayudarte a encontrar inspiración,
+        combinar referencias y crear algo que
+        realmente vaya contigo.
 
     </p>
 
 
     <a
-        href="personalizacion.html"
-        class="shop-button"
-    >
+        href="artistas.html"
+        class="white-button">
 
-        Explorar colección
+        Encuentra inspiración
 
     </a>
 
@@ -961,33 +1820,448 @@ footer{
 </section>
 
 
-</main>
+
+<!-- =====================================================
+     WHAT WILL YOU CREATE
+===================================================== -->
+
+<section
+    class="section choose"
+    id="colecciones">
 
 
-<!-- =========================
+<div class="container">
+
+
+    <div class="choose-header">
+
+        <div class="small-label">
+            FIND YOUR STREED
+        </div>
+
+        <h2 class="section-title">
+
+            ¿Qué vas a
+            crear?
+
+        </h2>
+
+    </div>
+
+
+    <div class="choose-grid">
+
+
+        <a
+            href="personalizacion.html"
+            class="choose-card">
+
+            <span>
+                01 / CUSTOM
+            </span>
+
+            <h3>
+                Personalización
+            </h3>
+
+        </a>
+
+
+        <a
+            href="artistas.html"
+            class="choose-card">
+
+            <span>
+                02 / MUSIC
+            </span>
+
+            <h3>
+                Artistas
+            </h3>
+
+        </a>
+
+
+        <a
+            href="marvel.html"
+            class="choose-card">
+
+            <span>
+                03 / MARVEL
+            </span>
+
+            <h3>
+                Marvel
+                Universe
+            </h3>
+
+        </a>
+
+
+        <a
+            href="anime.html"
+            class="choose-card">
+
+            <span>
+                04 / ANIME
+            </span>
+
+            <h3>
+                Anime
+            </h3>
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STREED CLUB
+===================================================== -->
+
+<section
+    class="club"
+    id="club">
+
+
+    <div class="small-label"
+         style="color:white;">
+
+        STREED CLUB
+
+    </div>
+
+
+    <h2>
+
+        ÚNETE AL
+        <br>
+
+        <span>
+            STREED CLUB.
+        </span>
+
+    </h2>
+
+
+    <p>
+
+        Forma parte de la comunidad STREED.
+        Entérate primero de nuevos diseños,
+        drops, descuentos especiales y
+        contenido exclusivo.
+
+    </p>
+
+
+    <a
+        href="#"
+        class="white-button">
+
+        Quiero unirme
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section
+    class="section faq"
+    id="faq">
+
+
+<div class="faq-header">
+
+    <div class="small-label">
+        NEED TO KNOW?
+    </div>
+
+    <h2 class="section-title">
+
+        Preguntas
+        frecuentes.
+
+    </h2>
+
+</div>
+
+
+<div class="faq-container">
+
+
+    <details>
+
+        <summary>
+            ¿Qué productos puedo personalizar?
+        </summary>
+
+        <p>
+
+            Actualmente puedes personalizar
+            camisas, gorras y phone cases.
+            Próximamente tendremos más productos.
+
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            ¿Puedo enviar mi propio diseño?
+        </summary>
+
+        <p>
+
+            Sí. Puedes enviarnos tu diseño,
+            imagen o referencia y trabajaremos
+            contigo para llevarlo al producto.
+
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            ¿Y si no tengo un diseño?
+        </summary>
+
+        <p>
+
+            No hay problema. Podemos ayudarte
+            a desarrollar una idea desde cero
+            o puedes explorar nuestras colecciones
+            para encontrar inspiración.
+
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            ¿Puedo pedir diseños de artistas?
+        </summary>
+
+        <p>
+
+            Sí. Puedes explorar nuestra colección
+            de artistas y también solicitar ideas
+            relacionadas con tus favoritos.
+
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            ¿Cómo hago mi pedido?
+        </summary>
+
+        <p>
+
+            Selecciona el producto que quieres,
+            personalízalo y agrega los detalles
+            necesarios. Después podrás continuar
+            con tu pedido.
+
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            ¿Realizan envíos?
+        </summary>
+
+        <p>
+
+            Sí. Los métodos y costos de envío
+            estarán disponibles durante el proceso
+            de compra.
+
+        </p>
+
+    </details>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SHORTCUTS
+===================================================== -->
+
+<section class="shortcuts">
+
+
+    <h2 class="shortcuts-title">
+
+        EXPLORA STREED
+
+    </h2>
+
+
+    <div class="shortcut-grid">
+
+
+        <a
+            href="personalizacion.html"
+            class="shortcut">
+
+            <span>
+                COLLECTION 01
+            </span>
+
+            <strong>
+                Personalización
+            </strong>
+
+        </a>
+
+
+        <a
+            href="artistas.html"
+            class="shortcut">
+
+            <span>
+                COLLECTION 02
+            </span>
+
+            <strong>
+                Artistas
+            </strong>
+
+        </a>
+
+
+        <a
+            href="marvel.html"
+            class="shortcut">
+
+            <span>
+                COLLECTION 03
+            </span>
+
+            <strong>
+                Marvel Universe
+            </strong>
+
+        </a>
+
+
+        <a
+            href="anime.html"
+            class="shortcut">
+
+            <span>
+                COLLECTION 04
+            </span>
+
+            <strong>
+                Anime
+            </strong>
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
 
+    <img
+        src="assets/estrella-streed.png"
+        class="footer-star"
+        alt="STREED">
+
+
     <div class="footer-logo">
 
-        STREED<span>⭐</span>
+        STREED
 
     </div>
 
 
     <div class="footer-social">
 
-        SIGUENOS EN NUESTRAS REDES
+
+        <a
+            href="#"
+            class="social">
+
+            INSTAGRAM
+
+        </a>
+
+
+        <a
+            href="#"
+            class="social">
+
+            TIKTOK
+
+        </a>
+
+
+        <a
+            href="#"
+            class="social">
+
+            FACEBOOK
+
+        </a>
+
+
+        <a
+            href="#"
+            class="social">
+
+            WHATSAPP
+
+        </a>
+
 
     </div>
 
 
     <div class="copyright">
 
-        © 2026 STREED
+        © 2026 STREED PRINT STUDIO.
+        TODOS LOS DERECHOS RESERVADOS.
 
     </div>
 
@@ -995,6 +2269,13 @@ footer{
 </footer>
 
 
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
@@ -1031,4 +2312,5 @@ function closeMenu(){
 
 
 </body>
+
 </html>
