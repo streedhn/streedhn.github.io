@@ -199,3 +199,150 @@
   </iframe>
 
 </div>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.streed-box {
+  width:100%;
+  min-height:120px;
+  box-sizing:border-box;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px 10px;
+  overflow:visible;
+
+  background:#000;
+}
+
+.streed-title {
+  margin:0;
+  padding:0;
+
+  width:100%;
+
+  text-align:center;
+
+  font-family:'Abril Fatface', Georgia, serif;
+  font-size:58px;
+  line-height:1.05;
+
+  letter-spacing:-1px;
+
+  color:#fff;
+
+  white-space:normal;
+
+  animation:appear 1s ease both;
+}
+
+.white,
+.red {
+  display:inline-block;
+}
+
+.white {
+  color:#fff;
+  animation:floatWhite 4s ease-in-out 1s infinite;
+}
+
+.red {
+  color:#D90429;
+  animation:floatRed 3s ease-in-out 1s infinite;
+}
+
+
+/* ENTRADA */
+
+@keyframes appear {
+
+  from {
+    opacity:0;
+    transform:translateY(25px) scale(.95);
+    filter:blur(8px);
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+
+}
+
+
+/* SUBLIMA */
+
+@keyframes floatWhite {
+
+  0%,100% {
+    transform:translateY(0);
+  }
+
+  50% {
+    transform:translateY(-5px);
+  }
+
+}
+
+
+/* TU ESTILO */
+
+@keyframes floatRed {
+
+  0%,100% {
+    transform:translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform:translateY(-7px) rotate(1deg);
+  }
+
+}
+
+
+/* 📱 TELÉFONO */
+
+@media screen and (max-width:600px) {
+
+  .streed-box {
+    min-height:125px;
+    padding:15px 5px;
+  }
+
+  .streed-title {
+    font-size:36px;
+    line-height:1.05;
+  }
+
+}
+
+
+/* 📱 TELÉFONOS MUY PEQUEÑOS */
+
+@media screen and (max-width:380px) {
+
+  .streed-box {
+    min-height:115px;
+  }
+
+  .streed-title {
+    font-size:30px;
+  }
+
+}
+</style>
+
+
+<div class="streed-box">
+
+  <h1 class="streed-title">
+    <span class="white">SUBLIMA</span>
+    <span class="red">TU ESTILO.</span>
+  </h1>
+
+</div>
