@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STREED PRINT STUDIO</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4eee4;
+    color:#111;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-button{
+
+    position:fixed;
+
+    top:25px;
+    left:25px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    background:#111;
+
+    color:white;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    z-index:1001;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    transition:.3s;
+}
+
+.menu-button:hover{
+
+    background:#e50914;
+
+    transform:rotate(90deg);
+
+}
+
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu{
+
+    position:fixed;
+
+    top:0;
+    left:-330px;
+
+    width:330px;
+    height:100vh;
+
+    background:#111;
+
+    color:white;
+
+    z-index:1000;
+
+    padding:35px;
+
+    transition:.45s cubic-bezier(.77,0,.18,1);
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.side-menu.active{
+    left:0;
+}
+
+.menu-close{
+
+    align-self:flex-end;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    margin-bottom:45px;
+
+}
+
+.menu-logo{
+
+    width:130px;
+
+    margin-bottom:45px;
+
+}
+
+.menu-links{
+
+    list-style:none;
+
+}
+
+.menu-links li{
+
+    margin-bottom:22px;
+
+}
+
+.menu-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:24px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    transition:.2s;
+
+}
+
+.menu-links a:hover{
+
+    color:#e50914;
+
+    padding-left:8px;
+
+}
+
+.menu-small{
+
+    margin-top:auto;
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    color:#777;
+
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    z-index:999;
+
+    transition:.3s;
+
+}
+
+.overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:100vh;
+
+    padding:90px 30px 60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+
+/* estrella */
+
+.star{
+
+    width:min(370px,65vw);
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+    animation:starFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes starFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-12px) rotate(1deg);
+    }
+
+}
+
+
+/* logo */
+
+.logo{
+
+    width:min(400px,75vw);
+
+    margin-top:-25px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================
+   MAIN TEXT
+========================= */
+
+.hero h1{
+
+    font-size:clamp(38px,6vw,70px);
+
+    line-height:.95;
+
+    max-width:950px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.hero h1 span{
+
+    color:#e50914;
+
+}
+
+.hero-description{
+
+    font-family:Arial,sans-serif;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    max-width:680px;
+
+    margin-top:25px;
+
+    color:#333;
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.hero-button{
+
+    margin-top:35px;
+
+    background:#111;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 28px;
+
+    border-radius:40px;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+.hero-button:hover{
+
+    background:#e50914;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+.video-section{
+
+    width:100%;
+
+    max-width:1050px;
+
+    margin:65px auto 0;
+
+}
+
+.video-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    overflow:hidden;
+
+    background:#000;
+
+    border-radius:3px;
+
+}
+
+.video-wrapper iframe{
+
+    width:100%;
+    height:100%;
+
+    border:0;
+
+}
+
+
+/* =========================
+   SECOND SECTION
+========================= */
+
+.about{
+
+    padding:120px 25px;
+
+    text-align:center;
+
+    max-width:1100px;
+
+    margin:auto;
+
+}
+
+.about-small{
+
+    font-family:Arial,sans-serif;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:11px;
+
+    color:#e50914;
+
+    margin-bottom:18px;
+
+}
+
+.about h2{
+
+    font-size:clamp(40px,6vw,75px);
+
+    line-height:.9;
+
+    margin-bottom:35px;
+
+}
+
+.about-text{
+
+    font-family:Arial,sans-serif;
+
+    max-width:650px;
+
+    margin:auto;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    color:#444;
+
+}
+
+
+/* =========================
+   THREE PHRASES
+========================= */
+
+.phrases{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    max-width:1050px;
+
+    margin:65px auto 0;
+
+}
+
+.phrase{
+
+    background:#111;
+
+    color:white;
+
+    padding:45px 25px;
+
+    min-height:170px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.phrase:hover{
+
+    background:#e50914;
+
+    transform:translateY(-7px);
+
+}
+
+.phrase p{
+
+    font-size:28px;
+
+    line-height:1;
+
+}
+
+
+/* =========================
+   SHOP INTRO
+========================= */
+
+.shop{
+
+    padding:100px 25px;
+
+    text-align:center;
+
+    background:#111;
+
+    color:white;
+
+}
+
+.shop h2{
+
+    font-size:clamp(45px,7vw,85px);
+
+    line-height:.85;
+
+    margin-bottom:30px;
+
+}
+
+.shop h2 span{
+
+    color:#e50914;
+
+}
+
+.shop p{
+
+    font-family:Arial,sans-serif;
+
+    max-width:550px;
+
+    margin:auto;
+
+    color:#aaa;
+
+    line-height:1.7;
+
+}
+
+.shop-button{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    background:white;
+
+    color:#111;
+
+    padding:15px 30px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.shop-button:hover{
+
+    background:#e50914;
+
+    color:white;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    background:#111;
+
+    color:white;
+
+    border-top:1px solid #292929;
+
+    padding:45px 25px 25px;
+
+    text-align:center;
+
+}
+
+.footer-logo{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+.footer-logo span{
+
+    color:#e50914;
+
+}
+
+.footer-social{
+
+    font-family:Arial,sans-serif;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+.copyright{
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    color:#555;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .menu-button{
+
+        top:18px;
+        left:18px;
+
+        width:44px;
+        height:44px;
+
+    }
+
+    .hero{
+
+        padding-top:80px;
+
+    }
+
+    .star{
+
+        width:75vw;
+
+    }
+
+    .logo{
+
+        width:82vw;
+
+    }
+
+    .hero-description{
+
+        font-size:14px;
+
+        max-width:90%;
+
+    }
+
+    .phrases{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .phrase{
+
+        min-height:120px;
+
+    }
+
+    .phrase p{
+
+        font-size:24px;
+
+    }
+
+    .side-menu{
+
+        width:290px;
+
+        left:-290px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MENU BUTTON
+========================= -->
+
+<button class="menu-button" onclick="openMenu()">
+    ☰
+</button>
+
+
+<!-- =========================
+     SIDE MENU
+========================= -->
+
+<div class="side-menu" id="sideMenu">
+
+    <div class="menu-close" onclick="closeMenu()">
+        ×
+    </div>
+
+    <img
+        src="assets/logo-streed.png"
+        class="menu-logo"
+        alt="STREED"
+    >
+
+    <ul class="menu-links">
+
+        <li>
+            <a href="index.html">
+                Inicio
+            </a>
+        </li>
+
+        <li>
+            <a href="personalizacion.html">
+                Personalización
+            </a>
+        </li>
+
+        <li>
+            <a href="artistas.html">
+                Artistas
+            </a>
+        </li>
+
+        <li>
+            <a href="marvel.html">
+                Marvel Universe
+            </a>
+        </li>
+
+        <li>
+            <a href="anime.html">
+                Anime
+            </a>
+        </li>
+
+        <li>
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="menu-small">
+        STREED PRINT STUDIO © 2026
+    </div>
+
+</div>
+
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+
+    <img
+        src="assets/estrella-streed.png"
+        class="star"
+        alt="STREED Star"
+    >
+
+
+    <img
+        src="assets/logo-streed.png"
+        class="logo"
+        alt="STREED Print Studio"
+    >
+
+
+    <h1>
+
+        Diseños que nacen de tus ideas
+        <span>y terminan siendo parte de ti.</span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        En STREED convertimos tus ideas en piezas que
+        hablan por ti. Creamos diseños personalizados
+        mediante sublimación, cuidando cada detalle para
+        que puedas llevar algo que realmente se sienta tuyo.
+
+    </p>
+
+
+    <a
+        href="personalizacion.html"
+        class="hero-button"
+    >
+
+        Imagina. Personaliza. Destaca STREED ⭐
+
+    </a>
+
+
+    <!-- VIDEO -->
+
+    <div class="video-section">
+
+        <div class="video-wrapper">
+
+            <iframe
+                src="https://player.vimeo.com/video/1222270098"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about">
+
+
+    <div class="about-small">
+        STREED PRINT STUDIO
+    </div>
+
+
+    <h2>
+        Tu estilo,
+        llevado a otra dimensión.
+    </h2>
+
+
+    <p class="about-text">
+
+        Creamos piezas pensadas para expresar quién eres,
+        lo que te gusta y aquello que quieres llevar contigo.
+        Porque una prenda puede ser mucho más que una prenda.
+
+    </p>
+
+
+    <div class="phrases">
+
+
+        <div class="phrase">
+
+            <p>
+                Comodidad<br>
+                con algo<br>
+                que decir.
+            </p>
+
+        </div>
+
+
+        <div class="phrase">
+
+            <p>
+                Lleva lo que<br>
+                te representa.
+            </p>
+
+        </div>
+
+
+        <div class="phrase">
+
+            <p>
+                Hazlo<br>
+                realmente<br>
+                tuyo.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     SHOP
+========================= -->
+
+<section class="shop">
+
+
+    <h2>
+
+        ENCUENTRA<br>
+        <span>TU STREED.</span>
+
+    </h2>
+
+
+    <p>
+
+        Explora nuestras colecciones y encuentra
+        diseños creados para diferentes estilos,
+        gustos y formas de expresarte.
+
+    </p>
+
+
+    <a
+        href="personalizacion.html"
+        class="shop-button"
+    >
+
+        Explorar colección
+
+    </a>
+
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        STREED<span>⭐</span>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        SIGUENOS EN NUESTRAS REDES
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 STREED
+
+    </div>
+
+
+</footer>
+
+
+
+<script>
+
+function openMenu(){
+
+    document
+        .getElementById("sideMenu")
+        .classList
+        .add("active");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .add("active");
+
+}
+
+
+function closeMenu(){
+
+    document
+        .getElementById("sideMenu")
+        .classList
+        .remove("active");
+
+    document
+        .getElementById("overlay")
+        .classList
+        .remove("active");
+
+}
+
+</script>
+
+
+</body>
+</html>
