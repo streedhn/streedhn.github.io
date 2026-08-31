@@ -1,14 +1,17 @@
 <div class="streed-header">
   <h1 id="streed-title">STREED PRINT STUDIO</h1>
+
   <div class="light-sweep"></div>
   <div class="flash"></div>
+
+  <div class="divider"></div>
 </div>
 
 <style>
   .streed-header {
     position: relative;
     width: 100%;
-    height: 120px;
+    height: 125px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,60 +23,81 @@
     position: relative;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(28px, 5vw, 58px);
-    font-weight: 900;
-    letter-spacing: 5px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 45px;
+    font-weight: normal;
+    letter-spacing: 3px;
     color: #111111;
     text-align: center;
     z-index: 2;
   }
 
-  /* Rayo que atraviesa el texto */
+  /* Rayo */
   .light-sweep {
     position: absolute;
     top: 50%;
-    left: -25%;
-    width: 25%;
+    left: -30%;
+    width: 22%;
     height: 3px;
     transform: translateY(-50%) rotate(-8deg);
+
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255,255,255,0.5),
+      rgba(255,255,255,0.4),
       #ffffff,
       rgba(255,255,255,0.9),
       transparent
     );
+
     box-shadow:
       0 0 5px #ffffff,
       0 0 12px #ffffff,
       0 0 25px rgba(255,255,255,0.9);
+
     z-index: 3;
+
     animation: sweep 3.5s ease-in-out infinite;
   }
 
-  /* Destello final */
+  /* Destello */
   .flash {
     position: absolute;
-    right: 7%;
+    right: 5%;
     top: 50%;
+
     width: 6px;
     height: 6px;
+
     border-radius: 50%;
     background: white;
-    transform: translateY(-50%);
+
     opacity: 0;
     z-index: 4;
+
     box-shadow:
       0 0 5px white,
       0 0 15px white,
       0 0 30px white,
       0 0 50px white;
+
     animation: flash 3.5s ease-in-out infinite;
   }
 
+  /* Línea divisoria */
+  .divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: #111111;
+  }
+
   @keyframes sweep {
+
     0% {
       left: -30%;
       opacity: 0;
@@ -104,6 +128,7 @@
   }
 
   @keyframes flash {
+
     0%,
     75% {
       opacity: 0;
@@ -125,15 +150,18 @@
     }
   }
 
-  /* Ajuste para celular */
+  /* Celular */
   @media (max-width: 600px) {
+
     .streed-header {
-      height: 90px;
+      height: 105px;
     }
 
     #streed-title {
-      font-size: 24px;
-      letter-spacing: 3px;
+      font-size: 45px;
+      letter-spacing: 1px;
+      transform: scale(0.75);
     }
+
   }
 </style>
