@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -305,306 +304,10 @@
 
 
         /* =====================================
-           MENU
-           
-           PC = HORIZONTAL
-        ===================================== */
-
-        .menu {
-
-            width: 100%;
-
-            background: #ffffff;
-
-            padding: 20px 15px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            overflow: visible;
-
-            position: relative;
-
-            z-index: 500;
-        }
-
-
-        /* =====================================
-           LISTA
-        ===================================== */
-
-        .menu ul {
-
-            list-style: none;
-
-            display: flex;
-
-            flex-direction: row;
-
-            align-items: center;
-
-            justify-content: center;
-
-            flex-wrap: nowrap;
-
-            white-space: nowrap;
-
-            margin: 0;
-
-            padding: 0;
-        }
-
-
-        /* =====================================
-           ELEMENTOS
-        ===================================== */
-
-        .menu li {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            white-space: nowrap;
-
-            transition:
-                transform 0.2s ease;
-        }
-
-
-        /* =====================================
-           LINKS
-        ===================================== */
-
-        .menu a {
-
-            position: relative;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            color: #000000;
-
-            text-decoration: none;
-
-            font-family:
-                Impact,
-                Haettenschweiler,
-                "Arial Narrow Bold",
-                sans-serif;
-
-            font-size: clamp(15px, 1.8vw, 24px);
-
-            letter-spacing: 1px;
-
-            padding: 6px 12px;
-
-            white-space: nowrap;
-
-            transition:
-                color 0.2s ease,
-                transform 0.2s ease,
-                letter-spacing 0.2s ease;
-        }
-
-
-        /* =====================================
-           HOVER
-        ===================================== */
-
-        .menu a:hover {
-
-            color: #e60000;
-
-            transform:
-                translateY(-4px)
-                skewX(-5deg);
-
-            letter-spacing: 2px;
-        }
-
-
-        /* =====================================
-           LÍNEA ROJA
-        ===================================== */
-
-        .menu a::after {
-
-            content: "";
-
-            position: absolute;
-
-            left: 12px;
-            right: 12px;
-
-            bottom: 0;
-
-            height: 3px;
-
-            background: #e60000;
-
-            transform: scaleX(0);
-
-            transform-origin: center;
-
-            transition:
-                transform 0.2s ease;
-        }
-
-
-        .menu a:hover::after,
-        .menu a.active::after {
-
-            transform: scaleX(1);
-        }
-
-
-        /* =====================================
-           PÁGINA ACTUAL
-        ===================================== */
-
-        .menu a.active {
-
-            color: #e60000;
-
-            transform: skewX(-5deg);
-        }
-
-
-        /* =====================================
-           SEPARADORES
-        ===================================== */
-
-        .separador {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 17px;
-
-            font-weight: bold;
-
-            line-height: 1;
-
-            color: #000000;
-
-            margin: 0 1px;
-
-            padding: 0;
-
-            height: auto;
-
-            user-select: none;
-        }
-
-
-        .menu li:hover .separador {
-
-            color: #e60000;
-
-            transform: skewX(-5deg);
-        }
-
-
-        /* =====================================
-           BOTÓN MENU
-           
-           OCULTO EN PC
-        ===================================== */
-
-        .menu-toggle {
-
-            display: none;
-
-            border: none;
-
-            background: transparent;
-
-            color: #000000;
-
-            font-family:
-                Impact,
-                Haettenschweiler,
-                "Arial Narrow Bold",
-                sans-serif;
-
-            font-size: 23px;
-
-            letter-spacing: 1px;
-
-            cursor: pointer;
-
-            padding: 5px 0;
-
-            position: relative;
-
-            transition:
-                color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-
-        .menu-toggle:hover {
-
-            color: #e60000;
-
-            transform: skewX(-5deg);
-        }
-
-
-        /* LÍNEA ROJA DEL BOTÓN */
-
-        .menu-toggle::after {
-
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            bottom: 0;
-
-            width: 100%;
-
-            height: 3px;
-
-            background: #e60000;
-
-            transform: scaleX(0);
-
-            transition:
-                transform 0.2s ease;
-        }
-
-
-        .menu-toggle:hover::after,
-        .menu-toggle.open::after {
-
-            transform: scaleX(1);
-        }
-
-
-        /* =====================================
-           TABLET + CELULAR
-           
-           MENÚ A LA IZQUIERDA
+           RESPONSIVE
         ===================================== */
 
         @media (max-width: 1024px) {
-
-            /* HEADER */
 
             .header {
 
@@ -615,9 +318,6 @@
                     20px;
             }
 
-
-            /* TÍTULO */
-
             .title {
 
                 font-size:
@@ -626,161 +326,8 @@
                 letter-spacing: 0;
             }
 
-
-            /* MENU */
-
-            .menu {
-
-                justify-content: flex-start;
-
-                padding:
-                    14px
-                    25px;
-
-                min-height: 58px;
-
-                position: relative;
-            }
-
-
-            /* BOTÓN */
-
-            .menu-toggle {
-
-                display: block;
-
-                z-index: 600;
-            }
-
-
-            /* LISTA OCULTA */
-
-            .menu ul {
-
-                position: absolute;
-
-                top: 100%;
-
-                left: 25px;
-
-                width: 280px;
-
-                max-width: calc(100vw - 50px);
-
-                background: #ffffff;
-
-                border-left: 4px solid #e60000;
-
-                padding: 12px 0;
-
-                display: flex;
-
-                flex-direction: column;
-
-                align-items: stretch;
-
-                justify-content: flex-start;
-
-                white-space: normal;
-
-                box-shadow:
-                    8px 8px 0 #000000;
-
-                opacity: 0;
-
-                visibility: hidden;
-
-                transform:
-                    translateY(-10px);
-
-                pointer-events: none;
-
-                transition:
-                    opacity 0.2s ease,
-                    transform 0.2s ease,
-                    visibility 0.2s ease;
-            }
-
-
-            /* LISTA ABIERTA */
-
-            .menu.open ul {
-
-                opacity: 1;
-
-                visibility: visible;
-
-                transform:
-                    translateY(0);
-
-                pointer-events: auto;
-            }
-
-
-            /* ELEMENTOS */
-
-            .menu li {
-
-                width: 100%;
-
-                display: block;
-            }
-
-
-            /* LINKS */
-
-            .menu a {
-
-                width: 100%;
-
-                justify-content: flex-start;
-
-                padding:
-                    10px
-                    18px;
-
-                font-size: 18px;
-
-                letter-spacing: 1px;
-            }
-
-
-            .menu a:hover {
-
-                transform:
-                    translateX(5px)
-                    skewX(-5deg);
-
-                letter-spacing: 2px;
-            }
-
-
-            .menu a::after {
-
-                left: 18px;
-                right: auto;
-
-                bottom: 4px;
-
-                width: 80px;
-
-                height: 3px;
-            }
-
-
-            /* SEPARADORES */
-
-            .separador {
-
-                display: none;
-            }
-
         }
 
-
-        /* =====================================
-           CELULAR
-        ===================================== */
 
         @media (max-width: 700px) {
 
@@ -793,62 +340,19 @@
                     15px;
             }
 
-
             .title {
 
                 font-size:
                     clamp(27px, 9vw, 46px);
             }
 
-
             .divider {
 
                 height: 3px;
             }
 
-
-            .menu {
-
-                padding:
-                    12px
-                    18px;
-
-                min-height: 52px;
-            }
-
-
-            .menu-toggle {
-
-                font-size: 20px;
-            }
-
-
-            .menu ul {
-
-                left: 18px;
-
-                width: 245px;
-
-                max-width:
-                    calc(100vw - 36px);
-            }
-
-
-            .menu a {
-
-                font-size: 16px;
-
-                padding:
-                    10px
-                    16px;
-            }
-
         }
 
-
-        /* =====================================
-           CELULARES PEQUEÑOS
-        ===================================== */
 
         @media (max-width: 430px) {
 
@@ -857,46 +361,10 @@
                 min-height: 135px;
             }
 
-
             .title {
 
                 font-size:
                     clamp(24px, 9vw, 40px);
-            }
-
-
-            .menu {
-
-                padding:
-                    10px
-                    15px;
-            }
-
-
-            .menu-toggle {
-
-                font-size: 18px;
-            }
-
-
-            .menu ul {
-
-                left: 15px;
-
-                width: 225px;
-
-                max-width:
-                    calc(100vw - 30px);
-            }
-
-
-            .menu a {
-
-                font-size: 15px;
-
-                padding:
-                    9px
-                    14px;
             }
 
         }
@@ -933,246 +401,195 @@
     <div class="divider"></div>
 
 
-    <!-- =====================================
-         MENU STREED
-    ===================================== -->
-
-    <nav class="menu" id="menu">
-
-        <!-- BOTÓN SOLO TABLET/CELULAR -->
-
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            type="button"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-        >
-            MENU
-        </button>
-
-
-        <ul id="menuList">
-
-            <li>
-
-                <a
-                    href="index.html"
-                    class="active"
-                >
-                    INICIO
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <span class="separador">
-                    /
-                </span>
-
-                <a href="camisas.html">
-                    CAMISAS
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <span class="separador">
-                    /
-                </span>
-
-                <a href="gorras.html">
-                    GORRAS
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <span class="separador">
-                    /
-                </span>
-
-                <a href="phone-cases.html">
-                    PHONE CASES
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <span class="separador">
-                    /
-                </span>
-
-                <a href="streed-sets.html">
-                    STREED SETS
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <span class="separador">
-                    /
-                </span>
-
-                <a href="streed-club.html">
-                    STREED CLUB
-                </a>
-
-            </li>
-
-        </ul>
-
-    </nav>
-
-
-    <!-- =====================================
-         JAVASCRIPT DEL MENU
-    ===================================== -->
-
-    <script>
-
-        const menu = document.getElementById("menu");
-
-        const menuToggle =
-            document.getElementById("menuToggle");
-
-        const menuLinks =
-            document.querySelectorAll(".menu a");
-
-
-        /* =====================================
-           ABRIR / CERRAR MENU
-        ===================================== */
-
-        menuToggle.addEventListener("click", function () {
-
-            const abierto =
-                menu.classList.toggle("open");
-
-            menuToggle.classList.toggle(
-                "open",
-                abierto
-            );
-
-            menuToggle.textContent =
-                abierto ? "×" : "MENU";
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                abierto
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                abierto
-                    ? "Cerrar menú"
-                    : "Abrir menú"
-            );
-
-        });
-
-
-        /* =====================================
-           CERRAR AL SELECCIONAR UNA PÁGINA
-        ===================================== */
-
-        menuLinks.forEach(link => {
-
-            link.addEventListener("click", function () {
-
-                menu.classList.remove("open");
-
-                menuToggle.classList.remove("open");
-
-                menuToggle.textContent = "MENU";
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            });
-
-        });
-
-
-        /* =====================================
-           CERRAR AL HACER CLICK AFUERA
-        ===================================== */
-
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    !menu.contains(event.target)
-                ) {
-
-                    menu.classList.remove("open");
-
-                    menuToggle.classList.remove("open");
-
-                    menuToggle.textContent = "MENU";
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =====================================
-           DETECTAR PÁGINA ACTUAL
-        ===================================== */
-
-        const paginaActual =
-            window.location.pathname
-                .split("/")
-                .pop() || "index.html";
-
-
-        menuLinks.forEach(link => {
-
-            const paginaLink =
-                link.getAttribute("href");
-
-
-            if (
-                paginaLink === paginaActual
-            ) {
-
-                link.classList.add("active");
-
-            } else {
-
-                link.classList.remove("active");
-
-            }
-
-        });
-
-    </script>
-
-
 </body>
+
 </html>
 
 
+<!-- =====================================
+         MENU
+    ===================================== -->
 
 
+<!-- MENÚ HAMBURGUESA -->
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu-panel" id="menuPanel">
+  <a href="index.html" class="active">INICIO</a>
+  <div class="menu-line">/</div>
+
+  <a href="camisas.html">CAMISAS</a>
+  <div class="menu-line">/</div>
+
+  <a href="gorras.html">GORRAS</a>
+  <div class="menu-line">/</div>
+
+  <a href="phone-cases.html">PHONE CASES</a>
+  <div class="menu-line">/</div>
+
+  <a href="streed-sets.html">STREED SETS</a>
+  <div class="menu-line">/</div>
+
+  <a href="streed-club.html">STREED CLUB</a>
+</nav>
+
+<style>
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #000;
+  transition: 0.3s ease;
+}
+
+/* CONVERTIR LAS 3 LÍNEAS EN X */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* MENÚ LATERAL */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: #fff;
+  border-right: 2px solid #000;
+  z-index: 1000;
+  padding: 100px 35px 40px;
+  box-sizing: border-box;
+
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu-panel.active {
+  transform: translateX(0);
+}
+
+.menu-panel a {
+  font-family: Impact, sans-serif;
+  font-size: 25px;
+  color: #000;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 12px 0;
+  transition: 0.2s ease;
+}
+
+.menu-panel a:hover,
+.menu-panel a.active {
+  color: #e00000;
+}
+
+.menu-line {
+  font-family: Impact, sans-serif;
+  font-size: 20px;
+  color: #000;
+  margin: 2px 0;
+}
+
+/* FONDO OSCURO */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* MÓVIL */
+@media (max-width: 600px) {
+  .menu-toggle {
+    top: 15px;
+    left: 15px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .menu-panel {
+    width: 280px;
+    padding-top: 85px;
+  }
+
+  .menu-panel a {
+    font-size: 22px;
+  }
+</style>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const menuPanel = document.getElementById("menuPanel");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  menuPanel.classList.toggle("active");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", closeMenu);
+
+document.querySelectorAll(".menu-panel a").forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeMenu();
+  }
+});
+
+function closeMenu() {
+  menuToggle.classList.remove("active");
+  menuPanel.classList.remove("active");
+  menuOverlay.classList.remove("active");
+}
+</script>
 
