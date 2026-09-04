@@ -1,6 +1,7 @@
-
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
     <meta charset="UTF-8">
@@ -23,12 +24,17 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
         body {
             background: #ffffff;
             color: #000000;
             overflow-x: hidden;
 
-            /* Animación de entrada */
             animation: entrada 0.7s ease-out;
         }
 
@@ -70,49 +76,8 @@
             padding: 30px 100px;
 
             background: #ffffff;
-        }
 
-
-        /* =====================================
-           LOGOTIPO
-        ===================================== */
-
-        .logo-link {
-
-            position: absolute;
-
-            left: 45px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            z-index: 10;
-        }
-
-
-        .logo {
-
-            width: 85px;
-            height: 85px;
-
-            object-fit: contain;
-
-            display: block;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.25s ease,
-                filter 0.25s ease;
-        }
-
-
-        .logo:hover {
-
-            transform: scale(1.08) rotate(-3deg);
-
-            filter:
-                drop-shadow(4px 4px 0px #e00000);
+            z-index: 100;
         }
 
 
@@ -134,7 +99,11 @@
 
         .title {
 
-            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-family:
+                Impact,
+                Haettenschweiler,
+                "Arial Narrow Bold",
+                sans-serif;
 
             font-size: clamp(42px, 6vw, 82px);
 
@@ -148,13 +117,10 @@
 
             white-space: nowrap;
 
-            /* COLOR INICIAL */
             color: #000000;
 
-            /* FLASH DE COLOR */
             animation: flashTexto 1.8s infinite;
 
-            /* Hace que el cambio de color sea más agresivo */
             text-shadow:
                 0 0 0 transparent;
         }
@@ -162,45 +128,48 @@
 
         /* =====================================
            FLASH DE LAS LETRAS
-
-           NEGRO → ROJO → NEGRO
         ===================================== */
 
         @keyframes flashTexto {
 
-            /* NEGRO */
             0% {
+
                 color: #000000;
+
                 text-shadow:
                     0 0 0 transparent;
             }
 
-            /* ROJO MUY RÁPIDO */
             4% {
+
                 color: #ff0000;
+
                 text-shadow:
                     0 0 8px rgba(255, 0, 0, 0.8),
                     0 0 18px rgba(255, 0, 0, 0.5);
             }
 
-            /* ROJO INTENSO */
             7% {
+
                 color: #ff0000;
+
                 text-shadow:
                     0 0 12px rgba(255, 0, 0, 0.9),
                     0 0 25px rgba(255, 0, 0, 0.6);
             }
 
-            /* VUELVE A NEGRO */
             10% {
+
                 color: #000000;
+
                 text-shadow:
                     0 0 0 transparent;
             }
 
-            /* NEGRO */
             100% {
+
                 color: #000000;
+
                 text-shadow:
                     0 0 0 transparent;
             }
@@ -210,8 +179,6 @@
 
         /* =====================================
            SEGUNDO FLASH
-
-           Un destello aún más rápido
         ===================================== */
 
         .title::after {
@@ -232,7 +199,6 @@
             pointer-events: none;
 
             animation: segundoFlash 1.8s infinite;
-
         }
 
 
@@ -280,6 +246,10 @@
 
             animation:
                 lineaEntrada 0.9s ease-out 0.5s forwards;
+
+            position: relative;
+
+            z-index: 20;
         }
 
 
@@ -335,10 +305,306 @@
 
 
         /* =====================================
-           RESPONSIVE
+           MENU
+           
+           PC = HORIZONTAL
         ===================================== */
 
-        @media (max-width: 700px) {
+        .menu {
+
+            width: 100%;
+
+            background: #ffffff;
+
+            padding: 20px 15px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: visible;
+
+            position: relative;
+
+            z-index: 500;
+        }
+
+
+        /* =====================================
+           LISTA
+        ===================================== */
+
+        .menu ul {
+
+            list-style: none;
+
+            display: flex;
+
+            flex-direction: row;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-wrap: nowrap;
+
+            white-space: nowrap;
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        /* =====================================
+           ELEMENTOS
+        ===================================== */
+
+        .menu li {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            white-space: nowrap;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        /* =====================================
+           LINKS
+        ===================================== */
+
+        .menu a {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #000000;
+
+            text-decoration: none;
+
+            font-family:
+                Impact,
+                Haettenschweiler,
+                "Arial Narrow Bold",
+                sans-serif;
+
+            font-size: clamp(15px, 1.8vw, 24px);
+
+            letter-spacing: 1px;
+
+            padding: 6px 12px;
+
+            white-space: nowrap;
+
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease,
+                letter-spacing 0.2s ease;
+        }
+
+
+        /* =====================================
+           HOVER
+        ===================================== */
+
+        .menu a:hover {
+
+            color: #e60000;
+
+            transform:
+                translateY(-4px)
+                skewX(-5deg);
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =====================================
+           LÍNEA ROJA
+        ===================================== */
+
+        .menu a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 12px;
+            right: 12px;
+
+            bottom: 0;
+
+            height: 3px;
+
+            background: #e60000;
+
+            transform: scaleX(0);
+
+            transform-origin: center;
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .menu a:hover::after,
+        .menu a.active::after {
+
+            transform: scaleX(1);
+        }
+
+
+        /* =====================================
+           PÁGINA ACTUAL
+        ===================================== */
+
+        .menu a.active {
+
+            color: #e60000;
+
+            transform: skewX(-5deg);
+        }
+
+
+        /* =====================================
+           SEPARADORES
+        ===================================== */
+
+        .separador {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            line-height: 1;
+
+            color: #000000;
+
+            margin: 0 1px;
+
+            padding: 0;
+
+            height: auto;
+
+            user-select: none;
+        }
+
+
+        .menu li:hover .separador {
+
+            color: #e60000;
+
+            transform: skewX(-5deg);
+        }
+
+
+        /* =====================================
+           BOTÓN MENU
+           
+           OCULTO EN PC
+        ===================================== */
+
+        .menu-toggle {
+
+            display: none;
+
+            border: none;
+
+            background: transparent;
+
+            color: #000000;
+
+            font-family:
+                Impact,
+                Haettenschweiler,
+                "Arial Narrow Bold",
+                sans-serif;
+
+            font-size: 23px;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            padding: 5px 0;
+
+            position: relative;
+
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .menu-toggle:hover {
+
+            color: #e60000;
+
+            transform: skewX(-5deg);
+        }
+
+
+        /* LÍNEA ROJA DEL BOTÓN */
+
+        .menu-toggle::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background: #e60000;
+
+            transform: scaleX(0);
+
+            transition:
+                transform 0.2s ease;
+        }
+
+
+        .menu-toggle:hover::after,
+        .menu-toggle.open::after {
+
+            transform: scaleX(1);
+        }
+
+
+        /* =====================================
+           TABLET + CELULAR
+           
+           MENÚ A LA IZQUIERDA
+        ===================================== */
+
+        @media (max-width: 1024px) {
+
+            /* HEADER */
 
             .header {
 
@@ -346,37 +612,291 @@
 
                 padding:
                     25px
-                    20px
-                    25px
-                    90px;
+                    20px;
             }
 
 
-            .logo-link {
+            /* TÍTULO */
+
+            .title {
+
+                font-size:
+                    clamp(30px, 7vw, 58px);
+
+                letter-spacing: 0;
+            }
+
+
+            /* MENU */
+
+            .menu {
+
+                justify-content: flex-start;
+
+                padding:
+                    14px
+                    25px;
+
+                min-height: 58px;
+
+                position: relative;
+            }
+
+
+            /* BOTÓN */
+
+            .menu-toggle {
+
+                display: block;
+
+                z-index: 600;
+            }
+
+
+            /* LISTA OCULTA */
+
+            .menu ul {
+
+                position: absolute;
+
+                top: 100%;
+
+                left: 25px;
+
+                width: 280px;
+
+                max-width: calc(100vw - 50px);
+
+                background: #ffffff;
+
+                border-left: 4px solid #e60000;
+
+                padding: 12px 0;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                justify-content: flex-start;
+
+                white-space: normal;
+
+                box-shadow:
+                    8px 8px 0 #000000;
+
+                opacity: 0;
+
+                visibility: hidden;
+
+                transform:
+                    translateY(-10px);
+
+                pointer-events: none;
+
+                transition:
+                    opacity 0.2s ease,
+                    transform 0.2s ease,
+                    visibility 0.2s ease;
+            }
+
+
+            /* LISTA ABIERTA */
+
+            .menu.open ul {
+
+                opacity: 1;
+
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+
+                pointer-events: auto;
+            }
+
+
+            /* ELEMENTOS */
+
+            .menu li {
+
+                width: 100%;
+
+                display: block;
+            }
+
+
+            /* LINKS */
+
+            .menu a {
+
+                width: 100%;
+
+                justify-content: flex-start;
+
+                padding:
+                    10px
+                    18px;
+
+                font-size: 18px;
+
+                letter-spacing: 1px;
+            }
+
+
+            .menu a:hover {
+
+                transform:
+                    translateX(5px)
+                    skewX(-5deg);
+
+                letter-spacing: 2px;
+            }
+
+
+            .menu a::after {
 
                 left: 18px;
+                right: auto;
+
+                bottom: 4px;
+
+                width: 80px;
+
+                height: 3px;
             }
 
 
-            .logo {
+            /* SEPARADORES */
 
-                width: 60px;
-                height: 60px;
+            .separador {
+
+                display: none;
+            }
+
+        }
+
+
+        /* =====================================
+           CELULAR
+        ===================================== */
+
+        @media (max-width: 700px) {
+
+            .header {
+
+                min-height: 145px;
+
+                padding:
+                    25px
+                    15px;
             }
 
 
             .title {
 
                 font-size:
-                    clamp(28px, 8vw, 48px);
-
-                letter-spacing: 0;
+                    clamp(27px, 9vw, 46px);
             }
 
 
             .divider {
 
                 height: 3px;
+            }
+
+
+            .menu {
+
+                padding:
+                    12px
+                    18px;
+
+                min-height: 52px;
+            }
+
+
+            .menu-toggle {
+
+                font-size: 20px;
+            }
+
+
+            .menu ul {
+
+                left: 18px;
+
+                width: 245px;
+
+                max-width:
+                    calc(100vw - 36px);
+            }
+
+
+            .menu a {
+
+                font-size: 16px;
+
+                padding:
+                    10px
+                    16px;
+            }
+
+        }
+
+
+        /* =====================================
+           CELULARES PEQUEÑOS
+        ===================================== */
+
+        @media (max-width: 430px) {
+
+            .header {
+
+                min-height: 135px;
+            }
+
+
+            .title {
+
+                font-size:
+                    clamp(24px, 9vw, 40px);
+            }
+
+
+            .menu {
+
+                padding:
+                    10px
+                    15px;
+            }
+
+
+            .menu-toggle {
+
+                font-size: 18px;
+            }
+
+
+            .menu ul {
+
+                left: 15px;
+
+                width: 225px;
+
+                max-width:
+                    calc(100vw - 30px);
+            }
+
+
+            .menu a {
+
+                font-size: 15px;
+
+                padding:
+                    9px
+                    14px;
             }
 
         }
@@ -395,26 +915,6 @@
 
     <header class="header">
 
-
-        <!-- LOGOTIPO / BOTÓN PARA VOLVER AL INICIO -->
-
-        <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Volver al inicio"
-        >
-
-            <img
-                src="images/LOGOTIPO.PNG"
-                alt="STREED"
-                class="logo"
-            >
-
-        </a>
-
-
-        <!-- TÍTULO -->
-
         <div class="title-container">
 
             <h1 class="title">
@@ -422,7 +922,6 @@
             </h1>
 
         </div>
-
 
     </header>
 
@@ -434,422 +933,242 @@
     <div class="divider"></div>
 
 
-</body>
-</html>
-
     <!-- =====================================
-         SECCIÓN DE MENU
+         MENU STREED
     ===================================== -->
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <nav class="menu" id="menu">
 
-<title>STREED MENU</title>
+        <!-- BOTÓN SOLO TABLET/CELULAR -->
 
-<style>
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+        >
+            MENU
+        </button>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background: #ffffff;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-}
+        <ul id="menuList">
 
+            <li>
 
-/* =========================
-   MENU PRINCIPAL
-========================= */
+                <a
+                    href="index.html"
+                    class="active"
+                >
+                    INICIO
+                </a>
 
-.menu {
-    width: 100%;
-    background: white;
-    padding: 20px 15px;
+            </li>
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    overflow: hidden;
-}
+            <li>
 
+                <span class="separador">
+                    /
+                </span>
 
-/* CONTENEDOR DE LINKS */
+                <a href="camisas.html">
+                    CAMISAS
+                </a>
 
-.menu ul {
-    list-style: none;
+            </li>
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 
-    flex-wrap: nowrap;
-    white-space: nowrap;
+            <li>
 
-    margin: 0;
-    padding: 0;
-}
+                <span class="separador">
+                    /
+                </span>
 
+                <a href="gorras.html">
+                    GORRAS
+                </a>
 
-/* CADA ELEMENTO */
+            </li>
 
-.menu li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    white-space: nowrap;
-}
+            <li>
 
+                <span class="separador">
+                    /
+                </span>
 
-/* =========================
-   LINKS
-========================= */
+                <a href="phone-cases.html">
+                    PHONE CASES
+                </a>
 
-.menu a {
+            </li>
 
-    position: relative;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+            <li>
 
-    color: #000;
+                <span class="separador">
+                    /
+                </span>
 
-    text-decoration: none;
+                <a href="streed-sets.html">
+                    STREED SETS
+                </a>
 
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            </li>
 
-    font-size: clamp(15px, 1.8vw, 24px);
 
-    letter-spacing: 1px;
+            <li>
 
-    padding: 6px 12px;
+                <span class="separador">
+                    /
+                </span>
 
-    white-space: nowrap;
+                <a href="streed-club.html">
+                    STREED CLUB
+                </a>
 
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease,
-        letter-spacing 0.2s ease;
-}
+            </li>
 
+        </ul>
 
-/* =========================
-   MOVIMIENTO STREED
-========================= */
+    </nav>
 
-.menu a:hover {
 
-    color: #e60000;
+    <!-- =====================================
+         JAVASCRIPT DEL MENU
+    ===================================== -->
 
-    transform: translateY(-4px) skewX(-5deg);
+    <script>
 
-    letter-spacing: 2px;
-}
+        const menu = document.getElementById("menu");
 
+        const menuToggle =
+            document.getElementById("menuToggle");
 
-/* =========================
-   LINEA ROJA
-========================= */
+        const menuLinks =
+            document.querySelectorAll(".menu a");
 
-.menu a::after {
 
-    content: "";
+        /* =====================================
+           ABRIR / CERRAR MENU
+        ===================================== */
 
-    position: absolute;
+        menuToggle.addEventListener("click", function () {
 
-    left: 12px;
-    right: 12px;
+            const abierto =
+                menu.classList.toggle("open");
 
-    bottom: 0;
+            menuToggle.classList.toggle(
+                "open",
+                abierto
+            );
 
-    height: 3px;
+            menuToggle.textContent =
+                abierto ? "×" : "MENU";
 
-    background: #e60000;
+            menuToggle.setAttribute(
+                "aria-expanded",
+                abierto
+            );
 
-    transform: scaleX(0);
+            menuToggle.setAttribute(
+                "aria-label",
+                abierto
+                    ? "Cerrar menú"
+                    : "Abrir menú"
+            );
 
-    transform-origin: center;
+        });
 
-    transition: transform 0.2s ease;
-}
 
+        /* =====================================
+           CERRAR AL SELECCIONAR UNA PÁGINA
+        ===================================== */
 
-.menu a:hover::after,
-.menu a.active::after {
+        menuLinks.forEach(link => {
 
-    transform: scaleX(1);
-}
+            link.addEventListener("click", function () {
 
+                menu.classList.remove("open");
 
-/* =========================
-   PAGINA ACTUAL
-========================= */
+                menuToggle.classList.remove("open");
 
-.menu a.active {
+                menuToggle.textContent = "MENU";
 
-    color: #e60000;
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-    transform: skewX(-5deg);
-}
+            });
 
+        });
 
-/* =========================
-   SEPARADORES /
-========================= */
 
-.separador {
+        /* =====================================
+           CERRAR AL HACER CLICK AFUERA
+        ===================================== */
 
-    display: inline-flex;
+        document.addEventListener(
+            "click",
+            function (event) {
 
-    align-items: center;
-    justify-content: center;
+                if (
+                    !menu.contains(event.target)
+                ) {
 
-    font-family: Arial, sans-serif;
+                    menu.classList.remove("open");
 
-    font-size: 17px;
+                    menuToggle.classList.remove("open");
 
-    font-weight: bold;
+                    menuToggle.textContent = "MENU";
 
-    line-height: 1;
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
 
-    color: #000;
+                }
 
-    margin: 0 1px;
+            }
+        );
 
-    padding: 0;
 
-    height: auto;
+        /* =====================================
+           DETECTAR PÁGINA ACTUAL
+        ===================================== */
 
-    user-select: none;
-}
+        const paginaActual =
+            window.location.pathname
+                .split("/")
+                .pop() || "index.html";
 
 
-/* CAMBIA A ROJO AL PASAR */
+        menuLinks.forEach(link => {
 
-.menu li:hover .separador {
+            const paginaLink =
+                link.getAttribute("href");
 
-    color: #e60000;
 
-    transform: skewX(-5deg);
-}
+            if (
+                paginaLink === paginaActual
+            ) {
 
+                link.classList.add("active");
 
-/* =========================
-   ANIMACION SUAVE
-========================= */
+            } else {
 
-.menu li {
+                link.classList.remove("active");
 
-    transition: transform 0.2s ease;
-}
+            }
 
+        });
 
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 900px) {
-
-    .menu {
-        padding: 18px 8px;
-    }
-
-    .menu a {
-        font-size: 15px;
-        padding: 6px 8px;
-    }
-
-    .separador {
-        font-size: 15px;
-    }
-}
-
-
-/* =========================
-   CELULAR
-========================= */
-
-@media (max-width: 700px) {
-
-    .menu {
-        padding: 16px 4px;
-    }
-
-    .menu a {
-        font-size: 12px;
-        padding: 5px 5px;
-        letter-spacing: 0.5px;
-    }
-
-    .menu a:hover {
-        letter-spacing: 1px;
-    }
-
-    .menu a::after {
-        left: 5px;
-        right: 5px;
-        height: 2px;
-    }
-
-    .separador {
-        font-size: 12px;
-        margin: 0;
-    }
-}
-
-
-/* =========================
-   CELULARES PEQUEÑOS
-========================= */
-
-@media (max-width: 430px) {
-
-    .menu {
-        padding: 14px 2px;
-    }
-
-    .menu a {
-        font-size: 10px;
-        padding: 4px 3px;
-        letter-spacing: 0;
-    }
-
-    .menu a:hover {
-        letter-spacing: 0.5px;
-    }
-
-    .menu a::after {
-        left: 3px;
-        right: 3px;
-        height: 2px;
-    }
-
-    .separador {
-        font-size: 10px;
-    }
-}
-
-</style>
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     MENU STREED
-========================= -->
-
-<nav class="menu">
-
-    <ul>
-
-        <li>
-            <a href="index.html">INICIO</a>
-        </li>
-
-        <li>
-            <span class="separador">/</span>
-            <a href="camisas.html">CAMISAS</a>
-        </li>
-
-        <li>
-            <span class="separador">/</span>
-            <a href="gorras.html">GORRAS</a>
-        </li>
-
-        <li>
-            <span class="separador">/</span>
-            <a href="phone-cases.html">PHONE CASES</a>
-        </li>
-
-        <li>
-            <span class="separador">/</span>
-            <a href="streed-sets.html">STREED SETS</a>
-        </li>
-
-        <li>
-            <span class="separador">/</span>
-            <a href="streed-club.html">STREED CLUB</a>
-        </li>
-
-    </ul>
-
-</nav>
-
-
-<script>
-
-/* =========================
-   DETECTAR PAGINA ACTUAL
-========================= */
-
-const paginaActual =
-    window.location.pathname.split("/").pop() || "index.html";
-
-
-document.querySelectorAll(".menu a").forEach(link => {
-
-    const paginaLink = link.getAttribute("href");
-
-    if (paginaLink === paginaActual) {
-
-        link.classList.add("active");
-
-    }
-
-});
-
-</script>
+    </script>
 
 
 </body>
 </html>
-
-<!-- =========================
-     VIDEO PROMOCIONAL
-========================= -->
-
-<style>
-.streed-video {
-  width:100%;
-  max-width:1100px;
-  margin:0 auto;
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-  background:#000;
-  aspect-ratio:16 / 9;
-}
-
-.streed-video iframe {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-</style>
-
-<div class="streed-video">
-
-  <iframe
-    src="https://player.vimeo.com/video/1222270098?autoplay=1&muted=1&loop=1&background=1&autopause=0"
-    title="STREED"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-
-</div>
-
+```
 
