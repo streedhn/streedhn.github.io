@@ -593,3 +593,268 @@ function closeMenu() {
 }
 </script>
 
+
+<!-- MENÚ + ICONO DE INICIO -->
+
+<div class="menu-header">
+
+  <!-- BOTÓN MENÚ -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- ICONO / INICIO -->
+  <a href="index.html" class="home-icon" aria-label="Inicio">
+    <img src="images/ENCABEZADO.PNG" alt="Inicio">
+  </a>
+
+</div>
+
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu-panel" id="menuPanel">
+  <a href="index.html" class="active">INICIO</a>
+  <div class="menu-line">/</div>
+
+  <a href="camisas.html">CAMISAS</a>
+  <div class="menu-line">/</div>
+
+  <a href="gorras.html">GORRAS</a>
+  <div class="menu-line">/</div>
+
+  <a href="phone-cases.html">PHONE CASES</a>
+  <div class="menu-line">/</div>
+
+  <a href="streed-sets.html">STREED SETS</a>
+  <div class="menu-line">/</div>
+
+  <a href="streed-club.html">STREED CLUB</a>
+</nav>
+
+
+<style>
+
+/* CONTENEDOR MENÚ + ICONO */
+.menu-header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  background: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #000;
+  transition: 0.3s ease;
+}
+
+
+/* X */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+
+/* ICONO DE INICIO */
+.home-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+.home-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+
+  transition: transform 0.2s ease;
+}
+
+.home-icon:hover img {
+  transform: scale(1.08);
+}
+
+
+/* MENÚ LATERAL */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+
+  background: #fff;
+  border-right: 2px solid #000;
+
+  z-index: 1000;
+
+  padding: 100px 35px 40px;
+  box-sizing: border-box;
+
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-panel.active {
+  transform: translateX(0);
+}
+
+.menu-panel a {
+  font-family: Impact, sans-serif;
+  font-size: 25px;
+  color: #000;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 12px 0;
+  transition: 0.2s ease;
+}
+
+.menu-panel a:hover,
+.menu-panel a.active {
+  color: #e00000;
+}
+
+.menu-line {
+  font-family: Impact, sans-serif;
+  font-size: 20px;
+  color: #000;
+  margin: 2px 0;
+}
+
+
+/* FONDO OSCURO */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* MÓVIL */
+@media (max-width: 600px) {
+
+  .menu-header {
+    top: 15px;
+    left: 15px;
+    gap: 8px;
+  }
+
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .home-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .menu-panel {
+    width: 280px;
+    padding-top: 85px;
+  }
+
+  .menu-panel a {
+    font-size: 22px;
+  }
+}
+
+</style>
+
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+const menuPanel = document.getElementById("menuPanel");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+
+  menuToggle.classList.toggle("active");
+  menuPanel.classList.toggle("active");
+  menuOverlay.classList.toggle("active");
+
+});
+
+menuOverlay.addEventListener("click", closeMenu);
+
+document.querySelectorAll(".menu-panel a").forEach(link => {
+
+  link.addEventListener("click", closeMenu);
+
+});
+
+document.addEventListener("keydown", e => {
+
+  if (e.key === "Escape") {
+    closeMenu();
+  }
+
+});
+
+function closeMenu() {
+
+  menuToggle.classList.remove("active");
+  menuPanel.classList.remove("active");
+  menuOverlay.classList.remove("active");
+
+}
+
+</script>
+
