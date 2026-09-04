@@ -1,293 +1,855 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Icono de la página -->
+    <!-- MARCADOR DE LA PÁGINA -->
     <link rel="icon" type="image/png" href="images/ENCABEZADO.PNG">
 
-    <title>STREED PRINT STUDIO</title>
+    <title>STREED STUDIO PRINT</title>
+
+    <style>
+
+        /* =====================================
+           CONFIGURACIÓN GENERAL
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+
+            /* Animación de entrada */
+            animation: entrada 0.7s ease-out;
+        }
+
+
+        /* =====================================
+           ANIMACIÓN DE ENTRADA
+        ===================================== */
+
+        @keyframes entrada {
+
+            0% {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .header {
+
+            width: 100%;
+            min-height: 190px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            padding: 30px 100px;
+
+            background: #ffffff;
+        }
+
+
+        /* =====================================
+           LOGOTIPO
+        ===================================== */
+
+        .logo-link {
+
+            position: absolute;
+
+            left: 45px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            width: 85px;
+            height: 85px;
+
+            object-fit: contain;
+
+            display: block;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                filter 0.25s ease;
+        }
+
+
+        .logo:hover {
+
+            transform: scale(1.08) rotate(-3deg);
+
+            filter:
+                drop-shadow(4px 4px 0px #e00000);
+        }
+
+
+        /* =====================================
+           CONTENEDOR DEL TÍTULO
+        ===================================== */
+
+        .title-container {
+
+            display: inline-block;
+
+            position: relative;
+        }
+
+
+        /* =====================================
+           TÍTULO
+        ===================================== */
+
+        .title {
+
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+            font-size: clamp(42px, 6vw, 82px);
+
+            font-weight: normal;
+
+            font-style: italic;
+
+            letter-spacing: 1px;
+
+            text-align: center;
+
+            white-space: nowrap;
+
+            /* COLOR INICIAL */
+            color: #000000;
+
+            /* FLASH DE COLOR */
+            animation: flashTexto 1.8s infinite;
+
+            /* Hace que el cambio de color sea más agresivo */
+            text-shadow:
+                0 0 0 transparent;
+        }
+
+
+        /* =====================================
+           FLASH DE LAS LETRAS
+
+           NEGRO → ROJO → NEGRO
+        ===================================== */
+
+        @keyframes flashTexto {
+
+            /* NEGRO */
+            0% {
+                color: #000000;
+                text-shadow:
+                    0 0 0 transparent;
+            }
+
+            /* ROJO MUY RÁPIDO */
+            4% {
+                color: #ff0000;
+                text-shadow:
+                    0 0 8px rgba(255, 0, 0, 0.8),
+                    0 0 18px rgba(255, 0, 0, 0.5);
+            }
+
+            /* ROJO INTENSO */
+            7% {
+                color: #ff0000;
+                text-shadow:
+                    0 0 12px rgba(255, 0, 0, 0.9),
+                    0 0 25px rgba(255, 0, 0, 0.6);
+            }
+
+            /* VUELVE A NEGRO */
+            10% {
+                color: #000000;
+                text-shadow:
+                    0 0 0 transparent;
+            }
+
+            /* NEGRO */
+            100% {
+                color: #000000;
+                text-shadow:
+                    0 0 0 transparent;
+            }
+
+        }
+
+
+        /* =====================================
+           SEGUNDO FLASH
+
+           Un destello aún más rápido
+        ===================================== */
+
+        .title::after {
+
+            content: "STREED STUDIO PRINT";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+
+            color: #ff0000;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            animation: segundoFlash 1.8s infinite;
+
+        }
+
+
+        @keyframes segundoFlash {
+
+            0% {
+                opacity: 0;
+            }
+
+            4% {
+                opacity: 0.8;
+            }
+
+            6% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =====================================
+           LÍNEA DIVISORA
+        ===================================== */
+
+        .divider {
+
+            width: 0%;
+
+            height: 4px;
+
+            margin: 0 auto;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #000000 0%,
+                    #000000 75%,
+                    #e00000 75%,
+                    #e00000 100%
+                );
+
+            animation:
+                lineaEntrada 0.9s ease-out 0.5s forwards;
+        }
+
+
+        @keyframes lineaEntrada {
+
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 92%;
+            }
+
+        }
+
+
+        /* =====================================
+           FLASH DE ENTRADA DEL HEADER
+        ===================================== */
+
+        .header::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                rgba(255, 0, 0, 0.06);
+
+            pointer-events: none;
+
+            animation: entradaFlash 0.9s ease-out;
+        }
+
+
+        @keyframes entradaFlash {
+
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 700px) {
+
+            .header {
+
+                min-height: 160px;
+
+                padding:
+                    25px
+                    20px
+                    25px
+                    90px;
+            }
+
+
+            .logo-link {
+
+                left: 18px;
+            }
+
+
+            .logo {
+
+                width: 60px;
+                height: 60px;
+            }
+
+
+            .title {
+
+                font-size:
+                    clamp(28px, 8vw, 48px);
+
+                letter-spacing: 0;
+            }
+
+
+            .divider {
+
+                height: 3px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<header class="streed-header">
 
-    <!-- Logotipo -->
-    <img
-        src="images/LOGOTIPO.PNG"
-        alt="STREED HN"
-        class="streed-logo"
-    >
+    <!-- =====================================
+         ENCABEZADO
+    ===================================== -->
 
-    <!-- Título -->
-    <h1>STREED PRINT STUDIO</h1>
+    <header class="header">
 
-    <!-- Rayo -->
-    <div class="light-sweep"></div>
 
-    <!-- Destello -->
-    <div class="flash"></div>
+        <!-- LOGOTIPO / BOTÓN PARA VOLVER AL INICIO -->
 
-</header>
+        <a
+            href="index.html"
+            class="logo-link"
+            aria-label="Volver al inicio"
+        >
 
-<!-- Línea divisoria -->
-<div class="divider"></div>
+            <img
+                src="images/LOGOTIPO.PNG"
+                alt="STREED"
+                class="logo"
+            >
 
+        </a>
 
-<style>
 
-    * {
-        box-sizing: border-box;
-    }
+        <!-- TÍTULO -->
 
-    body {
-        margin: 0;
-        background: transparent;
-    }
+        <div class="title-container">
 
+            <h1 class="title">
+                STREED STUDIO PRINT
+            </h1>
 
-    /* =========================
-       ENCABEZADO
-       ========================= */
+        </div>
 
-    .streed-header {
-        position: relative;
-        width: 100%;
-        height: 125px;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    </header>
 
-        overflow: hidden;
-    }
 
+    <!-- =====================================
+         LÍNEA DIVISORA
+    ===================================== -->
 
-    /* =========================
-       LOGOTIPO
-       ========================= */
+    <div class="divider"></div>
 
-   .streed-logo {
-    position: absolute;
-    left: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-    z-index: 2;
-}
-
-
-    /* =========================
-       TITULO
-       ========================= */
-
-    .streed-header h1 {
-        position: relative;
-
-        margin: 0;
-
-        font-family:
-            Impact,
-            Haettenschweiler,
-            "Arial Narrow Bold",
-            sans-serif;
-
-        font-size: 45px;
-        font-weight: normal;
-
-        letter-spacing: 3px;
-
-        color: #111111;
-
-        text-align: center;
-
-        z-index: 2;
-    }
-
-
-    /* =========================
-       RAYO
-       ========================= */
-
-    .light-sweep {
-        position: absolute;
-
-        top: 50%;
-        left: -30%;
-
-        width: 22%;
-        height: 3px;
-
-        transform:
-            translateY(-50%)
-            rotate(-8deg);
-
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.4),
-            #ffffff,
-            rgba(255,255,255,0.9),
-            transparent
-        );
-
-        box-shadow:
-            0 0 5px #ffffff,
-            0 0 12px #ffffff,
-            0 0 25px rgba(255,255,255,0.9);
-
-        z-index: 3;
-
-        animation:
-            sweep 3.5s ease-in-out infinite;
-    }
-
-
-    /* =========================
-       DESTELLO
-       ========================= */
-
-    .flash {
-        position: absolute;
-
-        right: 5%;
-        top: 50%;
-
-        width: 6px;
-        height: 6px;
-
-        border-radius: 50%;
-
-        background: white;
-
-        opacity: 0;
-
-        z-index: 4;
-
-        box-shadow:
-            0 0 5px white,
-            0 0 15px white,
-            0 0 30px white,
-            0 0 50px white;
-
-        animation:
-            flash 3.5s ease-in-out infinite;
-    }
-
-
-    /* =========================
-       LINEA DIVISORIA
-       ========================= */
-
-    .divider {
-        width: 100%;
-        height: 1px;
-
-        background: #111111;
-    }
-
-
-    /* =========================
-       ANIMACION DEL RAYO
-       ========================= */
-
-    @keyframes sweep {
-
-        0% {
-            left: -30%;
-            opacity: 0;
-        }
-
-        8% {
-            opacity: 1;
-        }
-
-        65% {
-            opacity: 1;
-        }
-
-        78% {
-            left: 105%;
-            opacity: 1;
-        }
-
-        82% {
-            left: 110%;
-            opacity: 0;
-        }
-
-        100% {
-            left: 110%;
-            opacity: 0;
-        }
-    }
-
-
-    /* =========================
-       ANIMACION DEL DESTELLO
-       ========================= */
-
-    @keyframes flash {
-
-        0%,
-        75% {
-            opacity: 0;
-            transform:
-                translateY(-50%)
-                scale(0.5);
-        }
-
-        79% {
-            opacity: 1;
-            transform:
-                translateY(-50%)
-                scale(1);
-        }
-
-        83% {
-            opacity: 0;
-            transform:
-                translateY(-50%)
-                scale(4);
-        }
-
-        100% {
-            opacity: 0;
-        }
-    }
-
-
-    /* =========================
-       MOVIL
-       ========================= */
-
-    @media (max-width: 600px) {
-
-        .streed-header {
-            height: 105px;
-        }
-
-        .streed-logo {
-            left: 12px;
-
-            width: 55px;
-            height: 55px;
-        }
-
-        .streed-header h1 {
-            font-size: 45px;
-            letter-spacing: 1px;
-
-            transform: scale(0.72);
-            white-space: nowrap;
-        }
-    }
-
-</style>
 
 </body>
 </html>
+
+    <!-- =====================================
+         SECCIÓN DE MENU
+    ===================================== -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STREED MENU</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+
+/* =========================
+   MENU PRINCIPAL
+========================= */
+
+.menu {
+    width: 100%;
+    background: white;
+    padding: 20px 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* CONTENEDOR DE LINKS */
+
+.menu ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: nowrap;
+    white-space: nowrap;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* CADA ELEMENTO */
+
+.menu li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.menu a {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000;
+
+    text-decoration: none;
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+    font-size: clamp(15px, 1.8vw, 24px);
+
+    letter-spacing: 1px;
+
+    padding: 6px 12px;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease,
+        letter-spacing 0.2s ease;
+}
+
+
+/* =========================
+   MOVIMIENTO STREED
+========================= */
+
+.menu a:hover {
+
+    color: #e60000;
+
+    transform: translateY(-4px) skewX(-5deg);
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   LINEA ROJA
+========================= */
+
+.menu a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+
+    bottom: 0;
+
+    height: 3px;
+
+    background: #e60000;
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition: transform 0.2s ease;
+}
+
+
+.menu a:hover::after,
+.menu a.active::after {
+
+    transform: scaleX(1);
+}
+
+
+/* =========================
+   PAGINA ACTUAL
+========================= */
+
+.menu a.active {
+
+    color: #e60000;
+
+    transform: skewX(-5deg);
+}
+
+
+/* =========================
+   SEPARADORES /
+========================= */
+
+.separador {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    color: #000;
+
+    margin: 0 1px;
+
+    padding: 0;
+
+    height: auto;
+
+    user-select: none;
+}
+
+
+/* CAMBIA A ROJO AL PASAR */
+
+.menu li:hover .separador {
+
+    color: #e60000;
+
+    transform: skewX(-5deg);
+}
+
+
+/* =========================
+   ANIMACION SUAVE
+========================= */
+
+.menu li {
+
+    transition: transform 0.2s ease;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .menu {
+        padding: 18px 8px;
+    }
+
+    .menu a {
+        font-size: 15px;
+        padding: 6px 8px;
+    }
+
+    .separador {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 700px) {
+
+    .menu {
+        padding: 16px 4px;
+    }
+
+    .menu a {
+        font-size: 12px;
+        padding: 5px 5px;
+        letter-spacing: 0.5px;
+    }
+
+    .menu a:hover {
+        letter-spacing: 1px;
+    }
+
+    .menu a::after {
+        left: 5px;
+        right: 5px;
+        height: 2px;
+    }
+
+    .separador {
+        font-size: 12px;
+        margin: 0;
+    }
+}
+
+
+/* =========================
+   CELULARES PEQUEÑOS
+========================= */
+
+@media (max-width: 430px) {
+
+    .menu {
+        padding: 14px 2px;
+    }
+
+    .menu a {
+        font-size: 10px;
+        padding: 4px 3px;
+        letter-spacing: 0;
+    }
+
+    .menu a:hover {
+        letter-spacing: 0.5px;
+    }
+
+    .menu a::after {
+        left: 3px;
+        right: 3px;
+        height: 2px;
+    }
+
+    .separador {
+        font-size: 10px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MENU STREED
+========================= -->
+
+<nav class="menu">
+
+    <ul>
+
+        <li>
+            <a href="index.html">INICIO</a>
+        </li>
+
+        <li>
+            <span class="separador">/</span>
+            <a href="camisas.html">CAMISAS</a>
+        </li>
+
+        <li>
+            <span class="separador">/</span>
+            <a href="gorras.html">GORRAS</a>
+        </li>
+
+        <li>
+            <span class="separador">/</span>
+            <a href="phone-cases.html">PHONE CASES</a>
+        </li>
+
+        <li>
+            <span class="separador">/</span>
+            <a href="streed-sets.html">STREED SETS</a>
+        </li>
+
+        <li>
+            <span class="separador">/</span>
+            <a href="streed-club.html">STREED CLUB</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   DETECTAR PAGINA ACTUAL
+========================= */
+
+const paginaActual =
+    window.location.pathname.split("/").pop() || "index.html";
+
+
+document.querySelectorAll(".menu a").forEach(link => {
+
+    const paginaLink = link.getAttribute("href");
+
+    if (paginaLink === paginaActual) {
+
+        link.classList.add("active");
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>
+
+<!-- =========================
+     VIDEO PROMOCIONAL
+========================= -->
+
+<style>
+.streed-video {
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  background:#000;
+  aspect-ratio:16 / 9;
+}
+
+.streed-video iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+</style>
+
+<div class="streed-video">
+
+  <iframe
+    src="https://player.vimeo.com/video/1222270098?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+    title="STREED"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+</div>
+
+

@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STREED</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    background:#fff;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    width:100%;
+
+    background:#fff;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    padding:12px 35px 12px;
+
+    position:relative;
+
+    z-index:1000;
+}
+
+
+/* =========================
+   LOGOTIPO
+========================= */
+
+.logo-inicio{
+
+    display:block;
+
+    text-decoration:none;
+}
+
+
+.logo-inicio img{
+
+    width:75px;
+
+    height:auto;
+
+    display:block;
+
+    cursor:pointer;
+
+    animation:
+        logoEntrada .8s ease-out,
+        logoFlash 2.8s ease-in-out infinite;
+
+    transition:
+        transform .25s ease;
+}
+
+
+/* =========================
+   ANIMACIÓN ENTRADA LOGO
+========================= */
+
+@keyframes logoEntrada{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(-20px)
+            scale(.85);
+
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateY(3px)
+            scale(1.03);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   ANIMACIÓN ROJO / NEGRO
+========================= */
+
+@keyframes logoFlash{
+
+    0%,100%{
+        filter:none;
+    }
+
+    45%{
+        filter:none;
+    }
+
+    50%{
+
+        filter:
+            brightness(0)
+            saturate(100%)
+            invert(12%)
+            sepia(100%)
+            saturate(7000%)
+            hue-rotate(355deg)
+            brightness(100%)
+            contrast(105%);
+
+    }
+
+    55%{
+        filter:none;
+    }
+
+}
+
+
+/* =========================
+   HOVER LOGO
+========================= */
+
+.logo-inicio:hover img{
+
+    transform:
+        scale(1.08)
+        rotate(-2deg);
+
+}
+
+
+/* =========================
+   BOTÓN MENU
+========================= */
+
+.menu-button{
+
+    margin-top:7px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:10px;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:22px;
+
+    color:#000;
+
+    padding:5px 0;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.menu-button:hover{
+
+    color:#e60000;
+
+    transform:
+        skewX(-5deg);
+
+}
+
+
+.menu-text{
+
+    letter-spacing:1px;
+
+}
+
+
+/* =========================
+   HAMBURGUESA
+========================= */
+
+.hamburger{
+
+    width:28px;
+
+    height:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+
+.hamburger span{
+
+    display:block;
+
+    width:100%;
+
+    height:3px;
+
+    background:#000;
+
+    transition:
+        transform .3s ease,
+        background .2s ease,
+        opacity .2s ease;
+
+}
+
+
+.menu-button:hover
+.hamburger span{
+
+    background:#e60000;
+
+}
+
+
+/* =========================
+   MENÚ DESPLEGABLE
+========================= */
+
+.dropdown-menu{
+
+    position:absolute;
+
+    /*
+       IMPORTANTE:
+       El menú empieza debajo
+       de todo el header.
+    */
+
+    top:100%;
+
+    left:35px;
+
+    width:280px;
+
+    background:#fff;
+
+    border:2px solid #000;
+
+    padding:8px 0;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+        translateY(-15px);
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease;
+
+    z-index:999;
+}
+
+
+/* =========================
+   MENÚ ABIERTO
+========================= */
+
+.dropdown-menu.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.dropdown-menu a{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    width:100%;
+
+    padding:15px 20px;
+
+    color:#000;
+
+    text-decoration:none;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size:22px;
+
+    letter-spacing:1px;
+
+    transition:
+        color .2s ease,
+        padding-left .2s ease,
+        background .2s ease;
+
+}
+
+
+/* =========================
+   HOVER LINKS
+========================= */
+
+.dropdown-menu a:hover{
+
+    color:#e60000;
+
+    padding-left:30px;
+
+    background:#f5f5f5;
+
+}
+
+
+/* =========================
+   PÁGINA ACTUAL
+========================= */
+
+.dropdown-menu a.active{
+
+    color:#e60000;
+
+}
+
+
+.dropdown-menu a.active::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    bottom:0;
+
+    width:5px;
+
+    background:#e60000;
+
+}
+
+
+/* =========================
+   SLASH
+========================= */
+
+.dropdown-menu a:not(:last-child)::after{
+
+    content:"/";
+
+    position:absolute;
+
+    right:20px;
+
+    color:#000;
+
+    font-family:Arial,sans-serif;
+
+    font-weight:bold;
+
+    transition:
+        color .2s ease;
+
+}
+
+
+.dropdown-menu a:hover::after,
+.dropdown-menu a.active::after{
+
+    color:#e60000;
+
+}
+
+
+/* =========================
+   HAMBURGUESA → X
+========================= */
+
+.menu-button.open
+.hamburger span:nth-child(1){
+
+    transform:
+        translateY(8.5px)
+        rotate(45deg);
+
+}
+
+
+.menu-button.open
+.hamburger span:nth-child(2){
+
+    opacity:0;
+
+}
+
+
+.menu-button.open
+.hamburger span:nth-child(3){
+
+    transform:
+        translateY(-8.5px)
+        rotate(-45deg);
+
+}
+
+
+/* =========================
+   ANIMACIÓN LINKS
+========================= */
+
+.dropdown-menu.show a{
+
+    animation:
+        entradaMenu .3s ease both;
+
+}
+
+
+.dropdown-menu.show a:nth-child(2){
+
+    animation-delay:.03s;
+
+}
+
+
+.dropdown-menu.show a:nth-child(3){
+
+    animation-delay:.06s;
+
+}
+
+
+.dropdown-menu.show a:nth-child(4){
+
+    animation-delay:.09s;
+
+}
+
+
+.dropdown-menu.show a:nth-child(5){
+
+    animation-delay:.12s;
+
+}
+
+
+.dropdown-menu.show a:nth-child(6){
+
+    animation-delay:.15s;
+
+}
+
+
+@keyframes entradaMenu{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(-15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:600px){
+
+    .header{
+
+        padding:
+            10px
+            20px
+            10px;
+
+    }
+
+
+    .logo-inicio img{
+
+        width:65px;
+
+    }
+
+
+    .menu-button{
+
+        font-size:19px;
+
+    }
+
+
+    .hamburger{
+
+        width:25px;
+
+        height:18px;
+
+    }
+
+
+    .hamburger span{
+
+        height:2.5px;
+
+    }
+
+
+    .dropdown-menu{
+
+        left:20px;
+
+        width:
+            calc(100% - 40px);
+
+    }
+
+
+    .dropdown-menu a{
+
+        font-size:19px;
+
+        padding:
+            14px
+            18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+
+    <!-- LOGOTIPO -->
+
+    <a
+        href="index.html"
+        class="logo-inicio"
+    >
+
+        <img
+            src="images/LOGOTIPO.PNG"
+            alt="STREED"
+        >
+
+    </a>
+
+
+    <!-- MENU DEBAJO DEL LOGO -->
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Abrir menú"
+    >
+
+        <span class="menu-text">
+            MENU
+        </span>
+
+
+        <span class="hamburger">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </span>
+
+    </button>
+
+
+    <!-- MENU DESPLEGABLE -->
+
+    <nav
+        class="dropdown-menu"
+        id="dropdownMenu"
+    >
+
+        <a href="index.html">
+            INICIO
+        </a>
+
+        <a href="camisas.html">
+            CAMISAS
+        </a>
+
+        <a href="gorras.html">
+            GORRAS
+        </a>
+
+        <a href="phone-cases.html">
+            PHONE CASES
+        </a>
+
+        <a href="streed-sets.html">
+            STREED SETS
+        </a>
+
+        <a href="streed-club.html">
+            STREED CLUB
+        </a>
+
+    </nav>
+
+</header>
+
+
+<script>
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const dropdownMenu =
+    document.getElementById("dropdownMenu");
+
+
+/* =========================
+   ABRIR / CERRAR
+========================= */
+
+menuButton.addEventListener(
+    "click",
+    function(){
+
+        dropdownMenu.classList.toggle("show");
+
+        menuButton.classList.toggle("open");
+
+    }
+);
+
+
+/* =========================
+   DETECTAR PÁGINA ACTUAL
+========================= */
+
+const paginaActual =
+    window.location.pathname
+    .split("/")
+    .pop()
+    || "index.html";
+
+
+document
+.querySelectorAll(".dropdown-menu a")
+.forEach(link => {
+
+    if(
+        link.getAttribute("href")
+        === paginaActual
+    ){
+
+        link.classList.add("active");
+
+    }
+
+});
+
+
+/* =========================
+   CERRAR AL HACER CLICK AFUERA
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+
+            !menuButton.contains(event.target)
+
+            &&
+
+            !dropdownMenu.contains(event.target)
+
+        ){
+
+            dropdownMenu.classList.remove("show");
+
+            menuButton.classList.remove("open");
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CERRAR AL CAMBIAR DE PÁGINA
+========================= */
+
+document
+.querySelectorAll(".dropdown-menu a")
+.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        function(){
+
+            dropdownMenu.classList.remove("show");
+
+            menuButton.classList.remove("open");
+
+        }
+    );
+
+});
+
+</script>
+
+
+</body>
+</html>
+
