@@ -2069,8 +2069,8 @@
 
     const MOBILE_TINY_PERCENT = 65;
 
-    /* Logo final ligeramente más grande en iPhone */
-    const MOBILE_END_SIZE = 64;
+    /* Logo final más grande en iPhone */
+    const MOBILE_END_SIZE = 72;
 
 
     /* ==================================================
@@ -2081,7 +2081,7 @@
 
     const FINAL_TOP_DESKTOP = 20;
 
-    /* Posición superior final ajustada exactamente a la línea de los botones en iPhone */
+    /* Posición superior final para iPhone */
     const FINAL_TOP_MOBILE = 24;
 
     const SMOOTHNESS_DESKTOP = 0.20;
@@ -2311,14 +2311,14 @@
 
 
       /* ----------------------------------------------
-         POSICIÓN VERTICAL (Ajustada más arriba en iPhone al inicio)
+         POSICIÓN VERTICAL (Más arriba al inicio en iPhone)
       ---------------------------------------------- */
 
       const viewportHeight =
         window.innerHeight;
 
 
-      const startCenterY = isMobile() ? (viewportHeight * 0.42) : (viewportHeight / 2);
+      const startCenterY = isMobile() ? (viewportHeight * 0.35) : (viewportHeight / 2);
 
 
       const finalTop =
