@@ -311,7 +311,6 @@
 
     }
 
-    /* Clase para cambiar iconos a negro al hacer scroll fuera del hero */
     .control-button.scrolled-out {
       color: #000000 !important;
     }
@@ -2070,7 +2069,7 @@
 
     const MOBILE_TINY_PERCENT = 65;
 
-    /* Tamaño final ligeramente más grande y abajo en iPhone para alinear perfectamente */
+    /* Logo final ligeramente más grande en iPhone */
     const MOBILE_END_SIZE = 64;
 
 
@@ -2082,6 +2081,7 @@
 
     const FINAL_TOP_DESKTOP = 20;
 
+    /* Posición superior final ajustada exactamente a la línea de los botones en iPhone */
     const FINAL_TOP_MOBILE = 24;
 
     const SMOOTHNESS_DESKTOP = 0.20;
@@ -2311,15 +2311,14 @@
 
 
       /* ----------------------------------------------
-         POSICIÓN VERTICAL
+         POSICIÓN VERTICAL (Ajustada más arriba en iPhone al inicio)
       ---------------------------------------------- */
 
       const viewportHeight =
         window.innerHeight;
 
 
-      const centerY =
-        viewportHeight / 2;
+      const startCenterY = isMobile() ? (viewportHeight * 0.42) : (viewportHeight / 2);
 
 
       const finalTop =
@@ -2327,10 +2326,10 @@
 
 
       const y =
-        centerY +
+        startCenterY +
         (
           finalTop -
-          centerY
+          startCenterY
         ) *
         progress;
 
