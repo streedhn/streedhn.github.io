@@ -54,10 +54,11 @@
 
       width: 100%;
 
-      height: 100vh;
-      height: 100svh;
+      /* Se ajusta la altura en computadora para que no abarque tanto espacio inicial */
+      height: 80vh;
+      height: 80svh;
 
-      min-height: 500px;
+      min-height: 450px;
 
       overflow: hidden;
 
@@ -140,13 +141,14 @@
 
       z-index: 1000;
 
-      width: 600px;
+      /* Se reduce ligeramente el tamaño inicial en escritorio para que conserve proporción dentro de la nueva altura de la imagen */
+      width: 480px;
 
-      max-width: 75vw;
+      max-width: 70vw;
 
       height: auto;
 
-      top: 50%;
+      top: 40vh;
       left: 50%;
 
       transform:
@@ -1141,7 +1143,7 @@
       .logo {
 
         width:
-          520px;
+          440px;
 
         max-width:
           82vw;
@@ -1535,10 +1537,6 @@
 <body>
 
 
-  <!-- ==================================================
-       HERO
-  ================================================== -->
-
   <section
     class="hero"
     id="inicio"
@@ -1557,10 +1555,6 @@
   </section>
 
 
-  <!-- ==================================================
-       LOGO
-  ================================================== -->
-
   <img
     src="images/IMG_1806.PNG"
     alt="Logo STREEDHN"
@@ -1568,10 +1562,6 @@
     id="logo"
   >
 
-
-  <!-- ==================================================
-       CONTROLES
-  ================================================== -->
 
   <div
     class="site-controls"
@@ -1650,10 +1640,6 @@
   </div>
 
 
-  <!-- ==================================================
-       MENU
-  ================================================== -->
-
   <nav
     class="menu-panel"
     id="menuPanel"
@@ -1711,10 +1697,6 @@
 
   </nav>
 
-
-  <!-- ==================================================
-       CARRITO
-  ================================================== -->
 
   <aside
     class="cart-panel"
@@ -1829,10 +1811,6 @@
   </aside>
 
 
-  <!-- ==================================================
-       SCROLL
-  ================================================== -->
-
   <div
     class="scroll-space"
   ></div>
@@ -1867,9 +1845,9 @@
        CONFIGURACIÓN DESKTOP
     ================================================== */
 
-    const START_SIZE_DESKTOP = 600;
+    const START_SIZE_DESKTOP = 480;
 
-    const START_SIZE_TABLET = 520;
+    const START_SIZE_TABLET = 440;
 
     const END_SIZE_DESKTOP = 65;
 
@@ -2122,8 +2100,8 @@
         window.innerHeight;
 
 
-      const centerY =
-        viewportHeight / 2;
+      /* Se adapta el centro vertical inicial para computadoras según la nueva altura del hero (80vh) */
+      const startCenterY = isMobile() ? (viewportHeight / 2) : (viewportHeight * 0.4);
 
 
       const finalTop =
@@ -2131,10 +2109,10 @@
 
 
       const y =
-        centerY +
+        startCenterY +
         (
           finalTop -
-          centerY
+          startCenterY
         ) *
         progress;
 
@@ -2558,5 +2536,4 @@
 </body>
 
 </html>
-
 
