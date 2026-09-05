@@ -54,11 +54,10 @@
 
       width: 100%;
 
-      /* Altura reducida en computadora */
-      height: 80vh;
-      height: 80svh;
+      height: 100vh;
+      height: 100svh;
 
-      min-height: 450px;
+      min-height: 500px;
 
       overflow: hidden;
 
@@ -141,13 +140,13 @@
 
       z-index: 1000;
 
-      width: 480px;
+      width: 600px;
 
-      max-width: 70vw;
+      max-width: 75vw;
 
       height: auto;
 
-      top: 40vh;
+      top: 50%;
       left: 50%;
 
       transform:
@@ -1142,7 +1141,7 @@
       .logo {
 
         width:
-          440px;
+          520px;
 
         max-width:
           82vw;
@@ -1159,7 +1158,7 @@
     @media (max-width: 768px) {
 
       /* ----------------------------------------------
-         HERO (Ajustado a ~65vh para que abarque la mitad y se vea nítido)
+         HERO MOVIL
       ---------------------------------------------- */
 
       .hero {
@@ -1868,17 +1867,15 @@
        CONFIGURACIÓN DESKTOP
     ================================================== */
 
-    const START_SIZE_DESKTOP = 480;
+    const START_SIZE_DESKTOP = 600;
 
-    const START_SIZE_TABLET = 440;
+    const START_SIZE_TABLET = 520;
 
     const END_SIZE_DESKTOP = 65;
 
 
     /* ==================================================
        CONFIGURACIÓN MOBILE
-       
-       ESTOS VALORES SON DIFERENTES A PC
     ================================================== */
 
     const MOBILE_START_PERCENT = 65;
@@ -1898,7 +1895,8 @@
 
     const FINAL_TOP_DESKTOP = 20;
 
-    const FINAL_TOP_MOBILE = 18;
+    /* Alineación exacta con la posición de los botones en iPhone (considerando el padding superior y safe-area) */
+    const FINAL_TOP_MOBILE = 35;
 
     const SMOOTHNESS_DESKTOP = 0.20;
 
@@ -2123,7 +2121,8 @@
         window.innerHeight;
 
 
-      const startCenterY = isMobile() ? (viewportHeight * 0.325) : (viewportHeight * 0.4);
+      const centerY =
+        viewportHeight / 2;
 
 
       const finalTop =
@@ -2131,10 +2130,10 @@
 
 
       const y =
-        startCenterY +
+        centerY +
         (
           finalTop -
-          startCenterY
+          centerY
         ) *
         progress;
 
