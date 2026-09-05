@@ -299,6 +299,11 @@
 
     }
 
+    /* Clase para cambiar iconos a negro al hacer scroll fuera del hero */
+    .control-button.scrolled-out {
+      color: #000000 !important;
+    }
+
 
     .control-button:hover {
 
@@ -312,7 +317,7 @@
 
     .control-button.active {
 
-      color: #d40000;
+      color: #d40000 !important;
 
     }
 
@@ -1152,7 +1157,7 @@
 
 
     /* ==================================================
-       IPHONE / TELEFONO
+       IPHONE / TELEFONO (Imagen un poco más grande y centrada correctamente)
     ================================================== */
 
     @media (max-width: 768px) {
@@ -1163,11 +1168,11 @@
 
       .hero {
 
-        height: 65vh;
+        height: 75vh;
 
-        height: 65svh;
+        height: 75svh;
 
-        min-height: 380px;
+        min-height: 440px;
 
       }
 
@@ -1190,7 +1195,7 @@
       .logo {
 
         width:
-          65vw;
+          72vw;
 
         max-width:
           none;
@@ -1399,7 +1404,7 @@
       .logo {
 
         width:
-          60vw;
+          68vw;
 
       }
 
@@ -1440,7 +1445,7 @@
       .logo {
 
         width:
-          58vw;
+          65vw;
 
       }
 
@@ -1464,7 +1469,7 @@
       .logo {
 
         width:
-          42vw;
+          48vw;
 
       }
 
@@ -1473,7 +1478,7 @@
       .scroll-space {
 
         min-height:
-          320px;
+          360px;
 
       }
 
@@ -1878,11 +1883,11 @@
        CONFIGURACIÓN MOBILE
     ================================================== */
 
-    const MOBILE_START_PERCENT = 65;
+    const MOBILE_START_PERCENT = 72;
 
-    const MOBILE_SMALL_PERCENT = 60;
+    const MOBILE_SMALL_PERCENT = 68;
 
-    const MOBILE_TINY_PERCENT = 58;
+    const MOBILE_TINY_PERCENT = 65;
 
     const MOBILE_END_SIZE = 58;
 
@@ -1895,8 +1900,7 @@
 
     const FINAL_TOP_DESKTOP = 20;
 
-    /* Alineación exacta con la posición de los botones en iPhone (considerando el padding superior y safe-area) */
-    const FINAL_TOP_MOBILE = 35;
+    const FINAL_TOP_MOBILE = 18;
 
     const SMOOTHNESS_DESKTOP = 0.20;
 
@@ -2042,6 +2046,15 @@
               1
             )
           );
+
+        /* Cambio de color de iconos al salir de la zona del hero */
+        if (targetProgress >= 1) {
+          menuButton.classList.add("scrolled-out");
+          cartButton.classList.add("scrolled-out");
+        } else {
+          menuButton.classList.remove("scrolled-out");
+          cartButton.classList.remove("scrolled-out");
+        }
 
       },
 
