@@ -54,7 +54,7 @@
 
       width: 100%;
 
-      /* Se ajusta la altura en computadora para que no abarque tanto espacio inicial */
+      /* Altura reducida en computadora */
       height: 80vh;
       height: 80svh;
 
@@ -141,7 +141,6 @@
 
       z-index: 1000;
 
-      /* Se reduce ligeramente el tamaño inicial en escritorio para que conserve proporción dentro de la nueva altura de la imagen */
       width: 480px;
 
       max-width: 70vw;
@@ -1160,16 +1159,16 @@
     @media (max-width: 768px) {
 
       /* ----------------------------------------------
-         HERO
+         HERO (Ajustado a ~65vh para que abarque la mitad y se vea nítido)
       ---------------------------------------------- */
 
       .hero {
 
-        height: 100vh;
+        height: 65vh;
 
-        height: 100svh;
+        height: 65svh;
 
-        min-height: 520px;
+        min-height: 380px;
 
       }
 
@@ -1192,7 +1191,7 @@
       .logo {
 
         width:
-          72vw;
+          65vw;
 
         max-width:
           none;
@@ -1401,7 +1400,7 @@
       .logo {
 
         width:
-          68vw;
+          60vw;
 
       }
 
@@ -1442,7 +1441,7 @@
       .logo {
 
         width:
-          65vw;
+          58vw;
 
       }
 
@@ -1466,7 +1465,7 @@
       .logo {
 
         width:
-          48vw;
+          42vw;
 
       }
 
@@ -1475,7 +1474,7 @@
       .scroll-space {
 
         min-height:
-          360px;
+          320px;
 
       }
 
@@ -1537,6 +1536,10 @@
 <body>
 
 
+  <!-- ==================================================
+       HERO
+  ================================================== -->
+
   <section
     class="hero"
     id="inicio"
@@ -1555,6 +1558,10 @@
   </section>
 
 
+  <!-- ==================================================
+       LOGO
+  ================================================== -->
+
   <img
     src="images/IMG_1806.PNG"
     alt="Logo STREEDHN"
@@ -1562,6 +1569,10 @@
     id="logo"
   >
 
+
+  <!-- ==================================================
+       CONTROLES
+  ================================================== -->
 
   <div
     class="site-controls"
@@ -1640,6 +1651,10 @@
   </div>
 
 
+  <!-- ==================================================
+       MENU
+  ================================================== -->
+
   <nav
     class="menu-panel"
     id="menuPanel"
@@ -1697,6 +1712,10 @@
 
   </nav>
 
+
+  <!-- ==================================================
+       CARRITO
+  ================================================== -->
 
   <aside
     class="cart-panel"
@@ -1811,6 +1830,10 @@
   </aside>
 
 
+  <!-- ==================================================
+       SCROLL
+  ================================================== -->
+
   <div
     class="scroll-space"
   ></div>
@@ -1858,11 +1881,11 @@
        ESTOS VALORES SON DIFERENTES A PC
     ================================================== */
 
-    const MOBILE_START_PERCENT = 72;
+    const MOBILE_START_PERCENT = 65;
 
-    const MOBILE_SMALL_PERCENT = 68;
+    const MOBILE_SMALL_PERCENT = 60;
 
-    const MOBILE_TINY_PERCENT = 65;
+    const MOBILE_TINY_PERCENT = 58;
 
     const MOBILE_END_SIZE = 58;
 
@@ -2100,8 +2123,7 @@
         window.innerHeight;
 
 
-      /* Se adapta el centro vertical inicial para computadoras según la nueva altura del hero (80vh) */
-      const startCenterY = isMobile() ? (viewportHeight / 2) : (viewportHeight * 0.4);
+      const startCenterY = isMobile() ? (viewportHeight * 0.325) : (viewportHeight * 0.4);
 
 
       const finalTop =
@@ -2536,4 +2558,3 @@
 </body>
 
 </html>
-
