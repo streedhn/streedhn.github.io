@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>STREEDHN</title>
+
+
+  <style>
+
+    /* ==================================================
+       RESET
+    ================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: auto;
+    }
+
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #ffffff;
+    }
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 100vh;
+      height: 100svh;
+
+      min-height: 500px;
+
+      overflow: hidden;
+
+      background: #000;
+
+    }
+
+
+    .hero-image {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      object-position: center center;
+
+      display: block;
+
+      z-index: 1;
+
+      opacity: 0;
+
+      transform: scale(1.025);
+
+      animation:
+        heroEntry
+        1.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+
+    }
+
+
+    @keyframes heroEntry {
+
+      0% {
+        opacity: 0;
+        transform: scale(1.025);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* ==================================================
+       OVERLAY
+    ================================================== */
+
+    .image-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      background: transparent;
+
+      z-index: 2;
+
+      pointer-events: none;
+
+    }
+
+
+    /* ==================================================
+       LOGO
+    ================================================== */
+
+    .logo {
+
+      position: fixed;
+
+      z-index: 1000;
+
+      width: 600px;
+
+      max-width: 75vw;
+
+      height: auto;
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate3d(
+          -50%,
+          -50%,
+          0
+        );
+
+      pointer-events: none;
+
+      user-select: none;
+
+      will-change:
+        width,
+        top,
+        transform,
+        opacity;
+
+      backface-visibility: hidden;
+
+      -webkit-backface-visibility: hidden;
+
+      opacity: 0;
+
+      animation:
+        logoEntry
+        1.25s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.25s
+        forwards;
+
+    }
+
+
+    @keyframes logoEntry {
+
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* ==================================================
+       LOGO FINAL
+    ================================================== */
+
+    .logo.final-logo {
+
+      pointer-events: auto;
+
+      cursor: pointer;
+
+    }
+
+
+    /* ==================================================
+       ESPACIO PARA SCROLL
+    ================================================== */
+
+    .scroll-space {
+
+      width: 100%;
+
+      height: 100vh;
+      height: 100svh;
+
+      min-height: 500px;
+
+      background: #ffffff;
+
+    }
+
+
+    /* ==================================================
+       CONTROLES
+    ================================================== */
+
+    .site-controls {
+
+      position: fixed;
+
+      z-index: 3000;
+
+      top:
+        max(
+          28px,
+          env(safe-area-inset-top)
+        );
+
+      left: 0;
+
+      width: 100%;
+
+      padding:
+        0 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      pointer-events: none;
+
+    }
+
+    .controls-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      pointer-events: auto;
+
+    }
+
+
+    /* ==================================================
+       BOTONES
+    ================================================== */
+
+    .control-button {
+
+      position: relative;
+
+      width: 42px;
+      height: 42px;
+
+      padding: 0;
+
+      border: 0;
+      outline: none;
+
+      background: transparent;
+
+      color: #ffffff;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      pointer-events: auto;
+
+      -webkit-tap-highlight-color:
+        transparent;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+
+    }
+
+    .control-button.scrolled-out {
+      color: #000000 !important;
+    }
+
+
+    .control-button:hover {
+
+      color: #d40000;
+
+      transform:
+        scale(1.08);
+
+    }
+
+
+    .control-button.active {
+
+      color: #d40000 !important;
+
+    }
+
+
+    /* ==================================================
+       HAMBURGER
+    ================================================== */
+
+    .hamburger {
+
+      width: 32px;
+
+      height: 22px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content:
+        space-between;
+
+    }
+
+
+    .hamburger span {
+
+      display: block;
+
+      width: 100%;
+
+      height: 2px;
+
+      background:
+        currentColor;
+
+      transition:
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        opacity .25s ease;
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(1) {
+
+      transform:
+        translateY(10px)
+        rotate(45deg);
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(2) {
+
+      opacity: 0;
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(3) {
+
+      transform:
+        translateY(-10px)
+        rotate(-45deg);
+
+    }
+
+
+    /* ==================================================
+       ICONOS (CARRITO Y BUSCADOR)
+    ================================================== */
+
+    .cart-icon,
+    .search-icon {
+
+      width: 27px;
+      height: 27px;
+
+      fill: none;
+
+      stroke:
+        currentColor;
+
+      stroke-width: 1.8;
+
+      stroke-linecap: round;
+
+      stroke-linejoin: round;
+
+      transition:
+        transform .3s ease;
+
+    }
+
+
+    .control-button:hover
+    .cart-icon,
+    .control-button:hover
+    .search-icon {
+
+      transform:
+        scale(1.08);
+
+    }
+
+
+    /* ==================================================
+       CONTADOR
+    ================================================== */
+
+    .cart-count {
+
+      position: absolute;
+
+      top: 0;
+
+      right: 0;
+
+      min-width: 17px;
+
+      height: 17px;
+
+      padding:
+        0 4px;
+
+      border-radius: 50%;
+
+      background:
+        #d40000;
+
+      color:
+        #ffffff;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 10px;
+
+      line-height: 17px;
+
+      text-align: center;
+
+      display: none;
+
+    }
+
+
+    /* ==================================================
+       BUSCADOR PANEL
+    ================================================== */
+
+    .search-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      right: 25px;
+
+      width: 320px;
+
+      max-width: calc(100vw - 50px);
+
+      padding: 18px;
+
+      background: rgba(0, 0, 0, .96);
+
+      border: 1px solid #252525;
+
+      border-top: 4px solid #d40000;
+
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .50);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform: translateY(-20px) scale(.97);
+
+      transform-origin: top right;
+
+      transition: opacity .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1), visibility .35s;
+
+    }
+
+    .search-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform: translateY(0) scale(1);
+
+    }
+
+    .search-form {
+
+      display: flex;
+
+      gap: 8px;
+
+    }
+
+    .search-input {
+
+      flex: 1;
+
+      background: #111111;
+
+      border: 1px solid #333333;
+
+      color: #ffffff;
+
+      padding: 10px 12px;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 14px;
+
+      outline: none;
+
+      transition: border-color .25s ease;
+
+    }
+
+    .search-input:focus {
+
+      border-color: #d40000;
+
+    }
+
+    .search-submit {
+
+      background: #d40000;
+
+      color: #ffffff;
+
+      border: 0;
+
+      padding: 0 15px;
+
+      font-family: Impact, sans-serif;
+
+      cursor: pointer;
+
+      transition: opacity .25s ease;
+
+    }
+
+    .search-submit:hover {
+
+      opacity: 0.85;
+
+    }
+
+
+    /* ==================================================
+       MENU
+    ================================================== */
+
+    .menu-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      left: 25px;
+
+      width: 330px;
+
+      max-width:
+        calc(100vw - 50px);
+
+      padding:
+        25px 20px;
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .96
+        );
+
+      border:
+        1px solid #252525;
+
+      border-left:
+        4px solid #d40000;
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          0,
+          0,
+          0,
+          .50
+        );
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform:
+        translateY(-20px)
+        scale(.97);
+
+      transform-origin:
+        top left;
+
+      transition:
+
+        opacity .35s ease,
+
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        visibility .35s;
+
+    }
+
+
+    .menu-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* ==================================================
+       TITULO MENU
+    ================================================== */
+
+    .menu-title {
+
+      color:
+        #d40000;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size: 13px;
+
+      letter-spacing: 4px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    /* ==================================================
+       LISTA MENU
+    ================================================== */
+
+    .menu-list {
+
+      list-style: none;
+
+    }
+
+
+    .menu-list li {
+
+      opacity: 0;
+
+      transform:
+        translateX(-30px);
+
+      transition:
+
+        opacity .4s ease,
+
+        transform .45s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        );
+
+    }
+
+
+    .menu-panel.open
+    .menu-list li {
+
+      opacity: 1;
+
+      transform:
+        translateX(0);
+
+    }
+
+
+    .menu-panel.open
+    .menu-list li:nth-child(1) {
+      transition-delay: .05s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(2) {
+      transition-delay: .10s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(3) {
+      transition-delay: .15s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(4) {
+      transition-delay: .20s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(5) {
+      transition-delay: .25s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(6) {
+      transition-delay: .30s;
+    }
+
+
+    .menu-list a {
+
+      position: relative;
+
+      display: block;
+
+      padding:
+        9px 8px;
+
+      color:
+        #ffffff;
+
+      text-decoration: none;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size: 25px;
+
+      letter-spacing: 1px;
+
+      overflow: hidden;
+
+      transition:
+
+        color .25s ease,
+
+        padding-left .3s ease;
+
+    }
+
+
+    .menu-list a::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: 0;
+
+      width: 0;
+
+      height: 3px;
+
+      background:
+        #d40000;
+
+      transition:
+        width .3s ease;
+
+    }
+
+
+    .menu-list a:hover {
+
+      color:
+        #d40000;
+
+      padding-left:
+        18px;
+
+    }
+
+
+    .menu-list a:hover::before {
+
+      width: 100%;
+
+    }
+
+
+    /* ==================================================
+       CARRITO
+    ================================================== */
+
+    .cart-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      right: 25px;
+
+      width: 370px;
+
+      max-width:
+        calc(100vw - 50px);
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .97
+        );
+
+      color:
+        #ffffff;
+
+      border:
+        1px solid #252525;
+
+      border-top:
+        4px solid #d40000;
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          0,
+          0,
+          0,
+          .50
+        );
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform:
+        translateY(-20px)
+        scale(.97);
+
+      transform-origin:
+        top right;
+
+      transition:
+
+        opacity .35s ease,
+
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        visibility .35s;
+
+    }
+
+
+    .cart-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* ==================================================
+       HEADER CARRITO
+    ================================================== */
+
+    .cart-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      padding:
+        18px 18px 15px;
+
+      border-bottom:
+        1px solid #292929;
+
+    }
+
+
+    .cart-header h2 {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        27px;
+
+      letter-spacing:
+        1px;
+
+    }
+
+
+    .cart-close {
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        #ffffff;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        29px;
+
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+
+    }
+
+
+    .cart-close:hover {
+
+      color:
+        #d40000;
+
+      transform:
+        rotate(90deg);
+
+    }
+
+
+    /* ==================================================
+       CONTENIDO CARRITO
+    ================================================== */
+
+    .cart-content {
+
+      padding:
+        35px 20px 30px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .cart-empty-icon {
+
+      width:
+        55px;
+
+      height:
+        55px;
+
+      margin:
+        0 auto 15px;
+
+      opacity:
+        .65;
+
+    }
+
+
+    .cart-empty {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        22px;
+
+      letter-spacing:
+        1px;
+
+    }
+
+
+    .cart-empty-subtitle {
+
+      margin-top:
+        8px;
+
+      color:
+        #777777;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        12px;
+
+    }
+
+
+    /* ==================================================
+       ITEMS
+    ================================================== */
+
+    .cart-items {
+
+      max-height:
+        300px;
+
+      overflow-y:
+        auto;
+
+    }
+
+
+    .cart-item {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      padding:
+        13px 18px;
+
+      border-bottom:
+        1px solid #292929;
+
+    }
+
+
+    .cart-item img {
+
+      width:
+        55px;
+
+      height:
+        55px;
+
+      object-fit:
+        cover;
+
+    }
+
+
+    .cart-item-info {
+
+      flex:
+        1;
+
+    }
+
+
+    .cart-item-name {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        16px;
+
+    }
+
+
+    .cart-item-price {
+
+      color:
+        #d40000;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        13px;
+
+      margin-top:
+        3px;
+
+    }
+
+
+    .cart-remove {
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        #777777;
+
+      font-size:
+        20px;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .cart-remove:hover {
+
+      color:
+        #d40000;
+
+    }
+
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+
+    .cart-footer {
+
+      display: none;
+
+      padding:
+        15px 18px;
+
+      border-top:
+        1px solid #292929;
+
+    }
+
+
+    .cart-total {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        20px;
+
+    }
+
+
+    .cart-total strong {
+
+      color:
+        #d40000;
+
+    }
+
+
+    /* ==================================================
+       TABLET
+    ================================================== */
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+
+      .logo {
+
+        width:
+          520px;
+
+        max-width:
+          82vw;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE / TELEFONO
+    ================================================== */
+
+    @media (max-width: 768px) {
+
+      .hero {
+
+        height: 75vh;
+
+        height: 75svh;
+
+        min-height: 440px;
+
+      }
+
+
+      .scroll-space {
+
+        height: 100vh;
+
+        height: 100svh;
+
+        min-height: 520px;
+
+      }
+
+
+      .logo {
+
+        width:
+          72vw;
+
+        max-width:
+          none;
+
+        min-width:
+          0;
+
+        height:
+          auto;
+
+        top:
+          50%;
+
+        left:
+          50%;
+
+        transform:
+          translate3d(
+            -50%,
+            -50%,
+            0
+          );
+
+      }
+
+
+      .site-controls {
+
+        top:
+          max(
+            14px,
+            env(safe-area-inset-top)
+          );
+
+        padding:
+          0 14px;
+
+      }
+
+
+      .control-button {
+
+        width:
+          46px;
+
+        height:
+          46px;
+
+      }
+
+
+      .hamburger {
+
+        width:
+          27px;
+
+        height:
+          19px;
+
+      }
+
+
+      .hamburger span {
+
+        height:
+          2px;
+
+      }
+
+
+      .cart-icon,
+      .search-icon {
+
+        width:
+          27px;
+
+        height:
+          27px;
+
+      }
+
+
+      .menu-panel {
+
+        top:
+          calc(
+            64px +
+            env(safe-area-inset-top)
+          );
+
+        left:
+          12px;
+
+        width:
+          calc(
+            100vw - 24px
+          );
+
+        max-width:
+          none;
+
+        padding:
+          22px 16px;
+
+      }
+
+
+      .menu-title {
+
+        font-size:
+          11px;
+
+        letter-spacing:
+          3px;
+
+        margin-bottom:
+          9px;
+
+      }
+
+
+      .menu-list a {
+
+        font-size:
+          22px;
+
+        padding:
+          10px 7px;
+
+      }
+
+
+      .cart-panel,
+      .search-panel {
+
+        top:
+          calc(
+            64px +
+            env(safe-area-inset-top)
+          );
+
+        right:
+          12px;
+
+        width:
+          calc(
+            100vw - 24px
+          );
+
+        max-width:
+          none;
+
+      }
+
+
+      .cart-header {
+
+        padding:
+          16px 16px 13px;
+
+      }
+
+
+      .cart-header h2 {
+
+        font-size:
+          24px;
+
+      }
+
+
+      .cart-content {
+
+        padding:
+          30px 15px 26px;
+
+      }
+
+
+      .cart-empty {
+
+        font-size:
+          20px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE PEQUEÑO
+    ================================================== */
+
+    @media (max-width: 390px) {
+
+      .logo {
+
+        width:
+          68vw;
+
+      }
+
+
+      .menu-panel,
+      .cart-panel,
+      .search-panel {
+
+        left:
+          10px;
+
+        right:
+          10px;
+
+        width:
+          calc(
+            100vw - 20px
+          );
+
+      }
+
+
+      .menu-list a {
+
+        font-size:
+          20px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE MUY PEQUEÑO
+    ================================================== */
+
+    @media (max-width: 360px) {
+
+      .logo {
+
+        width:
+          65vw;
+
+      }
+
+
+      .site-controls {
+
+        padding:
+          0 10px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       ORIENTACIÓN HORIZONTAL
+    ================================================== */
+
+    @media (max-width: 768px) and (orientation: landscape) {
+
+      .logo {
+
+        width:
+          48vw;
+
+      }
+
+
+      .hero,
+      .scroll-space {
+
+        min-height:
+          360px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       REDUCIR MOVIMIENTO
+    ================================================== */
+
+    @media (
+      prefers-reduced-motion: reduce
+    ) {
+
+      .hero-image {
+
+        animation:
+          none;
+
+        opacity:
+          1;
+
+        transform:
+          scale(1);
+
+      }
+
+
+      .logo {
+
+        animation:
+          none;
+
+        opacity:
+          1;
+
+      }
+
+
+      .control-button,
+      .hamburger span,
+      .menu-panel,
+      .cart-panel,
+      .search-panel,
+      .menu-list li,
+      .menu-list a {
+
+        transition:
+          none;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ==================================================
+       HERO
+  ================================================== -->
+
+  <section
+    class="hero"
+    id="inicio"
+  >
+
+    <img
+      src="images/street1.jpeg"
+      alt="Imagen principal"
+      class="hero-image"
+    >
+
+    <div
+      class="image-overlay"
+    ></div>
+
+  </section>
+
+
+  <!-- ==================================================
+       LOGO
+  ================================================== -->
+
+  <img
+    src="images/IMG_1806.PNG"
+    alt="Logo STREEDHN"
+    class="logo"
+    id="logo"
+  >
+
+
+  <!-- ==================================================
+       CONTROLES
+  ================================================== -->
+
+  <div
+    class="site-controls"
+  >
+
+    <button
+      class="control-button"
+      id="menuButton"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+
+      <span class="hamburger">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </span>
+
+    </button>
+
+
+    <div class="controls-right">
+
+      <button
+        class="control-button"
+        id="searchButton"
+        aria-label="Abrir buscador"
+        aria-expanded="false"
+      >
+        <svg
+          class="search-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+
+      <button
+        class="control-button"
+        id="cartButton"
+        aria-label="Abrir carrito"
+        aria-expanded="false"
+      >
+
+        <svg
+          class="cart-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            d="
+              M3 4
+              H5
+              L7.2 15.1
+              A2 2 0 0 0
+              9.2 16.7
+              H17
+              A2 2 0 0 0
+              18.9 15.3
+              L21 8
+              H6
+            "
+          />
+
+          <circle
+            cx="10"
+            cy="20"
+            r="1.4"
+          />
+
+          <circle
+            cx="18"
+            cy="20"
+            r="1.4"
+          />
+
+        </svg>
+
+
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       BUSCADOR PANEL
+  ================================================== -->
+
+  <div
+    class="search-panel"
+    id="searchPanel"
+    aria-label="Panel de búsqueda"
+  >
+    <form class="search-form" id="searchForm" onsubmit="handleSearch(event)">
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="Buscar productos..."
+        required
+      >
+      <button type="submit" class="search-submit">IR</button>
+    </form>
+  </div>
+
+
+  <!-- ==================================================
+       MENU (CONECTADO CON LAS PÁGINAS)
+  ================================================== -->
+
+  <nav
+    class="menu-panel"
+    id="menuPanel"
+    aria-label="Menú principal"
+  >
+
+    <div
+      class="menu-title"
+    >
+      STREEDHN / MENU
+    </div>
+
+
+    <ul
+      class="menu-list"
+    >
+
+      <li>
+        <a href="index.html">
+          INICIO
+        </a>
+      </li>
+
+      <li>
+        <a href="camisas.html">
+          CAMISAS
+        </a>
+      </li>
+
+      <li>
+        <a href="gorras.html">
+          GORRAS
+        </a>
+      </li>
+
+      <li>
+        <a href="phone-cases.html">
+          PHONE CASES
+        </a>
+      </li>
+
+      <li>
+        <a href="streed-sets.html">
+          STREED SETS
+        </a>
+      </li>
+
+      <li>
+        <a href="streed-club.html">
+          STREED CLUB
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- ==================================================
+       CARRITO
+  ================================================== -->
+
+  <aside
+    class="cart-panel"
+    id="cartPanel"
+    aria-label="Carrito de compras"
+  >
+
+    <div class="cart-header">
+
+      <h2>
+        YOUR CART
+      </h2>
+
+
+      <button
+        class="cart-close"
+        id="cartClose"
+        aria-label="Cerrar carrito"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="cart-content"
+      id="cartContent"
+    >
+
+      <svg
+        class="cart-empty-icon cart-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <path
+          d="
+            M3 4
+            H5
+            L7.2 15.1
+            A2 2 0 0 0
+            9.2 16.7
+            H17
+            A2 2 0 0 0
+            18.9 15.3
+            L21 8
+            H6
+          "
+        />
+
+        <circle
+          cx="10"
+          cy="20"
+          r="1.4"
+        />
+
+        <circle
+          cx="18"
+          cy="20"
+          r="1.4"
+        />
+
+      </svg>
+
+
+      <div
+        class="cart-empty"
+      >
+        TU CARRITO ESTÁ VACÍO
+      </div>
+
+
+      <div
+        class="cart-empty-subtitle"
+      >
+        Aquí aparecerán tus productos.
+      </div>
+
+    </div>
+
+
+    <div
+      class="cart-items"
+      id="cartItems"
+    ></div>
+
+
+    <div
+      class="cart-footer"
+      id="cartFooter"
+    >
+
+      <div
+        class="cart-total"
+      >
+
+        <span>
+          TOTAL
+        </span>
+
+        <strong
+          id="cartTotal"
+        >
+          L 0.00
+        </strong>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ==================================================
+       SCROLL
+  ================================================== -->
+
+  <div
+    class="scroll-space"
+  ></div>
+
+
+  <script>
+
+    /* ==================================================
+       ELEMENTOS
+    ================================================== */
+
+    const logo =
+      document.getElementById("logo");
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const menuPanel =
+      document.getElementById("menuPanel");
+
+    const searchButton =
+      document.getElementById("searchButton");
+
+    const searchPanel =
+      document.getElementById("searchPanel");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const cartButton =
+      document.getElementById("cartButton");
+
+    const cartPanel =
+      document.getElementById("cartPanel");
+
+    const cartClose =
+      document.getElementById("cartClose");
+
+
+    /* ==================================================
+       CONFIGURACIÓN DESKTOP
+    ================================================== */
+
+    const START_SIZE_DESKTOP = 600;
+
+    const START_SIZE_TABLET = 520;
+
+    const END_SIZE_DESKTOP = 65;
+
+
+    /* ==================================================
+       CONFIGURACIÓN MOBILE
+    ================================================== */
+
+    const MOBILE_START_PERCENT = 72;
+
+    const MOBILE_SMALL_PERCENT = 68;
+
+    const MOBILE_TINY_PERCENT = 65;
+
+    const MOBILE_END_SIZE = 72;
+
+
+    /* ==================================================
+       ANIMACIÓN
+    ================================================== */
+
+    const ANIMATION_DISTANCE = 100;
+
+    const FINAL_TOP_DESKTOP = 20;
+
+    const FINAL_TOP_MOBILE = 24;
+
+    const SMOOTHNESS_DESKTOP = 0.20;
+
+    const SMOOTHNESS_MOBILE = 0.16;
+
+
+    /* ==================================================
+       VARIABLES
+    ================================================== */
+
+    let targetProgress = 0;
+
+    let currentProgress = 0;
+
+
+    /* ==================================================
+       DETECTAR MOBILE
+    ================================================== */
+
+    function isMobile() {
+
+      return window.innerWidth <= 768;
+
+    }
+
+
+    /* ==================================================
+       TAMAÑO INICIAL
+    ================================================== */
+
+    function getStartSize() {
+
+      const width =
+        window.innerWidth;
+
+      if (width <= 360) {
+
+        return width *
+          (MOBILE_TINY_PERCENT / 100);
+
+      }
+
+      if (width <= 390) {
+
+        return width *
+          (MOBILE_SMALL_PERCENT / 100);
+
+      }
+
+      if (width <= 768) {
+
+        return width *
+          (MOBILE_START_PERCENT / 100);
+
+      }
+
+      if (width <= 1024) {
+
+        return START_SIZE_TABLET;
+
+      }
+
+      return START_SIZE_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       TAMAÑO FINAL
+    ================================================== */
+
+    function getEndSize() {
+
+      if (isMobile()) {
+
+        return MOBILE_END_SIZE;
+
+      }
+
+      return END_SIZE_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       TOP FINAL
+    ================================================== */
+
+    function getFinalTop() {
+
+      if (isMobile()) {
+
+        return FINAL_TOP_MOBILE;
+
+      }
+
+      return FINAL_TOP_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       SCROLL
+    ================================================== */
+
+    window.addEventListener(
+
+      "scroll",
+
+      () => {
+
+        const scroll =
+          window.scrollY || window.pageYOffset;
+
+        targetProgress =
+          scroll /
+          ANIMATION_DISTANCE;
+
+        targetProgress =
+          Math.max(
+            0,
+            Math.min(
+              targetProgress,
+              1
+            )
+          );
+
+        if (targetProgress >= 1) {
+          menuButton.classList.add("scrolled-out");
+          searchButton.classList.add("scrolled-out");
+          cartButton.classList.add("scrolled-out");
+        } else {
+          menuButton.classList.remove("scrolled-out");
+          searchButton.classList.remove("scrolled-out");
+          cartButton.classList.remove("scrolled-out");
+        }
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    /* ==================================================
+       ANIMAR LOGO
+    ================================================== */
+
+    function animateLogo() {
+
+      const smoothness =
+        isMobile()
+          ? SMOOTHNESS_MOBILE
+          : SMOOTHNESS_DESKTOP;
+
+      currentProgress +=
+        (
+          targetProgress -
+          currentProgress
+        ) *
+        smoothness;
+
+      if (
+        Math.abs(
+          targetProgress -
+          currentProgress
+        ) < 0.0005
+      ) {
+
+        currentProgress =
+          targetProgress;
+
+      }
+
+      const progress =
+        currentProgress;
+
+      const startSize =
+        getStartSize();
+
+      const endSize =
+        getEndSize();
+
+      const size =
+        startSize +
+        (
+          endSize -
+          startSize
+        ) *
+        progress;
+
+      logo.style.width =
+        `${size}px`;
+
+      const viewportHeight =
+        window.innerHeight;
+
+      const startCenterY = isMobile() ? (viewportHeight * 0.35) : (viewportHeight / 2);
+
+      const finalTop =
+        getFinalTop();
+
+      const y =
+        startCenterY +
+        (
+          finalTop -
+          startCenterY
+        ) *
+        progress;
+
+      logo.style.top =
+        `${y}px`;
+
+      logo.style.left =
+        "50%";
+
+      logo.style.transform =
+        "translate3d(-50%, -50%, 0)";
+
+      if (
+        targetProgress >= 1
+      ) {
+
+        if (
+          logo.dataset.final !== "true"
+        ) {
+
+          logo.dataset.final =
+            "true";
+
+          logo.src =
+            "images/LOGOTIPO.PNG";
+
+          logo.classList.add(
+            "final-logo"
+          );
+
+        }
+
+      }
+
+      else {
+
+        if (
+          logo.dataset.final === "true"
+        ) {
+
+          logo.dataset.final =
+            "false";
+
+          logo.src =
+            "images/IMG_1806.PNG";
+
+          logo.classList.remove(
+            "final-logo"
+          );
+
+        }
+
+      }
+
+      requestAnimationFrame(
+        animateLogo
+      );
+
+    }
+
+
+    /* ==================================================
+       CLICK LOGO FINAL
+    ================================================== */
+
+    logo.addEventListener(
+
+      "click",
+
+      () => {
+
+        if (
+          logo.dataset.final === "true"
+        ) {
+
+          window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+          });
+
+        }
+
+      }
+
+    );
+
+
+    /* ==================================================
+       MENU
+    ================================================== */
+
+    menuButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          menuPanel.classList.contains("open");
+
+        menuPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        menuButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        searchPanel.classList.remove("open");
+        searchButton.classList.remove("active");
+        searchButton.setAttribute("aria-expanded", "false");
+
+        cartPanel.classList.remove(
+          "open"
+        );
+
+        cartButton.classList.remove(
+          "active"
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       BUSCADOR
+    ================================================== */
+
+    searchButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          searchPanel.classList.contains("open");
+
+        searchPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        searchButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        searchButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        if (!isOpen) {
+          setTimeout(() => searchInput.focus(), 100);
+        }
+
+        menuPanel.classList.remove("open");
+        menuButton.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
+
+        cartPanel.classList.remove("open");
+        cartButton.classList.remove("active");
+        cartButton.setAttribute("aria-expanded", "false");
+
+      }
+
+    );
+
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = searchInput.value.trim();
+      if (query) {
+        alert("Buscando: " + query);
+        searchPanel.classList.remove("open");
+        searchButton.classList.remove("active");
+        searchButton.setAttribute("aria-expanded", "false");
+      }
+    }
+
+
+    /* ==================================================
+       CARRITO
+    ================================================== */
+
+    cartButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          cartPanel.classList.contains("open");
+
+        cartPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        cartButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        menuPanel.classList.remove(
+          "open"
+        );
+
+        menuButton.classList.remove(
+          "active"
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        searchPanel.classList.remove("open");
+        searchButton.classList.remove("active");
+        searchButton.setAttribute("aria-expanded", "false");
+
+      }
+
+    );
+
+
+    /* ==================================================
+       CERRAR CARRITO
+    ================================================== */
+
+    cartClose.addEventListener(
+
+      "click",
+
+      () => {
+
+        cartPanel.classList.remove(
+          "open"
+        );
+
+        cartButton.classList.remove(
+          "active"
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       CLICK AFUERA
+    ================================================== */
+
+    document.addEventListener(
+
+      "click",
+
+      event => {
+
+        if (
+          !menuPanel.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+
+          menuPanel.classList.remove(
+            "open"
+          );
+
+          menuButton.classList.remove(
+            "active"
+          );
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+        if (
+          !searchPanel.contains(event.target) &&
+          !searchButton.contains(event.target)
+        ) {
+
+          searchPanel.classList.remove(
+            "open"
+          );
+
+          searchButton.classList.remove(
+            "active"
+          );
+
+          searchButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+        if (
+          !cartPanel.contains(event.target) &&
+          !cartButton.contains(event.target)
+        ) {
+
+          cartPanel.classList.remove(
+            "open"
+          );
+
+          cartButton.classList.remove(
+            "active"
+          );
+
+          cartButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+
+    );
+
+
+    /* ==================================================
+       RESIZE
+    ================================================== */
+
+    let resizeTimer;
+
+    window.addEventListener(
+
+      "resize",
+
+      () => {
+
+        clearTimeout(
+          resizeTimer
+        );
+
+        resizeTimer =
+          setTimeout(
+
+            () => {
+
+              const size =
+                getStartSize();
+
+              if (
+                currentProgress === 0
+              ) {
+
+                logo.style.width =
+                  `${size}px`;
+
+              }
+
+            },
+
+            100
+
+          );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       INICIO
+    ================================================== */
+
+    logo.style.width =
+      `${getStartSize()}px`;
+
+    logo.dataset.final =
+      "false";
+
+    requestAnimationFrame(
+      animateLogo
+    );
+
+  </script>
+
+</body>
+
+</html>
