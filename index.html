@@ -1,0 +1,7115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>STREEDHN</title>
+
+
+  <style>
+
+    /* ==================================================
+       RESET
+    ================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: auto;
+    }
+
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #ffffff;
+    }
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 100vh;
+      height: 100svh;
+
+      min-height: 500px;
+
+      overflow: hidden;
+
+      background: #000;
+
+    }
+
+
+    .hero-image {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      object-position: center center;
+
+      display: block;
+
+      z-index: 1;
+
+      opacity: 0;
+
+      transform: scale(1.025);
+
+      animation:
+        heroEntry
+        1.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+
+    }
+
+
+    @keyframes heroEntry {
+
+      0% {
+        opacity: 0;
+        transform: scale(1.025);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* ==================================================
+       OVERLAY
+    ================================================== */
+
+    .image-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      background: transparent;
+
+      z-index: 2;
+
+      pointer-events: none;
+
+    }
+
+
+    /* ==================================================
+       LOGO
+    ================================================== */
+
+    .logo {
+
+      position: fixed;
+
+      z-index: 1000;
+
+      width: 600px;
+
+      max-width: 75vw;
+
+      height: auto;
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate3d(
+          -50%,
+          -50%,
+          0
+        );
+
+      pointer-events: none;
+
+      user-select: none;
+
+      will-change:
+        width,
+        top,
+        transform,
+        opacity;
+
+      backface-visibility: hidden;
+
+      -webkit-backface-visibility: hidden;
+
+      opacity: 0;
+
+      animation:
+        logoEntry
+        1.25s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.25s
+        forwards;
+
+    }
+
+
+    @keyframes logoEntry {
+
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* ==================================================
+       LOGO FINAL
+    ================================================== */
+
+    .logo.final-logo {
+
+      pointer-events: auto;
+
+      cursor: pointer;
+
+    }
+
+
+    /* ==================================================
+       ESPACIO PARA SCROLL (REDUCIDO AL MÍNIMO)
+    ================================================== */
+
+    .scroll-space {
+
+      width: 100%;
+
+      height: 10vh;
+      height: 10svh;
+
+      min-height: 50px;
+
+      background: #ffffff;
+
+    }
+
+
+    /* ==================================================
+       CONTROLES
+    ================================================== */
+
+    .site-controls {
+
+      position: fixed;
+
+      z-index: 3000;
+
+      top:
+        max(
+          28px,
+          env(safe-area-inset-top)
+        );
+
+      left: 0;
+
+      width: 100%;
+
+      padding:
+        0 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      pointer-events: none;
+
+    }
+
+    .controls-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      pointer-events: auto;
+
+    }
+
+
+    /* ==================================================
+       BOTONES
+    ================================================== */
+
+    .control-button {
+
+      position: relative;
+
+      width: 42px;
+      height: 42px;
+
+      padding: 0;
+
+      border: 0;
+      outline: none;
+
+      background: transparent;
+
+      color: #ffffff;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      pointer-events: auto;
+
+      -webkit-tap-highlight-color:
+        transparent;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+
+    }
+
+    .control-button.scrolled-out {
+      color: #000000 !important;
+    }
+
+
+    .control-button:hover {
+
+      color: #d40000;
+
+      transform:
+        scale(1.08);
+
+    }
+
+
+    .control-button.active {
+
+      color: #d40000 !important;
+
+    }
+
+
+    /* ==================================================
+       HAMBURGER
+    ================================================== */
+
+    .hamburger {
+
+      width: 32px;
+
+      height: 22px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content:
+        space-between;
+
+    }
+
+
+    .hamburger span {
+
+      display: block;
+
+      width: 100%;
+
+      height: 2px;
+
+      background:
+        currentColor;
+
+      transition:
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        opacity .25s ease;
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(1) {
+
+      transform:
+        translateY(10px)
+        rotate(45deg);
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(2) {
+
+      opacity: 0;
+
+    }
+
+
+    .control-button.active
+    .hamburger
+    span:nth-child(3) {
+
+      transform:
+        translateY(-10px)
+        rotate(-45deg);
+
+    }
+
+
+    /* ==================================================
+       ICONOS (CARRITO Y BUSCADOR)
+    ================================================== */
+
+    .cart-icon,
+    .search-icon {
+
+      width: 27px;
+      height: 27px;
+
+      fill: none;
+
+      stroke:
+        currentColor;
+
+      stroke-width: 1.8;
+
+      stroke-linecap: round;
+
+      stroke-linejoin: round;
+
+      transition:
+        transform .3s ease;
+
+    }
+
+
+    .control-button:hover
+    .cart-icon,
+    .control-button:hover
+    .search-icon {
+
+      transform:
+        scale(1.08);
+
+    }
+
+
+    /* ==================================================
+       CONTADOR
+    ================================================== */
+
+    .cart-count {
+
+      position: absolute;
+
+      top: 0;
+
+      right: 0;
+
+      min-width: 17px;
+
+      height: 17px;
+
+      padding:
+        0 4px;
+
+      border-radius: 50%;
+
+      background:
+        #d40000;
+
+      color:
+        #ffffff;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 10px;
+
+      line-height: 17px;
+
+      text-align: center;
+
+      display: none;
+
+    }
+
+
+    /* ==================================================
+       BUSCADOR PANEL
+    ================================================== */
+
+    .search-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      right: 25px;
+
+      width: 320px;
+
+      max-width: calc(100vw - 50px);
+
+      padding: 18px;
+
+      background: rgba(0, 0, 0, .96);
+
+      border: 1px solid #252525;
+
+      border-top: 4px solid #d40000;
+
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .50);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform: translateY(-20px) scale(.97);
+
+      transform-origin: top right;
+
+      transition: opacity .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1), visibility .35s;
+
+    }
+
+    .search-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform: translateY(0) scale(1);
+
+    }
+
+    .search-form {
+
+      display: flex;
+
+      gap: 8px;
+
+    }
+
+    .search-input {
+
+      flex: 1;
+
+      background: #111111;
+
+      border: 1px solid #333333;
+
+      color: #ffffff;
+
+      padding: 10px 12px;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 14px;
+
+      outline: none;
+
+      transition: border-color .25s ease;
+
+    }
+
+    .search-input:focus {
+
+      border-color: #d40000;
+
+    }
+
+    .search-submit {
+
+      background: #d40000;
+
+      color: #ffffff;
+
+      border: 0;
+
+      padding: 0 15px;
+
+      font-family: Impact, sans-serif;
+
+      cursor: pointer;
+
+      transition: opacity .25s ease;
+
+    }
+
+    .search-submit:hover {
+
+      opacity: 0.85;
+
+    }
+
+
+    /* ==================================================
+       MENU
+    ================================================== */
+
+    .menu-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      left: 25px;
+
+      width: 330px;
+
+      max-width:
+        calc(100vw - 50px);
+
+      padding:
+        25px 20px;
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .96
+        );
+
+      border:
+        1px solid #252525;
+
+      border-left:
+        4px solid #d40000;
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          0,
+          0,
+          0,
+          .50
+        );
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform:
+        translateY(-20px)
+        scale(.97);
+
+      transform-origin:
+        top left;
+
+      transition:
+
+        opacity .35s ease,
+
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        visibility .35s;
+
+    }
+
+
+    .menu-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* ==================================================
+       TITULO MENU
+    ================================================== */
+
+    .menu-title {
+
+      color:
+        #d40000;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size: 13px;
+
+      letter-spacing: 4px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    /* ==================================================
+       LISTA MENU
+    ================================================== */
+
+    .menu-list {
+
+      list-style: none;
+
+    }
+
+
+    .menu-list li {
+
+      opacity: 0;
+
+      transform:
+        translateX(-30px);
+
+      transition:
+
+        opacity .4s ease,
+
+        transform .45s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        );
+
+    }
+
+
+    .menu-panel.open
+    .menu-list li {
+
+      opacity: 1;
+
+      transform:
+        translateX(0);
+
+    }
+
+
+    .menu-panel.open
+    .menu-list li:nth-child(1) {
+      transition-delay: .05s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(2) {
+      transition-delay: .10s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(3) {
+      transition-delay: .15s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(4) {
+      transition-delay: .20s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(5) {
+      transition-delay: .25s;
+    }
+
+    .menu-panel.open
+    .menu-list li:nth-child(6) {
+      transition-delay: .30s;
+    }
+
+
+    .menu-list a {
+
+      position: relative;
+
+      display: block;
+
+      padding:
+        9px 8px;
+
+      color:
+        #ffffff;
+
+      text-decoration: none;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size: 25px;
+
+      letter-spacing: 1px;
+
+      overflow: hidden;
+
+      transition:
+
+        color .25s ease,
+
+        padding-left .3s ease;
+
+    }
+
+
+    .menu-list a::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      bottom: 0;
+
+      width: 0;
+
+      height: 3px;
+
+      background:
+        #d40000;
+
+      transition:
+        width .3s ease;
+
+    }
+
+
+    .menu-list a:hover {
+
+      color:
+        #d40000;
+
+      padding-left:
+        18px;
+
+    }
+
+
+    .menu-list a:hover::before {
+
+      width: 100%;
+
+    }
+
+
+    /* ==================================================
+       CARRITO
+    ================================================== */
+
+    .cart-panel {
+
+      position: fixed;
+
+      z-index: 2500;
+
+      top: 82px;
+
+      right: 25px;
+
+      width: 370px;
+
+      max-width:
+        calc(100vw - 50px);
+
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .97
+        );
+
+      color:
+        #ffffff;
+
+      border:
+        1px solid #252525;
+
+      border-top:
+        4px solid #d40000;
+
+      box-shadow:
+        0 20px 60px
+        rgba(
+          0,
+          0,
+          0,
+          .50
+        );
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform:
+        translateY(-20px)
+        scale(.97);
+
+      transform-origin:
+        top right;
+
+      transition:
+
+        opacity .35s ease,
+
+        transform .35s
+        cubic-bezier(
+          .22,
+          1,
+          .36,
+          1
+        ),
+
+        visibility .35s;
+
+    }
+
+
+    .cart-panel.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* ==================================================
+       HEADER CARRITO
+    ================================================== */
+
+    .cart-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      padding:
+        18px 18px 15px;
+
+      border-bottom:
+        1px solid #292929;
+
+    }
+
+
+    .cart-header h2 {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        27px;
+
+      letter-spacing:
+        1px;
+
+    }
+
+
+    .cart-close {
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        #ffffff;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        29px;
+
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+
+    }
+
+
+    .cart-close:hover {
+
+      color:
+        #d40000;
+
+      transform:
+        rotate(90deg);
+
+    }
+
+
+    /* ==================================================
+       CONTENIDO CARRITO
+    ================================================== */
+
+    .cart-content {
+
+      padding:
+        35px 20px 30px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .cart-empty-icon {
+
+      width:
+        55px;
+
+      height:
+        55px;
+
+      margin:
+        0 auto 15px;
+
+      opacity:
+        .65;
+
+    }
+
+
+    .cart-empty {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        22px;
+
+      letter-spacing:
+        1px;
+
+    }
+
+
+    .cart-empty-subtitle {
+
+      margin-top:
+        8px;
+
+      color:
+        #777777;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        12px;
+
+    }
+
+
+    /* ==================================================
+       ITEMS
+    ================================================== */
+
+    .cart-items {
+
+      max-height:
+        300px;
+
+      overflow-y:
+        auto;
+
+    }
+
+
+    .cart-item {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      padding:
+        13px 18px;
+
+      border-bottom:
+        1px solid #292929;
+
+    }
+
+
+    .cart-item img {
+
+      width:
+        55px;
+
+      height:
+        55px;
+
+      object-fit:
+        cover;
+
+    }
+
+
+    .cart-item-info {
+
+      flex:
+        1;
+
+    }
+
+
+    .cart-item-name {
+
+      color:
+        #ffffff;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        16px;
+
+    }
+
+
+    .cart-item-price {
+
+      color:
+        #d40000;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        13px;
+
+      margin-top:
+        3px;
+
+    }
+
+
+    .cart-remove {
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        #777777;
+
+      font-size:
+        20px;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .cart-remove:hover {
+
+      color:
+        #d40000;
+
+    }
+
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+
+    .cart-footer {
+
+      display: none;
+
+      padding:
+        15px 18px;
+
+      border-top:
+        1px solid #292929;
+
+    }
+
+
+    .cart-total {
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+      font-size:
+        20px;
+
+    }
+
+
+    .cart-total strong {
+
+      color:
+        #d40000;
+
+    }
+
+
+    /* ==================================================
+       TABLET
+    ================================================== */
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+
+      .logo {
+
+        width:
+          520px;
+
+        max-width:
+          82vw;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE / TELEFONO
+    ================================================== */
+
+    @media (max-width: 768px) {
+
+      .hero {
+
+        height: 75vh;
+
+        height: 75svh;
+
+        min-height: 440px;
+
+      }
+
+
+      .scroll-space {
+
+        height: 10vh;
+
+        height: 10svh;
+
+        min-height: 40px;
+
+      }
+
+
+      .logo {
+
+        width:
+          72vw;
+
+        max-width:
+          none;
+
+        min-width:
+          0;
+
+        height:
+          auto;
+
+        top:
+          50%;
+
+        left:
+          50%;
+
+        transform:
+          translate3d(
+            -50%,
+            -50%,
+            0
+          );
+
+      }
+
+
+      .site-controls {
+
+        top:
+          max(
+            14px,
+            env(safe-area-inset-top)
+          );
+
+        padding:
+          0 14px;
+
+      }
+
+
+      .control-button {
+
+        width:
+          46px;
+
+        height:
+          46px;
+
+      }
+
+
+      .hamburger {
+
+        width:
+          27px;
+
+        height:
+          19px;
+
+      }
+
+
+      .hamburger span {
+
+        height:
+          2px;
+
+      }
+
+
+      .cart-icon,
+      .search-icon {
+
+        width:
+          27px;
+
+        height:
+          27px;
+
+      }
+
+
+      .menu-panel {
+
+        top:
+          calc(
+            64px +
+            env(safe-area-inset-top)
+          );
+
+        left:
+          12px;
+
+        width:
+          calc(
+            100vw - 24px
+          );
+
+        max-width:
+          none;
+
+        padding:
+          22px 16px;
+
+      }
+
+
+      .menu-title {
+
+        font-size:
+          11px;
+
+        letter-spacing:
+          3px;
+
+        margin-bottom:
+          9px;
+
+      }
+
+
+      .menu-list a {
+
+        font-size:
+          22px;
+
+        padding:
+          10px 7px;
+
+      }
+
+
+      .cart-panel,
+      .search-panel {
+
+        top:
+          calc(
+            64px +
+            env(safe-area-inset-top)
+          );
+
+        right:
+          12px;
+
+        width:
+          calc(
+            100vw - 24px
+          );
+
+        max-width:
+          none;
+
+      }
+
+
+      .cart-header {
+
+        padding:
+          16px 16px 13px;
+
+      }
+
+
+      .cart-header h2 {
+
+        font-size:
+          24px;
+
+      }
+
+
+      .cart-content {
+
+        padding:
+          30px 15px 26px;
+
+      }
+
+
+      .cart-empty {
+
+        font-size:
+          20px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE PEQUEÑO
+    ================================================== */
+
+    @media (max-width: 390px) {
+
+      .logo {
+
+        width:
+          68vw;
+
+      }
+
+
+      .menu-panel,
+      .cart-panel,
+      .search-panel {
+
+        left:
+          10px;
+
+        right:
+          10px;
+
+        width:
+          calc(
+            100vw - 20px
+          );
+
+      }
+
+
+      .menu-list a {
+
+        font-size:
+          20px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       IPHONE MUY PEQUEÑO
+    ================================================== */
+
+    @media (max-width: 360px) {
+
+      .logo {
+
+        width:
+          65vw;
+
+      }
+
+
+      .site-controls {
+
+        padding:
+          0 10px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       ORIENTACIÓN HORIZONTAL
+    ================================================== */
+
+    @media (max-width: 768px) and (orientation: landscape) {
+
+      .logo {
+
+        width:
+          48vw;
+
+      }
+
+
+      .hero,
+      .scroll-space {
+
+        min-height:
+          40px;
+
+      }
+
+    }
+
+
+    /* ==================================================
+       REDUCIR MOVIMIENTO
+    ================================================== */
+
+    @media (
+      prefers-reduced-motion: reduce
+    ) {
+
+      .hero-image {
+
+        animation:
+          none;
+
+        opacity:
+          1;
+
+        transform:
+          scale(1);
+
+      }
+
+
+      .logo {
+
+        animation:
+          none;
+
+        opacity:
+          1;
+
+      }
+
+
+      .control-button,
+      .hamburger span,
+      .menu-panel,
+      .cart-panel,
+      .search-panel,
+      .menu-list li,
+      .menu-list a {
+
+        transition:
+          none;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ==================================================
+       HERO
+  ================================================== -->
+
+  <section
+    class="hero"
+    id="inicio"
+  >
+
+    <img
+      src="images/street1.jpeg"
+      alt="Imagen principal"
+      class="hero-image"
+    >
+
+    <div
+      class="image-overlay"
+    ></div>
+
+  </section>
+
+
+  <!-- ==================================================
+       LOGO
+  ================================================== -->
+
+  <img
+    src="images/IMG_1806.PNG"
+    alt="Logo STREEDHN"
+    class="logo"
+    id="logo"
+  >
+
+
+  <!-- ==================================================
+       CONTROLES
+  ================================================== -->
+
+  <div
+    class="site-controls"
+  >
+
+    <button
+      class="control-button"
+      id="menuButton"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+
+      <span class="hamburger">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </span>
+
+    </button>
+
+
+    <div class="controls-right">
+
+      <button
+        class="control-button"
+        id="searchButton"
+        aria-label="Abrir buscador"
+        aria-expanded="false"
+      >
+        <svg
+          class="search-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+
+      <button
+        class="control-button"
+        id="cartButton"
+        aria-label="Abrir carrito"
+        aria-expanded="false"
+      >
+
+        <svg
+          class="cart-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            d="
+              M3 4
+              H5
+              L7.2 15.1
+              A2 2 0 0 0
+              9.2 16.7
+              H17
+              A2 2 0 0 0
+              18.9 15.3
+              L21 8
+              H6
+            "
+          />
+
+          <circle
+            cx="10"
+            cy="20"
+            r="1.4"
+          />
+
+          <circle
+            cx="18"
+            cy="20"
+            r="1.4"
+          />
+
+        </svg>
+
+
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       BUSCADOR PANEL
+  ================================================== -->
+
+  <div
+    class="search-panel"
+    id="searchPanel"
+    aria-label="Panel de búsqueda"
+  >
+    <form class="search-form" id="searchForm" onsubmit="handleSearch(event)">
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="Buscar productos..."
+        required
+      >
+      <button type="submit" class="search-submit">IR</button>
+    </form>
+  </div>
+
+
+  <!-- ==================================================
+       MENU (CONECTADO CON LAS PÁGINAS)
+  ================================================== -->
+
+  <nav
+    class="menu-panel"
+    id="menuPanel"
+    aria-label="Menú principal"
+  >
+
+    <div
+      class="menu-title"
+    >
+      STREEDHN / MENU
+    </div>
+
+
+    <ul
+      class="menu-list"
+    >
+
+      <li>
+        <a href="index.html">
+          INICIO
+        </a>
+      </li>
+
+      <li>
+        <a href="camisas.html">
+          CAMISAS
+        </a>
+      </li>
+
+      <li>
+        <a href="#new-arrivals" class="menu-anchor">
+          NEW ARRIVALS
+        </a>
+      </li>
+
+      <li>
+        <a href="gorras.html">
+          GORRAS
+        </a>
+      </li>
+
+      <li>
+        <a href="phone-cases.html">
+          PHONE CASES
+        </a>
+      </li>
+
+      <li>
+        <a href="streed-sets.html">
+          STREED SETS
+        </a>
+                <a href="streed-club.html">STREED CLUB</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- ==================================================
+       CARRITO
+  ================================================== -->
+
+  <aside
+    class="cart-panel"
+    id="cartPanel"
+    aria-label="Carrito de compras"
+  >
+
+    <div class="cart-header">
+
+      <h2>
+        YOUR CART
+      </h2>
+
+
+      <button
+        class="cart-close"
+        id="cartClose"
+        aria-label="Cerrar carrito"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="cart-content"
+      id="cartContent"
+    >
+
+      <svg
+        class="cart-empty-icon cart-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <path
+          d="
+            M3 4
+            H5
+            L7.2 15.1
+            A2 2 0 0 0
+            9.2 16.7
+            H17
+            A2 2 0 0 0
+            18.9 15.3
+            L21 8
+            H6
+          "
+        />
+
+        <circle
+          cx="10"
+          cy="20"
+          r="1.4"
+        />
+
+        <circle
+          cx="18"
+          cy="20"
+          r="1.4"
+        />
+
+      </svg>
+
+
+      <div
+        class="cart-empty"
+      >
+        TU CARRITO ESTÁ VACÍO
+      </div>
+
+
+      <div
+        class="cart-empty-subtitle"
+      >
+        Aquí aparecerán tus productos.
+      </div>
+
+    </div>
+
+
+    <div
+      class="cart-items"
+      id="cartItems"
+    ></div>
+
+
+    <div
+      class="cart-footer"
+      id="cartFooter"
+    >
+
+      <div
+        class="cart-total"
+      >
+
+        <span>
+          TOTAL
+        </span>
+
+        <strong
+          id="cartTotal"
+        >
+          L 0.00
+        </strong>
+
+      </div>
+
+      <button type="button" id="cartWhatsappButton" style="width:100%;margin-top:14px;padding:14px 16px;border:0;background:#d40000;color:#fff;font-family:Impact,sans-serif;font-size:15px;letter-spacing:.5px;cursor:pointer;">PEDIR POR WHATSAPP</button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ==================================================
+       SCROLL
+  ================================================== -->
+
+  <div
+    class="scroll-space"
+  ></div>
+
+
+  <script>
+
+    /* ==================================================
+       ELEMENTOS
+    ================================================== */
+
+    const logo =
+      document.getElementById("logo");
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const menuPanel =
+      document.getElementById("menuPanel");
+
+    const searchButton =
+      document.getElementById("searchButton");
+
+    const searchPanel =
+      document.getElementById("searchPanel");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const cartButton =
+      document.getElementById("cartButton");
+
+    const cartPanel =
+      document.getElementById("cartPanel");
+
+    const cartClose =
+      document.getElementById("cartClose");
+
+
+    /* ==================================================
+       CONFIGURACIÓN DESKTOP
+    ================================================== */
+
+    const START_SIZE_DESKTOP = 600;
+
+    const START_SIZE_TABLET = 520;
+
+    const END_SIZE_DESKTOP = 150;
+
+
+    /* ==================================================
+       CONFIGURACIÓN MOBILE
+    ================================================== */
+
+    const MOBILE_START_PERCENT = 72;
+
+    const MOBILE_SMALL_PERCENT = 68;
+
+    const MOBILE_TINY_PERCENT = 65;
+
+    const MOBILE_END_SIZE = 105;
+
+
+    /* ==================================================
+       ANIMACIÓN
+    ================================================== */
+
+    const ANIMATION_DISTANCE = 100;
+
+    const FINAL_TOP_DESKTOP = 49;
+
+    const FINAL_TOP_MOBILE = 37;
+
+    const SMOOTHNESS_DESKTOP = 0.20;
+
+    const SMOOTHNESS_MOBILE = 0.16;
+
+
+    /* ==================================================
+       VARIABLES
+    ================================================== */
+
+    let targetProgress = 0;
+
+    let currentProgress = 0;
+
+
+    /* ==================================================
+       DETECTAR MOBILE
+    ================================================== */
+
+    function isMobile() {
+
+      return window.innerWidth <= 768;
+
+    }
+
+
+    /* ==================================================
+       TAMAÑO INICIAL
+    ================================================== */
+
+    function getStartSize() {
+
+      const width =
+        window.innerWidth;
+
+      if (width <= 360) {
+
+        return width *
+          (MOBILE_TINY_PERCENT / 100);
+
+      }
+
+      if (width <= 390) {
+
+        return width *
+          (MOBILE_SMALL_PERCENT / 100);
+
+      }
+
+      if (width <= 768) {
+
+        return width *
+          (MOBILE_START_PERCENT / 100);
+
+      }
+
+      if (width <= 1024) {
+
+        return START_SIZE_TABLET;
+
+      }
+
+      return START_SIZE_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       TAMAÑO FINAL
+    ================================================== */
+
+    function getEndSize() {
+
+      if (isMobile()) {
+
+        return MOBILE_END_SIZE;
+
+      }
+
+      return END_SIZE_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       TOP FINAL
+    ================================================== */
+
+    function getFinalTop() {
+
+      if (isMobile()) {
+
+        return FINAL_TOP_MOBILE;
+
+      }
+
+      return FINAL_TOP_DESKTOP;
+
+    }
+
+
+    /* ==================================================
+       SCROLL
+    ================================================== */
+
+    window.addEventListener(
+
+      "scroll",
+
+      () => {
+
+        const scroll =
+          window.scrollY || window.pageYOffset;
+
+        targetProgress =
+          scroll /
+          ANIMATION_DISTANCE;
+
+        targetProgress =
+          Math.max(
+            0,
+            Math.min(
+              targetProgress,
+              1
+            )
+          );
+
+        if (targetProgress >= 1) {
+          menuButton.classList.add("scrolled-out");
+          searchButton.classList.add("scrolled-out");
+          cartButton.classList.add("scrolled-out");
+        } else {
+          menuButton.classList.remove("scrolled-out");
+          searchButton.classList.remove("scrolled-out");
+          cartButton.classList.remove("scrolled-out");
+        }
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    /* ==================================================
+       ANIMAR LOGO
+    ================================================== */
+
+    function animateLogo() {
+
+      const smoothness =
+        isMobile()
+          ? SMOOTHNESS_MOBILE
+          : SMOOTHNESS_DESKTOP;
+
+      currentProgress +=
+        (
+          targetProgress -
+          currentProgress
+        ) *
+        smoothness;
+
+      if (
+        Math.abs(
+          targetProgress -
+          currentProgress
+        ) < 0.0005
+      ) {
+
+        currentProgress =
+          targetProgress;
+
+      }
+
+      const progress =
+        currentProgress;
+
+      const startSize =
+        getStartSize();
+
+      const endSize =
+        getEndSize();
+
+      const size =
+        startSize +
+        (
+          endSize -
+          startSize
+        ) *
+        progress;
+
+      logo.style.width =
+        `${size}px`;
+
+      const viewportHeight =
+        window.innerHeight;
+
+      const startCenterY = isMobile() ? (viewportHeight * 0.35) : (viewportHeight / 2);
+
+      const finalTop =
+        getFinalTop();
+
+      const y =
+        startCenterY +
+        (
+          finalTop -
+          startCenterY
+        ) *
+        progress;
+
+      logo.style.top =
+        `${y}px`;
+
+      logo.style.left =
+        "50%";
+
+      logo.style.transform =
+        "translate3d(-50%, -50%, 0)";
+
+      if (
+        targetProgress >= 1
+      ) {
+
+        if (
+          logo.dataset.final !== "true"
+        ) {
+
+          logo.dataset.final =
+            "true";
+
+          logo.src =
+            "images/LOGOTIPO.PNG";
+
+          logo.classList.add(
+            "final-logo"
+          );
+
+        }
+
+      }
+
+      else {
+
+        if (
+          logo.dataset.final === "true"
+        ) {
+
+          logo.dataset.final =
+            "false";
+
+          logo.src =
+            "images/IMG_1806.PNG";
+
+          logo.classList.remove(
+            "final-logo"
+          );
+
+        }
+
+      }
+
+      requestAnimationFrame(
+        animateLogo
+      );
+
+    }
+
+
+    /* ==================================================
+       CLICK LOGO FINAL
+    ================================================== */
+
+    logo.addEventListener(
+
+      "click",
+
+      () => {
+
+        if (
+          logo.dataset.final === "true"
+        ) {
+
+          window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+          });
+
+        }
+
+      }
+
+    );
+
+
+    /* ==================================================
+       MENU
+    ================================================== */
+
+    menuButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          menuPanel.classList.contains("open");
+
+        menuPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        menuButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        searchPanel.classList.remove("open");
+        searchButton.classList.remove("active");
+        searchButton.setAttribute("aria-expanded", "false");
+
+        cartPanel.classList.remove(
+          "open"
+        );
+
+        cartButton.classList.remove(
+          "active"
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       BUSCADOR
+    ================================================== */
+
+    searchButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          searchPanel.classList.contains("open");
+
+        searchPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        searchButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        searchButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        if (!isOpen) {
+          setTimeout(() => searchInput.focus(), 100);
+        }
+
+        menuPanel.classList.remove("open");
+        menuButton.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
+
+      }
+
+    );
+
+    function handleSearch(event) {
+      event.preventDefault();
+
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) return;
+
+      // Categorías y productos conocidos de STREED.
+      const routes = [
+        { terms: ["camisa", "camisas", "shirt", "shirts", "tee", "oversize", "regular", "bad bunny", "kiss me", "good things"], url: "camisas.html" },
+        { terms: ["gorra", "gorras", "cap", "caps", "snapback", "classic"], url: "gorras.html" },
+        { terms: ["case", "cases", "phone", "phone case", "iphone", "android", "funda"], url: "phone-cases.html" },
+        { terms: ["set", "sets", "combo", "combos", "streed set"], url: "streed-sets.html" }
+      ];
+
+      const match = routes.find(route =>
+        route.terms.some(term => query.includes(term))
+      );
+
+      if (match) {
+        window.location.href = match.url + "?search=" + encodeURIComponent(query);
+        return;
+      }
+
+      // También busca directamente dentro de los New Arrivals del inicio.
+      const arrivals = Array.from(document.querySelectorAll(".arrival-card"));
+      const result = arrivals.find(card => {
+        const name = (card.dataset.productName || card.textContent || "").toLowerCase();
+        return name.includes(query);
+      });
+
+      if (result) {
+        result.scrollIntoView({ behavior: "smooth", block: "center" });
+        result.style.outline = "2px solid #d40000";
+        result.style.outlineOffset = "8px";
+        setTimeout(() => {
+          result.style.outline = "";
+          result.style.outlineOffset = "";
+        }, 1800);
+      } else {
+        alert("No encontramos productos para: " + searchInput.value.trim());
+      }
+
+      searchPanel.classList.remove("open");
+      searchButton.classList.remove("active");
+      searchButton.setAttribute("aria-expanded", "false");
+    }
+
+
+    /* ==================================================
+       CARRITO
+    ================================================== */
+
+    cartButton.addEventListener(
+
+      "click",
+
+      event => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          cartPanel.classList.contains("open");
+
+        cartPanel.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        cartButton.classList.toggle(
+          "active",
+          !isOpen
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+        menuPanel.classList.remove(
+          "open"
+        );
+
+        menuButton.classList.remove(
+          "active"
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        searchPanel.classList.remove("open");
+        searchButton.classList.remove("active");
+        searchButton.setAttribute("aria-expanded", "false");
+
+      }
+
+    );
+
+
+    /* ==================================================
+       CERRAR CARRITO
+    ================================================== */
+
+    cartClose.addEventListener(
+
+      "click",
+
+      () => {
+
+        cartPanel.classList.remove(
+          "open"
+        );
+
+        cartButton.classList.remove(
+          "active"
+        );
+
+        cartButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       CLICK AFUERA
+    ================================================== */
+
+    document.addEventListener(
+
+      "click",
+
+      event => {
+
+        if (
+          !menuPanel.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+
+          menuPanel.classList.remove(
+            "open"
+          );
+
+          menuButton.classList.remove(
+            "active"
+          );
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+        if (
+          !searchPanel.contains(event.target) &&
+          !searchButton.contains(event.target)
+        ) {
+
+          searchPanel.classList.remove(
+            "open"
+          );
+
+          searchButton.classList.remove(
+            "active"
+          );
+
+          searchButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+        if (
+          !cartPanel.contains(event.target) &&
+          !cartButton.contains(event.target)
+        ) {
+
+          cartPanel.classList.remove(
+            "open"
+          );
+
+          cartButton.classList.remove(
+            "active"
+          );
+
+          cartButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+
+    );
+
+
+    /* ==================================================
+       RESIZE
+    ================================================== */
+
+    let resizeTimer;
+
+    window.addEventListener(
+
+      "resize",
+
+      () => {
+
+        clearTimeout(
+          resizeTimer
+        );
+
+        resizeTimer =
+          setTimeout(
+
+            () => {
+
+              const size =
+                getStartSize();
+
+              if (
+                currentProgress === 0
+              ) {
+
+                logo.style.width =
+                  `${size}px`;
+
+              }
+
+            },
+
+            100
+
+          );
+
+      }
+
+    );
+
+
+    /* ==================================================
+       INICIO
+    ================================================== */
+
+    logo.style.width =
+      `${getStartSize()}px`;
+
+    logo.dataset.final =
+      "false";
+
+    requestAnimationFrame(
+      animateLogo
+    );
+
+  </script>
+
+
+
+<!-- ==================================================
+     NEW ARRIVALS
+     Productos destacados / reemplaza las imágenes y precios
+================================================== -->
+<style>
+  html { scroll-behavior: smooth; }
+
+  .streed-new-arrivals {
+    width: 100%;
+    padding: 75px 0 85px;
+    background: #fff;
+    overflow: hidden;
+    scroll-margin-top: 25px;
+  }
+
+  .new-arrivals-head {
+    width: 92%;
+    max-width: 1280px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .new-arrivals-kicker {
+    margin: 0 0 8px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #d40000;
+  }
+
+  .new-arrivals-title {
+    margin: 0;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(42px, 6vw, 78px);
+    line-height: .9;
+    letter-spacing: 1px;
+    color: #000;
+  }
+
+  .new-arrivals-note {
+    margin: 0;
+    max-width: 250px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    text-align: right;
+    color: #555;
+  }
+
+  .new-arrivals-track {
+    width: 92%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 18px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #d40000 #e8e8e8;
+  }
+
+  .new-arrivals-track::-webkit-scrollbar { height: 5px; }
+  .new-arrivals-track::-webkit-scrollbar-track { background: #e8e8e8; }
+  .new-arrivals-track::-webkit-scrollbar-thumb { background: #d40000; }
+
+  .arrival-card {
+    flex: 0 0 calc((100% - 54px) / 4);
+    min-width: 235px;
+    scroll-snap-align: start;
+    background: #fff;
+  }
+
+  .arrival-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+
+  .arrival-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.22,1,.36,1);
+  }
+
+  .arrival-card:hover .arrival-image { transform: scale(1.035); }
+
+  .arrival-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: Impact, sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  .arrival-info { padding: 14px 2px 0; }
+
+  .arrival-name {
+    margin: 0;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 23px;
+    letter-spacing: .5px;
+    color: #000;
+  }
+
+  .arrival-price {
+    margin: 5px 0 13px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d40000;
+  }
+
+  .arrival-label {
+    display: block;
+    margin-bottom: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #777;
+  }
+
+  .arrival-colors {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .color-option {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .color-option.black { background: #000; border-color: #000; }
+  .color-option.white { background: #fff; }
+  .color-option.selected::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1.5px solid #d40000;
+    border-radius: 50%;
+  }
+
+  .arrival-add {
+    width: 100%;
+    min-height: 42px;
+    border: 0;
+    background: #000;
+    color: #fff;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background .25s ease, transform .25s ease;
+  }
+
+  .arrival-add:hover { background: #d40000; transform: translateY(-2px); }
+  .arrival-add:active { transform: translateY(0); }
+
+  .arrival-scroll-hint {
+    width: 92%;
+    max-width: 1280px;
+    margin: 12px auto 0;
+    display: flex;
+    justify-content: flex-end;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #777;
+  }
+
+  @media (max-width: 900px) {
+    .arrival-card { flex-basis: calc((100% - 18px) / 2); }
+  }
+
+  @media (max-width: 600px) {
+    .streed-new-arrivals { padding: 55px 0 65px; }
+    .new-arrivals-head { width: 88%; display: block; margin-bottom: 25px; }
+    .new-arrivals-title { font-size: 48px; }
+    .new-arrivals-note { max-width: 300px; margin-top: 12px; text-align: left; }
+    .new-arrivals-track, .arrival-scroll-hint { width: 88%; }
+    .arrival-card { flex-basis: 78%; min-width: 0; }
+  }
+</style>
+
+<section class="streed-new-arrivals" id="new-arrivals" aria-labelledby="new-arrivals-title">
+  <div class="new-arrivals-head">
+    <div>
+      <p class="new-arrivals-kicker">STREED / JUST DROPPED</p>
+      <h2 class="new-arrivals-title" id="new-arrivals-title">NEW ARRIVALS</h2>
+    </div>
+    <p class="new-arrivals-note">Nuevas piezas. Mismo ADN.<br>Desliza para descubrirlas.</p>
+  </div>
+
+  <div class="new-arrivals-track" id="newArrivalsTrack">
+    <!-- PRODUCTO 01 -->
+    <article class="arrival-card" data-product-id="arrival-01" data-product-name="NEW ARRIVAL 01" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-1.jpg" alt="NEW ARRIVAL 01" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 01</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+
+    <!-- PRODUCTO 02 -->
+    <article class="arrival-card" data-product-id="arrival-02" data-product-name="NEW ARRIVAL 02" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-2.jpg" alt="NEW ARRIVAL 02" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 02</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+
+    <!-- PRODUCTO 03 -->
+    <article class="arrival-card" data-product-id="arrival-03" data-product-name="NEW ARRIVAL 03" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-3.jpg" alt="NEW ARRIVAL 03" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 03</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+
+    <!-- PRODUCTO 04 -->
+    <article class="arrival-card" data-product-id="arrival-04" data-product-name="NEW ARRIVAL 04" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-4.jpg" alt="NEW ARRIVAL 04" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 04</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+
+    <!-- PRODUCTO 05 -->
+    <article class="arrival-card" data-product-id="arrival-05" data-product-name="NEW ARRIVAL 05" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-5.jpg" alt="NEW ARRIVAL 05" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 05</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+
+    <!-- PRODUCTO 06 -->
+    <article class="arrival-card" data-product-id="arrival-06" data-product-name="NEW ARRIVAL 06" data-price="0">
+      <div class="arrival-image-wrap">
+        <img class="arrival-image" src="images/new-arrival-6.jpg" alt="NEW ARRIVAL 06" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="arrival-placeholder">AÑADE<br>TU FOTO</div>
+      </div>
+      <div class="arrival-info">
+        <h3 class="arrival-name">NEW ARRIVAL 06</h3>
+        <p class="arrival-price">L 000.00</p>
+        <span class="arrival-label">COLOR</span>
+        <div class="arrival-colors">
+          <button class="color-option white selected" data-color="Blanco" aria-label="Blanco"></button>
+          <button class="color-option black" data-color="Negro" aria-label="Negro"></button>
+        </div>
+        <button class="arrival-add" type="button">ADD TO CART</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="arrival-scroll-hint">← DESLIZA →</div>
+</section>
+
+<script>
+/* ==================================================
+   NEW ARRIVALS + CARRITO
+   Carrito compartido con todas las páginas STREED.
+================================================== */
+(function () {
+  const STORAGE_KEY = "streed_cart_v1";
+  const cartItemsEl = document.getElementById("cartItems");
+  const cartContentEl = document.getElementById("cartContent");
+  const cartFooterEl = document.getElementById("cartFooter");
+  const cartTotalEl = document.getElementById("cartTotal");
+  const cartCountEl = document.getElementById("cartCount");
+  const track = document.getElementById("newArrivalsTrack");
+  const cartWhatsappButton = document.getElementById("cartWhatsappButton");
+
+  // SOLO CAMBIA ESTE NUMERO cuando quieras modificar el WhatsApp de STREED.
+  const WHATSAPP_NUMBER = "50489055186";
+
+  function buildWhatsappMessage() {
+    const lines = ["Hola STREED 👋, quiero hacer el siguiente pedido:", ""];
+    cart.forEach((item, index) => {
+      lines.push(`${index + 1}. ${item.name || "PRODUCTO"}`);
+      if (item.size && item.size !== "U") lines.push(`   Talla: ${item.size}`);
+      if (item.fit) lines.push(`   Corte: ${item.fit}`);
+      if (item.color) lines.push(`   Color: ${item.color}`);
+      if (item.model) lines.push(`   Modelo: ${item.model}`);
+      lines.push(`   Cantidad: ${Number(item.quantity || 1)}`);
+      lines.push(`   Precio: ${money(item.price)} c/u`);
+      lines.push("");
+    });
+    const total = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.quantity || 0), 0);
+    lines.push(`TOTAL: ${money(total)}`, "", "Quedo pendiente para coordinar el pedido. ¡Gracias!");
+    return lines.join("\n");
+  }
+
+  function orderCartByWhatsapp() {
+    if (!cart.length) return;
+    const clean = WHATSAPP_NUMBER.replace(/\D/g, "");
+    const message = encodeURIComponent(buildWhatsappMessage());
+    window.open(`https://wa.me/${clean}?text=${message}`, "_blank", "noopener,noreferrer");
+  }
+
+  if (cartWhatsappButton) cartWhatsappButton.addEventListener("click", orderCartByWhatsapp);
+
+  function loadCart() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  let cart = loadCart();
+
+  function money(value) {
+    return "L " + Number(value || 0).toFixed(2);
+  }
+
+  function saveCart() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  function updateCount() {
+    const count = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+    cartCountEl.textContent = count;
+    cartCountEl.style.display = count > 0 ? "block" : "none";
+  }
+
+  function renderCart() {
+    if (!cart.length) {
+      cartContentEl.style.display = "block";
+      cartItemsEl.innerHTML = "";
+      cartFooterEl.style.display = "none";
+      updateCount();
+      return;
+    }
+
+    cartContentEl.style.display = "none";
+    cartFooterEl.style.display = "block";
+
+    cartItemsEl.innerHTML = cart.map((item, index) => {
+      const image = item.image || item.img || "";
+      const name = item.name || item.title || "PRODUCTO";
+      const price = Number(item.price || 0);
+      const quantity = Number(item.quantity || 1);
+      const options = [];
+      if (item.size && item.size !== "U") options.push("TALLA: " + item.size);
+      if (item.fit) options.push("CORTE: " + item.fit);
+      if (item.color) options.push("COLOR: " + item.color);
+      if (item.model) options.push("MODELO: " + item.model);
+
+      return `
+        <div style="padding:14px 18px;border-bottom:1px solid #292929;font-family:Arial,sans-serif;">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+            <div style="display:flex;gap:12px;min-width:0;align-items:flex-start;">
+              ${image ? `<img src="${image}" alt="${name}" style="width:58px;height:70px;object-fit:cover;background:#111;display:block;">` : ""}
+              <div style="min-width:0;">
+                <div style="font-family:Impact,sans-serif;font-size:18px;color:#fff;line-height:1.05;">${name}</div>
+                ${options.length ? `<div style="font-size:11px;color:#aaa;margin-top:6px;line-height:1.5;">${options.join("<br>")}</div>` : ""}
+                <div style="font-size:13px;color:#d40000;font-weight:700;margin-top:5px;">${money(price)}</div>
+              </div>
+            </div>
+            <button type="button" data-remove="${index}" style="border:0;background:transparent;color:#fff;font-size:20px;cursor:pointer;line-height:1;">×</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+            <button type="button" data-minus="${index}" style="width:27px;height:27px;border:1px solid #555;background:#111;color:#fff;cursor:pointer;">−</button>
+            <span style="min-width:18px;text-align:center;color:#fff;">${quantity}</span>
+            <button type="button" data-plus="${index}" style="width:27px;height:27px;border:1px solid #555;background:#111;color:#fff;cursor:pointer;">+</button>
+            <span style="margin-left:auto;color:#fff;font-size:13px;font-weight:700;">${money(price * quantity)}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    const total = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.quantity || 0), 0);
+    cartTotalEl.textContent = money(total);
+    updateCount();
+  }
+
+  function addToCart(card) {
+    const id = card.dataset.productId;
+    const name = card.dataset.productName;
+    const price = Number(card.dataset.price || 0);
+    const selected = card.querySelector(".color-option.selected");
+    const color = selected ? selected.dataset.color : "Blanco";
+    const imageEl = card.querySelector(".arrival-image");
+    const image = imageEl ? imageEl.getAttribute("src") : "";
+
+    const existing = cart.find(item => item.id === id && item.color === color);
+    if (existing) {
+      existing.quantity = Number(existing.quantity || 0) + 1;
+    } else {
+      cart.push({ id, name, price, color, image, quantity: 1 });
+    }
+
+    saveCart();
+    renderCart();
+
+    const button = card.querySelector(".arrival-add");
+    const original = button.textContent;
+    button.textContent = "ADDED ✓";
+    button.style.background = "#d40000";
+    setTimeout(() => {
+      button.textContent = original;
+      button.style.background = "";
+    }, 900);
+  }
+
+  document.querySelectorAll(".arrival-card").forEach(card => {
+    const addButton = card.querySelector(".arrival-add");
+    if (!addButton) return;
+
+    card.querySelectorAll(".color-option").forEach(option => {
+      option.addEventListener("click", () => {
+        card.querySelectorAll(".color-option").forEach(btn => btn.classList.remove("selected"));
+        option.classList.add("selected");
+      });
+    });
+
+    addButton.addEventListener("click", () => addToCart(card));
+  });
+
+  cartItemsEl.addEventListener("click", event => {
+    const remove = event.target.closest("[data-remove]");
+    const minus = event.target.closest("[data-minus]");
+    const plus = event.target.closest("[data-plus]");
+
+    if (remove) cart.splice(Number(remove.dataset.remove), 1);
+    if (minus) {
+      const i = Number(minus.dataset.minus);
+      if (cart[i]) {
+        cart[i].quantity = Number(cart[i].quantity || 1) - 1;
+        if (cart[i].quantity <= 0) cart.splice(i, 1);
+      }
+    }
+    if (plus) {
+      const i = Number(plus.dataset.plus);
+      if (cart[i]) cart[i].quantity = Number(cart[i].quantity || 0) + 1;
+    }
+
+    saveCart();
+    renderCart();
+  });
+
+  document.querySelectorAll(".menu-anchor").forEach(link => {
+    link.addEventListener("click", () => {
+      const menuButton = document.getElementById("menuButton");
+      const menuPanel = document.getElementById("menuPanel");
+      if (menuPanel && menuButton) {
+        menuPanel.classList.remove("open");
+        menuButton.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  window.addEventListener("pageshow", () => {
+    cart = loadCart();
+    renderCart();
+  });
+
+  window.addEventListener("storage", event => {
+    if (event.key === STORAGE_KEY) {
+      cart = loadCart();
+      renderCart();
+    }
+  });
+
+  renderCart();
+})();
+</script>
+
+</body>
+
+
+<!-- =========================
+     CARRUSEL DE FOTOS
+========================= -->
+
+<style>
+/* ========================================
+   RESET Y CONTENEDOR PRINCIPAL DEL CARRUSEL
+======================================== */
+
+.streed-model-carousel {
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.streed-model-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ========================================
+   IMÁGENES
+======================================== */
+
+.streed-model {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 235px;
+    height: 350px;
+
+    object-fit: cover;
+    border-radius: 4px;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+    transition:
+        transform .65s cubic-bezier(.77,0,.18,1),
+        opacity .65s ease,
+        filter .65s ease;
+}
+
+
+/* ========================================
+   FOTO CENTRAL
+======================================== */
+
+.streed-model.center {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    z-index: 5;
+    filter: none;
+}
+
+
+/* ========================================
+   FOTO IZQUIERDA
+======================================== */
+
+.streed-model.left {
+    transform: translate(calc(-50% - 155px), -50%) scale(.68);
+    opacity: .8;
+    z-index: 3;
+    filter: brightness(.82);
+}
+
+
+/* ========================================
+   FOTO DERECHA
+======================================== */
+
+.streed-model.right {
+    transform: translate(calc(-50% + 155px), -50%) scale(.68);
+    opacity: .8;
+    z-index: 3;
+    filter: brightness(.82);
+}
+
+
+/* ========================================
+   FOTOS OCULTAS
+======================================== */
+
+.streed-model.hidden-left {
+    transform: translate(calc(-50% - 280px), -50%) scale(.50);
+    opacity: 0;
+    z-index: 1;
+}
+
+.streed-model.hidden-right {
+    transform: translate(calc(-50% + 280px), -50%) scale(.50);
+    opacity: 0;
+    z-index: 1;
+}
+
+
+/* ========================================
+   TABLET / IPAD
+======================================== */
+
+@media (max-width: 1024px) {
+
+    .streed-model-carousel {
+        height: 430px;
+    }
+
+    .streed-model {
+        width: 220px;
+        height: 330px;
+    }
+
+    .streed-model.left {
+        transform: translate(calc(-50% - 145px), -50%) scale(.66);
+    }
+
+    .streed-model.right {
+        transform: translate(calc(-50% + 145px), -50%) scale(.66);
+    }
+
+    .streed-model.hidden-left {
+        transform: translate(calc(-50% - 270px), -50%) scale(.48);
+    }
+
+    .streed-model.hidden-right {
+        transform: translate(calc(-50% + 270px), -50%) scale(.48);
+    }
+}
+
+
+/* ========================================
+   CELULAR
+======================================== */
+
+@media (max-width: 600px) {
+
+    .streed-model-carousel {
+        height: 370px;
+    }
+
+    .streed-model {
+        width: 175px;
+        height: 265px;
+    }
+
+    .streed-model.left {
+        transform: translate(calc(-50% - 115px), -50%) scale(.64);
+    }
+
+    .streed-model.right {
+        transform: translate(calc(-50% + 115px), -50%) scale(.64);
+    }
+
+    .streed-model.hidden-left {
+        transform: translate(calc(-50% - 220px), -50%) scale(.46);
+    }
+
+    .streed-model.hidden-right {
+        transform: translate(calc(-50% + 220px), -50%) scale(.46);
+    }
+}
+
+
+/* ========================================
+   CELULARES PEQUEÑOS
+======================================== */
+
+@media (max-width: 380px) {
+
+    .streed-model-carousel {
+        height: 330px;
+    }
+
+    .streed-model {
+        width: 155px;
+        height: 235px;
+    }
+
+    .streed-model.left {
+        transform: translate(calc(-50% - 100px), -50%) scale(.62);
+    }
+
+    .streed-model.right {
+        transform: translate(calc(-50% + 100px), -50%) scale(.62);
+    }
+
+    .streed-model.hidden-left {
+        transform: translate(calc(-50% - 190px), -50%) scale(.45);
+    }
+
+    .streed-model.hidden-right {
+        transform: translate(calc(-50% + 190px), -50%) scale(.45);
+    }
+
+}
+</style>
+
+
+<!-- ========================================
+     CARRUSEL
+======================================== -->
+
+<div class="streed-model-carousel">
+
+    <div class="streed-model-track">
+
+        <img src="images/model1.jpg" class="streed-model" alt="STREED Model 1">
+        <img src="images/model2.webp" class="streed-model" alt="STREED Model 2">
+        <img src="images/model3.jpeg" class="streed-model" alt="STREED Model 3">
+        <img src="images/model4.jpeg" class="streed-model" alt="STREED Model 4">
+        <img src="images/model5.jpeg" class="streed-model" alt="STREED Model 5">
+        <img src="images/model6.jpeg" class="streed-model" alt="STREED Model 6">
+        <img src="images/model7.jpeg" class="streed-model" alt="STREED Model 7">
+        <img src="images/model8.jpeg" class="streed-model" alt="STREED Model 8">
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* ========================================
+   SELECCIONAR IMÁGENES
+======================================== */
+
+const models = document.querySelectorAll(".streed-model");
+
+/* ========================================
+   POSICIÓN ACTUAL
+======================================== */
+
+let currentModel = 0;
+
+/* ========================================
+   ACTUALIZAR CARRUSEL
+======================================== */
+
+function updateModels() {
+
+    const total = models.length;
+
+    models.forEach((model, index) => {
+
+        model.className = "streed-model";
+
+        const position = (index - currentModel + total) % total;
+
+        if (position === 0) {
+            model.classList.add("center");
+        } else if (position === 1) {
+            model.classList.add("right");
+        } else if (position === total - 1) {
+            model.classList.add("left");
+        } else if (position < total / 2) {
+            model.classList.add("hidden-right");
+        } else {
+            model.classList.add("hidden-left");
+        }
+
+    });
+
+}
+
+updateModels();
+
+setInterval(() => {
+
+    currentModel++;
+
+    if (currentModel >= models.length) {
+        currentModel = 0;
+    }
+
+    updateModels();
+
+}, 1800);
+
+</script>
+
+<style>
+/* ================================
+   TEXTO STREED
+================================ */
+
+.streed-description {
+    width: 90%;
+    max-width: 850px;
+    margin: 20px auto 60px;
+    text-align: center;
+
+    font-family: "Futura", "Futura PT", "Century Gothic", Arial, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+
+    font-size: 20px;
+    line-height: 1.45;
+    letter-spacing: .2px;
+
+    color: #000;
+}
+
+.streed-description .streed-red {
+    color: #ff0000;
+}
+
+
+/* ================================
+   FRASE FINAL
+================================ */
+
+.streed-description .streed-final-text {
+    display: block;
+    margin-top: 18px;
+
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+
+/* ================================
+   CELULAR
+================================ */
+
+@media (max-width: 600px) {
+
+    .streed-description {
+        width: 88%;
+        margin: 15px auto 45px;
+
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .streed-description .streed-final-text {
+        margin-top: 15px;
+        font-size: 20px;
+    }
+
+}
+</style>
+
+
+<div class="streed-description">
+
+    En <span class="streed-red">STREED</span> convertimos tus ideas
+    en piezas que hablan por ti. Creamos diseños personalizados
+    mediante DTF y sublimación, cuidando cada detalle para que puedas
+    llevar algo que realmente se sienta tuyo.
+
+    <span class="streed-final-text">
+        Imagina. Personaliza. Destaca
+        <span class="streed-red">STREED⭐</span>
+    </span>
+
+</div>
+
+<!-- =========================
+     LINEA DIVISORA
+========================= -->
+
+<style>
+.divider {
+    width: 92%;
+    height: 4px;
+    margin: 70px auto 55px;
+    background: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 75%,
+        #e00000 75%,
+        #e00000 100%
+    );
+}
+</style>
+
+<div class="divider"></div>
+
+<!-- =========================
+     QUE PODEMOS CREAR
+========================= -->
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.streed-create {
+  width:100%;
+  height:90px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:visible;
+
+  background:transparent;
+
+  padding:0 25px;
+  box-sizing:border-box;
+}
+
+.streed-create-title {
+  position:relative;
+
+  margin:0;
+  padding:5px;
+
+  font-family:'Abril Fatface', Georgia, serif;
+
+  font-size:clamp(22px, 5.2vw, 52px);
+
+  line-height:1;
+  letter-spacing:-.5px;
+
+  color:#D90429;
+
+  white-space:nowrap;
+
+  animation:titleFloat 4s ease-in-out infinite;
+}
+
+
+/* ✨ BRILLO */
+
+.streed-create-title::before {
+  content:"";
+
+  position:absolute;
+
+  top:-40%;
+  left:-70%;
+
+  width:25%;
+  height:180%;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.2),
+    #ffffff,
+    rgba(255,255,255,.2),
+    transparent
+  );
+
+  transform:skewX(-20deg);
+
+  animation:textShine 3.5s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+
+/* ✦ DESTELLO */
+
+.streed-create-title::after {
+  content:"✦";
+
+  position:absolute;
+
+  right:-25px;
+  top:50%;
+
+  font-family:Arial,sans-serif;
+  font-size:21px;
+
+  color:#D90429;
+
+  opacity:0;
+
+  transform:
+    translateY(-50%)
+    scale(.2)
+    rotate(0deg);
+
+  animation:sparkle 3.5s ease-in-out infinite;
+}
+
+
+/* BRILLO RECORRIENDO */
+
+@keyframes textShine {
+
+  0%,15% {
+    left:-70%;
+    opacity:0;
+  }
+
+  20% {
+    opacity:1;
+  }
+
+  65% {
+    left:110%;
+    opacity:1;
+  }
+
+  70%,100% {
+    left:120%;
+    opacity:0;
+  }
+
+}
+
+
+/* DESTELLO FINAL */
+
+@keyframes sparkle {
+
+  0%,65% {
+    opacity:0;
+
+    transform:
+      translateY(-50%)
+      scale(.2)
+      rotate(0deg);
+  }
+
+  72% {
+    opacity:1;
+
+    transform:
+      translateY(-50%)
+      scale(1.5)
+      rotate(20deg);
+  }
+
+  78% {
+    opacity:.8;
+
+    transform:
+      translateY(-50%)
+      scale(.8)
+      rotate(45deg);
+  }
+
+  85%,100% {
+    opacity:0;
+
+    transform:
+      translateY(-50%)
+      scale(.2)
+      rotate(70deg);
+  }
+
+}
+
+
+/* FLOTACIÓN */
+
+@keyframes titleFloat {
+
+  0%,100% {
+    transform:translateY(0);
+  }
+
+  50% {
+    transform:translateY(-2px);
+  }
+
+}
+
+
+/* 📱 TELÉFONO */
+
+@media(max-width:600px) {
+
+  .streed-create {
+    height:70px;
+    padding:0 18px;
+  }
+
+  .streed-create-title {
+    font-size:clamp(18px, 5vw, 30px);
+    letter-spacing:-.3px;
+  }
+
+  .streed-create-title::after {
+    right:-18px;
+    font-size:17px;
+  }
+
+}
+</style>
+
+
+<div class="streed-create">
+
+  <h1 class="streed-create-title">
+    ¿QUÉ PODEMOS CREAR?
+  </h1>
+
+</div>
+
+
+<style>
+/* =========================================
+   STREED - CATEGORÍAS
+========================================= */
+
+.streed-categories {
+    width: 92%;
+    max-width: 1200px;
+    margin: 45px auto 70px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   TARJETA
+========================================= */
+
+.streed-category {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   IMAGEN
+========================================= */
+
+.streed-category-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 4px;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    transition:
+        transform .4s ease,
+        filter .4s ease;
+}
+
+
+/* Efecto muy sutil al pasar el mouse */
+
+.streed-category:hover .streed-category-image {
+    transform: scale(1.02);
+    filter: brightness(.94);
+}
+
+
+/* =========================================
+   BOTÓN
+========================================= */
+
+.streed-category-button {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 170px;
+    height: 48px;
+
+    margin-top: 18px;
+
+    background: #D90429;
+    color: #fff;
+
+    text-decoration: none;
+
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 22px;
+    letter-spacing: .5px;
+
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+
+/* =========================================
+   BRILLO
+========================================= */
+
+.streed-category-button::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255,255,255,.15) 35%,
+        rgba(255,255,255,.9) 50%,
+        rgba(255,255,255,.15) 65%,
+        transparent 100%
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left .55s ease;
+}
+
+
+/* Al tocar/pasar */
+
+.streed-category-button:hover::after,
+.streed-category-button:active::after {
+    left: 140%;
+}
+
+.streed-category-button:hover {
+    transform: translateY(-2px);
+}
+
+.streed-category-button:active {
+    transform: scale(.96);
+}
+
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.streed-category-text {
+    margin: 17px 5px 0;
+
+    color: #000;
+
+    font-family:
+        "Futura",
+        "Futura PT",
+        "Century Gothic",
+        Arial,
+        sans-serif;
+
+    font-weight: 700;
+    font-style: italic;
+
+    font-size: 20px;
+    line-height: 1.25;
+
+    text-align: center;
+
+    max-width: 300px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 900px) {
+
+    .streed-categories {
+        width: 90%;
+        gap: 18px;
+    }
+
+    .streed-category-button {
+        width: 150px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .streed-category-text {
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+    .streed-categories {
+        width: 88%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 55px;
+
+        margin-top: 35px;
+        margin-bottom: 55px;
+    }
+
+    .streed-category-image {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .streed-category-button {
+        width: 175px;
+        height: 48px;
+
+        margin-top: 16px;
+
+        font-size: 22px;
+    }
+
+    .streed-category-text {
+        max-width: 330px;
+
+        margin-top: 15px;
+
+        font-size: 19px;
+        line-height: 1.3;
+    }
+
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media screen and (max-width: 380px) {
+
+    .streed-categories {
+        width: 90%;
+        gap: 45px;
+    }
+
+    .streed-category-image {
+        max-width: 320px;
+    }
+
+    .streed-category-button {
+        width: 160px;
+        height: 45px;
+
+        font-size: 20px;
+    }
+
+    .streed-category-text {
+        font-size: 17px;
+        max-width: 290px;
+    }
+
+}
+</style>
+
+
+<div class="streed-categories">
+
+
+    <!-- =========================
+         CAMISAS
+    ========================== -->
+
+    <div class="streed-category">
+
+        <img
+            src="images/camisas.jpeg"
+            class="streed-category-image"
+            alt="Camisas STREED"
+        >
+
+        <a
+            href="camisas.html"
+            class="streed-category-button"
+        >
+            CAMISAS
+        </a>
+
+        <p class="streed-category-text">
+            Tu estilo, llevado a otra dimensión
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         GORRAS
+    ========================== -->
+
+    <div class="streed-category">
+
+        <img
+            src="images/gorras.jpeg"
+            class="streed-category-image"
+            alt="Gorras STREED"
+        >
+
+        <a
+            href="gorras.html"
+            class="streed-category-button"
+        >
+            GORRAS
+        </a>
+
+        <p class="streed-category-text">
+            Comodidad con algo que decir
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PHONE CASES
+    ========================== -->
+
+    <div class="streed-category">
+
+        <img
+            src="images/phonecases.jpg"
+            class="streed-category-image"
+            alt="Phone Cases STREED"
+        >
+
+        <a
+            href="phone-cases.html"
+            class="streed-category-button"
+        >
+            PHONE CASES
+        </a>
+
+        <p class="streed-category-text">
+            Lleva lo que te representa
+        </p>
+
+    </div>
+
+
+</div>
+
+<!-- =========================
+     LINEA DIVISORA
+========================= -->
+
+<style>
+.divider {
+    width: 92%;
+    height: 4px;
+    margin: 70px auto 55px;
+    background: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 75%,
+        #e00000 75%,
+        #e00000 100%
+    );
+}
+</style>
+
+<div class="divider"></div>
+
+
+<!-- =========================
+     ASI FUNCIONA
+========================= -->
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.streed-process {
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+
+  padding:55px 20px;
+
+  margin:0 auto;
+
+  background:transparent;
+
+  overflow:hidden;
+
+  font-family:Arial,sans-serif;
+
+  text-align:center;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.streed-process-title {
+
+  width:100%;
+
+  margin:0 auto 40px;
+
+  padding:0;
+
+  text-align:center;
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(30px,5vw,55px);
+
+  line-height:1;
+
+  color:#D90429;
+
+  opacity:0;
+
+  transform:translateY(20px);
+
+  animation:titleIn 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.streed-process-grid {
+
+  width:100%;
+
+  max-width:900px;
+
+  margin-left:auto;
+  margin-right:auto;
+
+  display:grid;
+
+  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  box-sizing:border-box;
+}
+
+
+/* =========================
+   PASOS
+========================= */
+
+.streed-step {
+
+  position:relative;
+
+  width:100%;
+  min-width:0;
+
+  min-height:220px;
+
+  padding:25px 20px;
+
+  box-sizing:border-box;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  opacity:0;
+
+  transform:translateY(30px);
+
+  animation:stepIn .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+
+.streed-step:nth-child(1) {
+  animation-delay:.2s;
+}
+
+.streed-step:nth-child(2) {
+  animation-delay:.4s;
+}
+
+.streed-step:nth-child(3) {
+  animation-delay:.6s;
+}
+
+.streed-step:nth-child(4) {
+  animation-delay:.8s;
+}
+
+
+/* =========================
+   NÚMEROS
+========================= */
+
+.streed-number {
+
+  position:relative;
+
+  display:inline-block;
+
+  width:max-content;
+
+  margin:0 auto 22px;
+
+  padding:0;
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(65px,9vw,100px);
+
+  line-height:.75;
+
+  color:#D90429;
+
+  opacity:.17;
+
+  text-align:center;
+
+  transition:opacity .4s ease;
+}
+
+
+/* BARRIDO DE LUZ */
+
+.streed-number::after {
+
+  content:"";
+
+  position:absolute;
+
+  top:-25%;
+
+  left:-70%;
+
+  width:35%;
+
+  height:150%;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.9),
+    rgba(255,255,255,0),
+    transparent
+  );
+
+  transform:skewX(-18deg);
+
+  opacity:0;
+
+  animation:numberScan 4s ease-in-out infinite;
+}
+
+
+/* DIFERENTES TIEMPOS */
+
+.streed-step:nth-child(1) .streed-number::after {
+  animation-delay:1.5s;
+}
+
+.streed-step:nth-child(2) .streed-number::after {
+  animation-delay:2.1s;
+}
+
+.streed-step:nth-child(3) .streed-number::after {
+  animation-delay:2.7s;
+}
+
+.streed-step:nth-child(4) .streed-number::after {
+  animation-delay:3.3s;
+}
+
+
+/* =========================
+   TÍTULO PASO
+========================= */
+
+.streed-step-title {
+
+  margin:0 0 12px;
+
+  padding:0;
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(22px,3vw,32px);
+
+  line-height:1;
+
+  color:#D90429;
+
+  letter-spacing:.5px;
+
+  text-align:center;
+
+  transition:transform .3s ease;
+}
+
+
+/* =========================
+   DESCRIPCIÓN
+========================= */
+
+.streed-step-text {
+
+  width:100%;
+
+  max-width:230px;
+
+  margin:0 auto;
+
+  padding:0;
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  color:#000000;
+
+  opacity:.6;
+
+  text-align:center;
+}
+
+
+/* =========================
+   SEPARADORES
+========================= */
+
+.streed-step:nth-child(1)::after,
+.streed-step:nth-child(3)::after {
+
+  content:"";
+
+  position:absolute;
+
+  right:0;
+
+  top:20%;
+
+  width:1px;
+
+  height:60%;
+
+  background:#D90429;
+
+  opacity:.2;
+}
+
+
+.streed-step:nth-child(1)::before,
+.streed-step:nth-child(2)::before {
+
+  content:"";
+
+  position:absolute;
+
+  left:12%;
+
+  right:12%;
+
+  bottom:0;
+
+  height:1px;
+
+  background:#D90429;
+
+  opacity:.2;
+}
+
+
+/* =========================
+   EFECTO HOVER
+========================= */
+
+.streed-step:hover .streed-number {
+
+  opacity:1;
+
+  transform:scale(1.04);
+}
+
+.streed-step:hover .streed-step-title {
+
+  transform:translateY(-3px);
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes titleIn {
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+@keyframes stepIn {
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* ✨ BARRIDO */
+
+@keyframes numberScan {
+
+  0%,45% {
+    left:-70%;
+    opacity:0;
+  }
+
+  50% {
+    opacity:1;
+  }
+
+  70% {
+    left:125%;
+    opacity:1;
+  }
+
+  75%,100% {
+    left:125%;
+    opacity:0;
+  }
+}
+
+
+/* =========================
+   📱 MÓVIL
+========================= */
+
+@media(max-width:600px) {
+
+  .streed-process {
+
+    padding:40px 10px;
+  }
+
+  .streed-process-title {
+
+    margin-bottom:25px;
+
+    font-size:32px;
+  }
+
+  .streed-process-grid {
+
+    width:100%;
+
+    max-width:500px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .streed-step {
+
+    min-height:180px;
+
+    padding:20px 10px;
+  }
+
+  .streed-number {
+
+    font-size:52px;
+
+    margin-bottom:17px;
+  }
+
+  .streed-step-title {
+
+    font-size:19px;
+
+    margin-bottom:9px;
+  }
+
+  .streed-step-text {
+
+    max-width:140px;
+
+    font-size:9px;
+
+    line-height:1.45;
+  }
+
+}
+
+
+/* =========================
+   📱 MÓVIL PEQUEÑO
+========================= */
+
+@media(max-width:380px) {
+
+  .streed-process {
+
+    padding-left:5px;
+    padding-right:5px;
+  }
+
+  .streed-process-grid {
+
+    width:100%;
+  }
+
+  .streed-step {
+
+    min-height:165px;
+
+    padding:17px 6px;
+  }
+
+  .streed-number {
+
+    font-size:46px;
+  }
+
+  .streed-step-title {
+
+    font-size:17px;
+  }
+
+  .streed-step-text {
+
+    font-size:8px;
+
+    max-width:120px;
+  }
+
+}
+</style>
+
+
+<section class="streed-process">
+
+  <h2 class="streed-process-title">
+    ASÍ FUNCIONA
+  </h2>
+
+
+  <div class="streed-process-grid">
+
+
+    <!-- 01 -->
+
+    <div class="streed-step">
+
+      <div class="streed-number">
+        01
+      </div>
+
+      <h3 class="streed-step-title">
+        ELIGE
+      </h3>
+
+      <p class="streed-step-text">
+        Escoge lo que quieres personalizar.
+      </p>
+
+    </div>
+
+
+    <!-- 02 -->
+
+    <div class="streed-step">
+
+      <div class="streed-number">
+        02
+      </div>
+
+      <h3 class="streed-step-title">
+        PERSONALIZA
+      </h3>
+
+      <p class="streed-step-text">
+        Cuéntanos tu idea o envíanos tu diseño.
+      </p>
+
+    </div>
+
+
+    <!-- 03 -->
+
+    <div class="streed-step">
+
+      <div class="streed-number">
+        03
+      </div>
+
+      <h3 class="streed-step-title">
+        CREAMOS
+      </h3>
+
+      <p class="streed-step-text">
+        Convertimos tu idea en algo real.
+      </p>
+
+    </div>
+
+
+    <!-- 04 -->
+
+    <div class="streed-step">
+
+      <div class="streed-number">
+        04
+      </div>
+
+      <h3 class="streed-step-title">
+        DISFRUTA
+      </h3>
+
+      <p class="streed-step-text">
+        Recibe algo hecho especialmente para ti.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     LINEA DIVISORA
+========================= -->
+
+<style>
+.divider {
+    width: 92%;
+    height: 4px;
+    margin: 70px auto 55px;
+    background: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 75%,
+        #e00000 75%,
+        #e00000 100%
+    );
+}
+</style>
+
+<div class="divider"></div>
+
+
+<!-- =========================
+     PREGUNTAS FRECUENTES
+========================= -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.streed-faq {
+  width:100%;
+  box-sizing:border-box;
+  padding:70px 20px;
+  background:transparent;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.streed-faq-title {
+  margin:0 auto 45px;
+  text-align:center;
+
+  font-family:'Abril Fatface',Georgia,serif;
+  font-size:clamp(38px,7vw,70px);
+  line-height:.95;
+
+  color:#000;
+
+  opacity:0;
+  transform:translateY(25px);
+
+  animation:faqTitle .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.streed-faq-list {
+  width:100%;
+  max-width:850px;
+
+  margin:0 auto;
+
+  border-top:1px solid rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   ITEM
+========================= */
+
+.streed-faq-item {
+  position:relative;
+
+  border-bottom:1px solid rgba(0,0,0,.25);
+
+  opacity:0;
+  transform:translateX(-20px);
+
+  animation:faqItem .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+
+.streed-faq-item:nth-child(1) {
+  animation-delay:.2s;
+}
+
+.streed-faq-item:nth-child(2) {
+  animation-delay:.35s;
+}
+
+.streed-faq-item:nth-child(3) {
+  animation-delay:.5s;
+}
+
+.streed-faq-item:nth-child(4) {
+  animation-delay:.65s;
+}
+
+.streed-faq-item:nth-child(5) {
+  animation-delay:.8s;
+}
+
+
+/* =========================
+   PREGUNTA
+========================= */
+
+.streed-faq-question {
+  width:100%;
+
+  padding:24px 5px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  cursor:pointer;
+
+  box-sizing:border-box;
+
+  background:transparent;
+
+  border:0;
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(18px,3vw,27px);
+
+  color:#000;
+
+  text-align:left;
+
+  transition:color .3s ease;
+}
+
+
+/* =========================
+   NÚMERO
+========================= */
+
+.streed-faq-number {
+
+  margin-right:18px;
+
+  font-family:Arial,sans-serif;
+
+  font-size:9px;
+
+  font-weight:bold;
+
+  letter-spacing:1px;
+
+  color:#D90429;
+
+  opacity:.7;
+}
+
+
+/* TEXTO */
+
+.streed-faq-question-text {
+  flex:1;
+}
+
+
+/* =========================
+   ICONO
+========================= */
+
+.streed-faq-icon {
+
+  width:30px;
+  height:30px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border:1px solid #000;
+
+  border-radius:50%;
+
+  font-family:Arial,sans-serif;
+
+  font-size:17px;
+
+  line-height:1;
+
+  transition:
+    transform .4s ease,
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+
+/* =========================
+   RESPUESTA
+========================= */
+
+.streed-faq-answer {
+
+  display:grid;
+
+  grid-template-rows:0fr;
+
+  transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1);
+}
+
+
+.streed-faq-answer-inner {
+
+  overflow:hidden;
+
+  padding-left:38px;
+
+  color:#000;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  opacity:.65;
+
+  transform:translateY(-10px);
+
+  transition:
+    padding-bottom .45s ease,
+    transform .45s ease;
+}
+
+
+/* =========================
+   ACTIVO
+========================= */
+
+.streed-faq-item.active
+.streed-faq-answer {
+
+  grid-template-rows:1fr;
+}
+
+
+.streed-faq-item.active
+.streed-faq-answer-inner {
+
+  padding-bottom:24px;
+
+  transform:translateY(0);
+}
+
+
+.streed-faq-item.active
+.streed-faq-icon {
+
+  transform:rotate(45deg);
+
+  background:#D90429;
+
+  border-color:#D90429;
+
+  color:#fff;
+}
+
+
+.streed-faq-item.active
+.streed-faq-question {
+
+  color:#D90429;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.streed-faq-item:hover
+.streed-faq-icon {
+
+  transform:scale(1.08);
+}
+
+.streed-faq-item.active:hover
+.streed-faq-icon {
+
+  transform:rotate(45deg) scale(1.08);
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes faqTitle {
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+@keyframes faqItem {
+
+  to {
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+
+/* =========================
+   📱 MÓVIL
+========================= */
+
+@media(max-width:600px) {
+
+  .streed-faq {
+
+    padding:50px 12px;
+  }
+
+  .streed-faq-title {
+
+    font-size:42px;
+
+    margin-bottom:30px;
+  }
+
+  .streed-faq-question {
+
+    padding:20px 2px;
+
+    font-size:18px;
+  }
+
+  .streed-faq-number {
+
+    margin-right:10px;
+
+    font-size:8px;
+  }
+
+  .streed-faq-icon {
+
+    width:27px;
+    height:27px;
+
+    font-size:15px;
+  }
+
+  .streed-faq-answer-inner {
+
+    padding-left:30px;
+
+    font-size:10px;
+  }
+
+}
+
+
+/* =========================
+   📱 PEQUEÑO
+========================= */
+
+@media(max-width:380px) {
+
+  .streed-faq-question {
+
+    font-size:16px;
+  }
+
+  .streed-faq-answer-inner {
+
+    font-size:9px;
+
+    padding-left:27px;
+  }
+
+}
+</style>
+
+
+<section class="streed-faq">
+
+  <h2 class="streed-faq-title">
+    PREGUNTAS FRECUENTES
+  </h2>
+
+
+  <div class="streed-faq-list">
+
+
+    <!-- 01 -->
+
+    <div class="streed-faq-item">
+
+      <button
+        class="streed-faq-question"
+        onclick="toggleStreedFAQ(this)"
+      >
+
+        <span class="streed-faq-number">
+          01
+        </span>
+
+        <span class="streed-faq-question-text">
+          ¿Puedo mandar mi propio diseño?
+        </span>
+
+        <span class="streed-faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="streed-faq-answer">
+
+        <div class="streed-faq-answer-inner">
+
+          Sí. Puedes enviarnos tu diseño,
+          imagen o idea y nosotros nos encargamos
+          de convertirla en tu producto personalizado.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 02 -->
+
+    <div class="streed-faq-item">
+
+      <button
+        class="streed-faq-question"
+        onclick="toggleStreedFAQ(this)"
+      >
+
+        <span class="streed-faq-number">
+          02
+        </span>
+
+        <span class="streed-faq-question-text">
+          ¿Pueden ayudarme a crear mi diseño?
+        </span>
+
+        <span class="streed-faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="streed-faq-answer">
+
+        <div class="streed-faq-answer-inner">
+
+          Claro. Cuéntanos qué tienes en mente
+          y podemos ayudarte a convertir esa idea
+          en algo completamente tuyo.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 03 -->
+
+    <div class="streed-faq-item">
+
+      <button
+        class="streed-faq-question"
+        onclick="toggleStreedFAQ(this)"
+      >
+
+        <span class="streed-faq-number">
+          03
+        </span>
+
+        <span class="streed-faq-question-text">
+          ¿Tienen precios especiales para compras mayoristas?
+        </span>
+
+        <span class="streed-faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="streed-faq-answer">
+
+        <div class="streed-faq-answer-inner">
+
+          Sí. Contamos con precios especiales
+          para pedidos al por mayor. Escríbenos
+          para conocer las opciones disponibles
+          según la cantidad que necesites.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 04 -->
+
+    <div class="streed-faq-item">
+
+      <button
+        class="streed-faq-question"
+        onclick="toggleStreedFAQ(this)"
+      >
+
+        <span class="streed-faq-number">
+          04
+        </span>
+
+        <span class="streed-faq-question-text">
+          ¿Hacen pedidos personalizados?
+        </span>
+
+        <span class="streed-faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="streed-faq-answer">
+
+        <div class="streed-faq-answer-inner">
+
+          Sí. Puedes personalizar tus camisas,
+          gorras, cases y otros productos
+          según tu estilo e idea.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 05 -->
+
+    <div class="streed-faq-item">
+
+      <button
+        class="streed-faq-question"
+        onclick="toggleStreedFAQ(this)"
+      >
+
+        <span class="streed-faq-number">
+          05
+        </span>
+
+        <span class="streed-faq-question-text">
+          ¿Cómo hago mi pedido?
+        </span>
+
+        <span class="streed-faq-icon">
+          +
+        </span>
+
+      </button>
+
+      <div class="streed-faq-answer">
+
+        <div class="streed-faq-answer-inner">
+
+          Escríbenos directamente por WhatsApp,
+          cuéntanos qué quieres crear y te
+          ayudaremos con el proceso.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<script>
+
+function toggleStreedFAQ(button) {
+
+  const item = button.parentElement;
+
+  const allItems =
+    document.querySelectorAll('.streed-faq-item');
+
+  allItems.forEach(function(otherItem) {
+
+    if (otherItem !== item) {
+
+      otherItem.classList.remove('active');
+
+    }
+
+  });
+
+  item.classList.toggle('active');
+
+}
+
+</script>
+
+<!-- =========================
+     LINEA DIVISORA
+========================= -->
+
+<style>
+.divider {
+    width: 92%;
+    height: 4px;
+    margin: 70px auto 55px;
+    background: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 75%,
+        #e00000 75%,
+        #e00000 100%
+    );
+}
+</style>
+
+<div class="divider"></div>
+
+
+<!-- =========================
+     QUE VAS A CREAR
+========================= -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.streed-final-section {
+  width:100%;
+  box-sizing:border-box;
+  padding:90px 15px;
+  background:transparent;
+  overflow:hidden;
+  text-align:center;
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.streed-final-box {
+
+  position:relative;
+
+  width:100%;
+  max-width:1100px;
+
+  min-height:520px;
+
+  margin:0 auto;
+
+  box-sizing:border-box;
+
+  background:#D90429;
+
+  border-radius:35px;
+
+  overflow:hidden;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:70px 25px;
+
+  opacity:0;
+
+  transform:scale(.93);
+
+  animation:finalEnter 1.1s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+
+/* =========================
+   TEXTO GIGANTE DE FONDO
+========================= */
+
+.streed-final-box::before {
+
+  content:"STREED";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%) rotate(-8deg);
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(130px,25vw,300px);
+
+  line-height:1;
+
+  color:rgba(0,0,0,.08);
+
+  white-space:nowrap;
+
+  pointer-events:none;
+
+  animation:backgroundMove 8s ease-in-out infinite alternate;
+}
+
+
+/* =========================
+   CÍRCULO
+========================= */
+
+.streed-final-orbit {
+
+  position:absolute;
+
+  width:390px;
+  height:390px;
+
+  border:1px solid rgba(255,255,255,.25);
+
+  border-radius:50%;
+
+  animation:finalOrbit 12s linear infinite;
+}
+
+
+.streed-final-orbit::before {
+
+  content:"✦";
+
+  position:absolute;
+
+  top:-8px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  color:#fff;
+
+  font-size:16px;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.streed-final-label {
+
+  position:relative;
+
+  z-index:3;
+
+  margin-bottom:22px;
+
+  font-family:Arial,sans-serif;
+
+  font-size:9px;
+
+  font-weight:bold;
+
+  letter-spacing:4px;
+
+  color:#fff;
+
+  opacity:0;
+
+  animation:finalFade .8s ease .35s forwards;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.streed-final-title {
+
+  position:relative;
+
+  z-index:3;
+
+  margin:0;
+
+  max-width:950px;
+
+  font-family:'Abril Fatface',Georgia,serif;
+
+  font-size:clamp(50px,11vw,145px);
+
+  line-height:.82;
+
+  letter-spacing:-3px;
+
+  color:#fff;
+
+  text-transform:uppercase;
+
+  opacity:0;
+
+  transform:translateY(45px);
+
+  animation:titleFinal 1s cubic-bezier(.16,1,.3,1) .5s forwards;
+}
+
+
+/* PARTE NEGRA */
+
+.streed-final-title span {
+
+  display:block;
+
+  color:#000;
+
+  position:relative;
+
+}
+
+
+/* =========================
+   FRASE
+========================= */
+
+.streed-final-subtitle {
+
+  position:relative;
+
+  z-index:3;
+
+  margin:30px auto 30px;
+
+  font-family:Arial,sans-serif;
+
+  font-size:14px;
+
+  font-weight:500;
+
+  letter-spacing:.5px;
+
+  color:#fff;
+
+  opacity:0;
+
+  transform:translateY(15px);
+
+  animation:finalFade .8s ease 1s forwards;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.streed-final-button {
+
+  position:relative;
+
+  z-index:4;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:13px;
+
+  padding:17px 32px;
+
+  background:#000;
+
+  color:#fff;
+
+  border:2px solid #000;
+
+  border-radius:50px;
+
+  text-decoration:none;
+
+  font-family:Arial,sans-serif;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  opacity:0;
+
+  transform:translateY(20px) scale(.95);
+
+  animation:finalButton 1s cubic-bezier(.16,1,.3,1) 1.2s forwards;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+
+/* =========================
+   BRILLO DEL BOTÓN
+========================= */
+
+.streed-final-button::before {
+
+  content:"";
+
+  position:absolute;
+
+  inset:-7px;
+
+  border:1px solid rgba(0,0,0,.5);
+
+  border-radius:50px;
+
+  animation:buttonPulse 2.2s ease-out infinite;
+}
+
+
+.streed-final-button:hover {
+
+  background:#fff;
+
+  color:#000;
+
+  transform:translateY(-5px) scale(1.07);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.3);
+}
+
+
+.streed-final-arrow {
+
+  font-size:18px;
+
+  line-height:1;
+
+  transition:transform .3s ease;
+}
+
+
+.streed-final-button:hover
+.streed-final-arrow {
+
+  transform:translateX(7px);
+}
+
+
+/* =========================
+   PEQUEÑAS ESTRELLAS
+========================= */
+
+.streed-final-star {
+
+  position:absolute;
+
+  z-index:2;
+
+  color:#fff;
+
+  font-size:14px;
+
+  animation:starFinal 2.5s ease-in-out infinite;
+}
+
+.sf1 {
+  top:18%;
+  left:14%;
+}
+
+.sf2 {
+  bottom:20%;
+  right:12%;
+  animation-delay:.7s;
+}
+
+.sf3 {
+  top:28%;
+  right:18%;
+  font-size:8px;
+  animation-delay:1.2s;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes finalEnter {
+
+  0% {
+    opacity:0;
+    transform:scale(.93);
+  }
+
+  100% {
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+
+@keyframes finalFade {
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+@keyframes titleFinal {
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+@keyframes finalButton {
+
+  to {
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+
+@keyframes backgroundMove {
+
+  from {
+    transform:translate(-50%,-50%) rotate(-8deg);
+  }
+
+  to {
+    transform:translate(-45%,-55%) rotate(5deg);
+  }
+}
+
+
+@keyframes finalOrbit {
+
+  from {
+    transform:rotate(0deg);
+  }
+
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+
+@keyframes buttonPulse {
+
+  0% {
+    opacity:.8;
+    transform:scale(.95);
+  }
+
+  70% {
+    opacity:0;
+    transform:scale(1.15);
+  }
+
+  100% {
+    opacity:0;
+  }
+}
+
+
+@keyframes starFinal {
+
+  0%,100% {
+    opacity:.2;
+    transform:scale(.7) rotate(0deg);
+  }
+
+  50% {
+    opacity:1;
+    transform:scale(1.5) rotate(25deg);
+  }
+}
+
+
+/* =========================
+   📱 MÓVIL
+========================= */
+
+@media(max-width:600px) {
+
+  .streed-final-section {
+
+    padding:55px 10px;
+  }
+
+  .streed-final-box {
+
+    min-height:470px;
+
+    padding:55px 18px;
+
+    border-radius:25px;
+  }
+
+  .streed-final-box::before {
+
+    font-size:120px;
+
+    transform:translate(-50%,-50%) rotate(-8deg);
+  }
+
+  .streed-final-orbit {
+
+    width:280px;
+    height:280px;
+  }
+
+  .streed-final-label {
+
+    font-size:7px;
+
+    letter-spacing:3px;
+  }
+
+  .streed-final-title {
+
+    font-size:45px;
+
+    letter-spacing:-1.5px;
+  }
+
+  .streed-final-subtitle {
+
+    font-size:11px;
+
+    margin-top:25px;
+  }
+
+  .streed-final-button {
+
+    padding:15px 25px;
+
+    font-size:9px;
+  }
+
+}
+
+
+/* =========================
+   📱 TELÉFONO PEQUEÑO
+========================= */
+
+@media(max-width:380px) {
+
+  .streed-final-box {
+
+    min-height:440px;
+
+    padding:45px 12px;
+  }
+
+  .streed-final-title {
+
+    font-size:40px;
+  }
+
+  .streed-final-orbit {
+
+    width:245px;
+    height:245px;
+  }
+
+}
+</style>
+
+
+<section class="streed-final-section">
+
+  <div class="streed-final-box">
+
+
+    <!-- CÍRCULO -->
+
+    <div class="streed-final-orbit"></div>
+
+
+    <!-- ESTRELLAS -->
+
+    <span class="streed-final-star sf1">✦</span>
+
+    <span class="streed-final-star sf2">✦</span>
+
+    <span class="streed-final-star sf3">✦</span>
+
+
+    <!-- LABEL -->
+
+    <div class="streed-final-label">
+      THIS IS YOUR SIGN
+    </div>
+
+
+    <!-- TÍTULO -->
+
+    <h2 class="streed-final-title">
+
+      ¿QUÉ VAS
+
+      <span>
+        A CREAR?
+      </span>
+
+    </h2>
+
+
+    <!-- SUBTÍTULO -->
+
+    <p class="streed-final-subtitle">
+
+      Tu próxima idea empieza aquí.
+
+    </p>
+
+
+    <!-- BOTÓN -->
+
+    <a
+      href="https://wa.me/50489055186?text=Hola%20STREED%21%20Quiero%20crear%20algo."
+      target="_blank"
+      rel="noopener"
+      class="streed-final-button"
+    >
+
+      QUIERO CREAR
+
+      <span class="streed-final-arrow">
+        →
+      </span>
+
+    </a>
+
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LINEA DIVISORA
+========================= -->
+
+<style>
+.divider {
+    width: 92%;
+    height: 4px;
+    margin: 70px auto 55px;
+    background: linear-gradient(
+        90deg,
+        #000 0%,
+        #000 75%,
+        #e00000 75%,
+        #e00000 100%
+    );
+}
+</style>
+
+<div class="divider"></div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+.streed-footer {
+    width: 100%;
+    box-sizing: border-box;
+    background: #000;
+    padding: 70px 20px 45px;
+    text-align: center;
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+    color: #fff;
+    overflow: visible;
+}
+
+.streed-footer-title {
+    margin: 0 0 25px;
+    font-size: 46px;
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.streed-footer-social-title {
+    margin: 0 0 20px;
+    font-size: 21px;
+    letter-spacing: .5px;
+}
+
+.streed-socials {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 20px 42px;
+    background: transparent;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.streed-socials-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    padding: 8px 0 14px;
+}
+
+.streed-social {
+    position: relative;
+    margin: 4px;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(25px) scale(.75);
+    animation:
+        socialEnter
+        .75s cubic-bezier(.16,1,.3,1)
+        forwards;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        background .3s ease,
+        color .3s ease,
+        box-shadow .35s ease;
+}
+
+.streed-social:nth-child(1) { animation-delay: .1s; }
+.streed-social:nth-child(2) { animation-delay: .25s; }
+.streed-social:nth-child(3) { animation-delay: .4s; }
+.streed-social:nth-child(4) { animation-delay: .55s; }
+
+.streed-social::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(.75);
+    animation: socialRing 3.5s ease-out infinite;
+}
+
+.streed-social:nth-child(1)::before { animation-delay: 2s; }
+.streed-social:nth-child(2)::before { animation-delay: 2.6s; }
+.streed-social:nth-child(3)::before { animation-delay: 3.2s; }
+.streed-social:nth-child(4)::before { animation-delay: 3.8s; }
+
+.streed-social i {
+    position: relative;
+    z-index: 2;
+    font-size: 25px;
+    color: #fff;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        color .3s ease;
+}
+
+.streed-social:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-6px) scale(1.1);
+    box-shadow: 0 12px 25px rgba(255,255,255,.18);
+}
+
+.streed-social:hover i {
+    color: #000;
+    transform: scale(1.12) rotate(-5deg);
+}
+
+@keyframes socialEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(.75);
+    }
+
+    65% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes socialRing {
+    0% {
+        opacity: 0;
+        transform: scale(.75);
+    }
+
+    20% {
+        opacity: .5;
+    }
+
+    70% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+}
+
+.streed-footer-copy {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: .5px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .streed-footer {
+        padding: 55px 15px 40px;
+    }
+
+    .streed-footer-title {
+        font-size: 38px;
+        margin-bottom: 22px;
+    }
+
+    .streed-footer-social-title {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+
+    .streed-socials {
+        padding: 14px 12px 34px;
+    }
+
+    .streed-socials-row {
+        gap: 11px;
+    }
+
+    .streed-social {
+        margin: 3px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .streed-social i {
+        font-size: 22px;
+    }
+
+    .streed-footer-copy {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+
+    .streed-footer-title {
+        font-size: 34px;
+    }
+
+    .streed-footer-social-title {
+        font-size: 16px;
+    }
+
+    .streed-socials-row {
+        gap: 8px;
+    }
+
+    .streed-social {
+        margin: 2px;
+        width: 46px;
+        height: 46px;
+    }
+
+    .streed-social i {
+        font-size: 20px;
+    }
+
+    .streed-footer-copy {
+        font-size: 13px;
+    }
+}
+</style>
+
+<footer class="streed-footer">
+
+    <h2 class="streed-footer-title">
+        STREED HN
+    </h2>
+
+    <p class="streed-footer-social-title">
+        SIGUENOS EN NUESTRAS REDES
+    </p>
+
+    <section class="streed-socials">
+        <div class="streed-socials-row">
+
+            <a href="https://instagram.com/streedhn"
+               target="_blank"
+               rel="noopener"
+               class="streed-social"
+               aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://wa.me/50489055186"
+               target="_blank"
+               rel="noopener"
+               class="streed-social"
+               aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@streedhn"
+               target="_blank"
+               rel="noopener"
+               class="streed-social"
+               aria-label="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+            <a href="https://www.facebook.com/share/19KEN1PQyT/?mibextid=wwXIfr"
+               target="_blank"
+               rel="noopener"
+               class="streed-social"
+               aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+        </div>
+    </section>
+
+    <p class="streed-footer-copy">
+        © 2026 STREED
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     TERMINOS Y CONDICIONES
+========================= -->
+
+<style>
+
+/* =========================================
+   ENLACE: TÉRMINOS Y CONDICIONES
+   ========================================= */
+
+.streed-terms {
+    width: 100%;
+    box-sizing: border-box;
+    background: #000;
+    padding: 10px 20px 16px;
+    text-align: center;
+
+    font-family:
+        "Futura",
+        "Futura PT",
+        "Century Gothic",
+        Arial,
+        sans-serif;
+
+    font-weight: 700;
+    font-style: italic;
+}
+
+.streed-terms button {
+    border: none;
+    background: transparent;
+
+    color: #fff;
+
+    font-family:
+        "Futura",
+        "Futura PT",
+        "Century Gothic",
+        Arial,
+        sans-serif;
+
+    font-weight: 700;
+    font-style: italic;
+
+    font-size: 13px;
+    letter-spacing: .2px;
+
+    cursor: pointer;
+    padding: 0;
+
+    transition: color .25s ease;
+}
+
+.streed-terms button:hover {
+    color: #D90429;
+}
+
+
+/* =========================================
+   FONDO OSCURO DE LA VENTANA
+   ========================================= */
+
+.streed-modal {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .80);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 99999;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+.streed-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================
+   VENTANA PRINCIPAL
+   ========================================= */
+
+.streed-modal-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    max-height: 85vh;
+
+    background: #000;
+    color: #fff;
+
+    border: 2px solid #fff;
+
+    padding: 45px 50px 50px 55px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    transform:
+        translateY(35px)
+        scale(.96);
+
+    transition:
+        transform .45s cubic-bezier(.77, 0, .18, 1);
+}
+
+.streed-modal.active .streed-modal-box {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================
+   BARRA ROJA LATERAL
+   ========================================= */
+
+.streed-modal-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 7px;
+    height: 100%;
+
+    background: #D90429;
+}
+
+
+/* =========================================
+   BOTÓN X
+   ========================================= */
+
+.streed-modal-close {
+    position: absolute;
+
+    top: 14px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+    font-size: 31px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        transform .3s ease;
+}
+
+.streed-modal-close:hover {
+    color: #D90429;
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   TÍTULO
+   ========================================= */
+
+.streed-modal-title {
+    margin: 0 45px 32px 0;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size: 42px;
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    color: #fff;
+}
+
+.streed-modal-title span {
+    color: #D90429;
+}
+
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.streed-modal-content {
+    font-family:
+        "Futura",
+        "Futura PT",
+        "Century Gothic",
+        Arial,
+        sans-serif;
+
+    font-weight: 700;
+    font-style: italic;
+
+    font-size: 16px;
+
+    line-height: 1.55;
+
+    color: #fff;
+}
+
+.streed-modal-content p {
+    margin: 0 0 21px;
+}
+
+.streed-modal-content strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+.streed-modal-content .streed-highlight {
+    color: #D90429;
+}
+
+
+/* =========================================
+   FIRMA FINAL
+   ========================================= */
+
+.streed-modal-signature {
+    margin-top: 32px !important;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #444;
+
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Narrow Bold",
+        sans-serif;
+
+    font-size: 20px;
+
+    font-style: normal;
+
+    letter-spacing: .7px;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   BARRA DE SCROLL
+   ========================================= */
+
+.streed-modal-box::-webkit-scrollbar {
+    width: 7px;
+}
+
+.streed-modal-box::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.streed-modal-box::-webkit-scrollbar-thumb {
+    background: #D90429;
+}
+
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media screen and (max-width: 600px) {
+
+    .streed-terms {
+        padding: 9px 15px 14px;
+    }
+
+    .streed-terms button {
+        font-size: 11px;
+    }
+
+
+    .streed-modal {
+        padding: 12px;
+    }
+
+
+    .streed-modal-box {
+        max-height: 92vh;
+
+        padding:
+            42px
+            24px
+            35px
+            30px;
+
+        border-width: 1.5px;
+    }
+
+
+    .streed-modal-box::before {
+        width: 5px;
+    }
+
+
+    .streed-modal-title {
+        font-size: 30px;
+
+        margin:
+            0 35px 25px 0;
+    }
+
+
+    .streed-modal-content {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+
+    .streed-modal-content p {
+        margin-bottom: 18px;
+    }
+
+
+    .streed-modal-close {
+        top: 9px;
+        right: 11px;
+
+        width: 32px;
+        height: 32px;
+
+        font-size: 27px;
+    }
+
+
+    .streed-modal-signature {
+        font-size: 17px;
+        margin-top: 25px !important;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================
+     ENLACE DE TÉRMINOS
+     ========================================= -->
+
+<div class="streed-terms">
+
+    <button
+        id="openStreedTerms"
+        type="button"
+    >
+        Términos y condiciones
+    </button>
+
+</div>
+
+
+<!-- =========================================
+     VENTANA EMERGENTE
+     ========================================= -->
+
+<div
+    id="streedTermsModal"
+    class="streed-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="streed-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="streedTermsTitle"
+    >
+
+
+        <!-- BOTÓN CERRAR -->
+
+        <button
+            id="closeStreedTerms"
+            class="streed-modal-close"
+            type="button"
+            aria-label="Cerrar términos y condiciones"
+        >
+            ×
+        </button>
+
+
+        <!-- TÍTULO -->
+
+        <h2
+            id="streedTermsTitle"
+            class="streed-modal-title"
+        >
+            TÉRMINOS Y
+            <span>CONDICIONES</span>
+        </h2>
+
+
+        <!-- TEXTO -->
+
+        <div class="streed-modal-content">
+
+
+            <p>
+                Al realizar una compra en
+                <span class="streed-highlight">STREED</span>,
+                el cliente acepta los siguientes términos y condiciones:
+            </p>
+
+
+            <p>
+                <strong>
+                    1. PRODUCTOS PERSONALIZADOS
+                </strong>
+                <br>
+
+                Los productos personalizados son elaborados
+                específicamente según las indicaciones proporcionadas
+                por el cliente. Por tratarse de productos personalizados,
+                no se aceptan cambios o devoluciones por errores en los
+                datos, tallas, colores, imágenes o diseños proporcionados
+                por el cliente.
+            </p>
+
+
+            <p>
+                <strong>
+                    2. DISEÑOS
+                </strong>
+                <br>
+
+                El cliente es responsable de proporcionar información,
+                imágenes y elementos correctos para su pedido.
+                STREED podrá realizar los ajustes necesarios para adaptar
+                el diseño al producto solicitado, procurando mantener
+                la idea original.
+            </p>
+
+
+            <p>
+                <strong>
+                    3. PAGOS Y ANTICIPOS
+                </strong>
+                <br>
+
+                Todo pedido deberá ser confirmado mediante un
+                <strong>anticipo del 50% del valor total del pedido</strong>.
+                El pedido no se considerará confirmado hasta que dicho
+                anticipo haya sido recibido por STREED.
+
+                El
+                <strong>50% restante</strong>
+                deberá ser cancelado según las condiciones comunicadas
+                al cliente al momento de confirmar el pedido.
+            </p>
+
+
+            <p>
+                <strong>
+                    4. CANCELACIONES Y REEMBOLSOS
+                </strong>
+                <br>
+
+                Una vez realizado el anticipo del 50%, el cliente podrá
+                solicitar la cancelación del pedido; sin embargo,
+                <strong>el anticipo NO es reembolsable</strong>.
+
+                Esto aplica independientemente de que el proceso de
+                producción haya comenzado o no.
+            </p>
+
+
+            <p>
+                <strong>
+                    5. TIEMPO DE ELABORACIÓN
+                </strong>
+                <br>
+
+                Los tiempos de producción pueden variar dependiendo
+                del tipo de producto, cantidad y nivel de personalización.
+                El tiempo estimado será comunicado al momento de confirmar
+                el pedido.
+            </p>
+
+
+            <p>
+                <strong>
+                    6. ENTREGAS
+                </strong>
+                <br>
+
+                Los tiempos y costos de entrega pueden variar según
+                la ubicación del cliente y el método de envío seleccionado.
+
+                STREED no se hace responsable por retrasos ocasionados
+                por empresas de mensajería o situaciones fuera de su control.
+            </p>
+
+
+            <p>
+                <strong>
+                    7. CAMBIOS EN EL PEDIDO
+                </strong>
+                <br>
+
+                Las modificaciones al diseño, producto, talla, color
+                o cualquier otro detalle deberán solicitarse antes de
+                iniciar la producción.
+
+                Una vez iniciado el proceso de elaboración, el pedido
+                podrá no ser modificable.
+            </p>
+
+
+            <p>
+                <strong>
+                    8. CALIDAD Y VARIACIONES
+                </strong>
+                <br>
+
+                Debido a los procesos de impresión y fabricación,
+                pueden existir ligeras variaciones de color, posición
+                o acabado respecto a la imagen mostrada en pantalla.
+
+                Estas variaciones no representan necesariamente
+                un defecto del producto.
+            </p>
+
+
+            <p>
+                <strong>
+                    9. ACEPTACIÓN
+                </strong>
+                <br>
+
+                Al confirmar un pedido y realizar el anticipo
+                correspondiente, el cliente declara haber leído,
+                comprendido y aceptado estos términos y condiciones.
+            </p>
+
+
+            <!-- FIRMA -->
+
+            <p class="streed-modal-signature">
+                STREED — PRINT STUDIO
+            </p>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script>
+
+const openStreedTerms =
+    document.getElementById("openStreedTerms");
+
+const closeStreedTerms =
+    document.getElementById("closeStreedTerms");
+
+const streedTermsModal =
+    document.getElementById("streedTermsModal");
+
+
+/* ABRIR */
+
+function openTerms() {
+
+    streedTermsModal.classList.add("active");
+
+    streedTermsModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* CERRAR */
+
+function closeTerms() {
+
+    streedTermsModal.classList.remove("active");
+
+    streedTermsModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow = "";
+}
+
+
+/* CLICK EN TÉRMINOS */
+
+openStreedTerms.addEventListener(
+    "click",
+    openTerms
+);
+
+
+/* CLICK EN X */
+
+closeStreedTerms.addEventListener(
+    "click",
+    closeTerms
+);
+
+
+/* CLICK FUERA DE LA VENTANA */
+
+streedTermsModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === streedTermsModal
+        ) {
+            closeTerms();
+        }
+
+    }
+);
+
+
+/* TECLA ESC */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape" &&
+            streedTermsModal.classList.contains("active")
+        ) {
+            closeTerms();
+        }
+
+    }
+);
+
+</script>
+
+</html>
+
+
+
+
